@@ -1,0 +1,25 @@
+{
+  "name": "underscoreai",
+  "version": "1.0.0",
+  "description": "An AI powered utility library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RikusWiehahn/underscoreai.git"
+  },
+  "keywords": [
+    "AI",
+    "Utilities",
+    "Lodash",
+    "Underscore.js"
+  ],
+  "author": "Rikus Wiehahn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RikusWiehahn/underscoreai/issues"
+  },
+  "homepage": "https://github.com/RikusWiehahn/underscoreai#readme"
+}

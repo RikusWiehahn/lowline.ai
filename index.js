@@ -1,1 +1,2 @@
-console.log("Hello world");
+
+export const helloNpm = () => console.log('Hello NPM!');
