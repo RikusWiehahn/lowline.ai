@@ -1,8 +1,8 @@
 {
   "name": "lowline.ai",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An AI powered utility library",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm -s run clean && tsc",
