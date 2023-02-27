@@ -9,7 +9,7 @@
     "generate": "prisma generate",
     "start": "node dist/index.js",
     "dev": "ts-node-dev --no-notify --respawn --transpile-only --inspect -- src/index.ts",
-    "test": "jest --watchAll"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

@@ -5,3 +5,4 @@ test("helloNpm", () => {
   helloNpm();
   expect(helloNpm).toHaveBeenCalled();
 });
+
