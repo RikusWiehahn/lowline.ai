@@ -1,5 +1,5 @@
 {
-  "name": "underscoreai",
+  "name": "lowline.ai",
   "version": "1.0.0",
   "description": "An AI powered utility library",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RikusWiehahn/underscoreai.git"
+    "url": "git+https://github.com/RikusWiehahn/lowline.ai.git"
   },
   "keywords": [
     "AI",
@@ -19,7 +19,7 @@
   "author": "Rikus Wiehahn",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RikusWiehahn/underscoreai/issues"
+    "url": "https://github.com/RikusWiehahn/lowline.ai/issues"
   },
-  "homepage": "https://github.com/RikusWiehahn/underscoreai#readme"
+  "homepage": "https://github.com/RikusWiehahn/lowline.ai#readme"
 }
