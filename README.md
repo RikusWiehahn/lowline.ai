@@ -1,7 +1,7 @@
 # 🤖 lowline.ai 
 
-[🔗 Website](https://lowline.ai)
-[🔗 Documentation](https://lowline.ai/getting-started)
+[🔗 Website](https://www.lowline.ai)
+[🔗 Documentation](https://www.lowline.ai/getting-started)
 
 Lowline.ai is a javascript utility library with 100+ functions powered by ChatGPT.
 
