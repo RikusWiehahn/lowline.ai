@@ -25,13 +25,11 @@ const optionOutput = gql`
 
 const stringListSearch = gql`
   mutation stringListSearch(
-    $api_key: String
     $count: Int
     $search_term: String!
     $search_items: [String!]!
   ) {
     stringListSearch(
-      api_key: $api_key
       count: $count
       search_term: $search_term
       search_items: $search_items
@@ -57,13 +55,11 @@ const stringListSearch = gql`
 
 const optionListSearch = gql`
   mutation optionListSearch(
-    $api_key: String
     $count: Int
     $search_term: String!
     $search_items: [OptionInput!]!
   ) {
     optionListSearch(
-      api_key: $api_key
       count: $count
       search_term: $search_term
       search_items: $search_items

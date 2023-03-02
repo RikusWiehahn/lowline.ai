@@ -16,9 +16,27 @@ export type Scalars = {
   JSON: any;
 };
 
+export type ApiKey = {
+  __typename?: 'ApiKey';
+  created_at?: Maybe<Scalars['String']>;
+  daily_usage?: Maybe<Array<DailyUsageRecord>>;
+  id?: Maybe<Scalars['ID']>;
+  name?: Maybe<Scalars['String']>;
+  starts_with?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['ID']>;
+};
+
 export type BaseError = Error & {
   __typename?: 'BaseError';
   message?: Maybe<Scalars['String']>;
+};
+
+export type DailyUsageRecord = {
+  __typename?: 'DailyUsageRecord';
+  api_key_id?: Maybe<Scalars['ID']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['ID']>;
+  request_origins?: Maybe<Array<RequestOrigin>>;
 };
 
 export type Error = {
@@ -27,6 +45,10 @@ export type Error = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createApiKey?: Maybe<MutationCreateApiKeyResult>;
+  createCheckoutSession?: Maybe<MutationCreateCheckoutSessionResult>;
+  createStripePortalSession?: Maybe<MutationCreateStripePortalSessionResult>;
+  deleteApiKey?: Maybe<MutationDeleteApiKeyResult>;
   helloMutation?: Maybe<Scalars['String']>;
   optionListSearch?: Maybe<MutationOptionListSearchResult>;
   requestNewPassword?: Maybe<MutationRequestNewPasswordResult>;
@@ -39,13 +61,34 @@ export type Mutation = {
 };
 
 
+export type MutationCreateApiKeyArgs = {
+  name: Scalars['String'];
+  token?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationCreateCheckoutSessionArgs = {
+  token?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationCreateStripePortalSessionArgs = {
+  token?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationDeleteApiKeyArgs = {
+  id: Scalars['String'];
+  token?: InputMaybe<Scalars['String']>;
+};
+
+
 export type MutationHelloMutationArgs = {
   name: Scalars['String'];
 };
 
 
 export type MutationOptionListSearchArgs = {
-  api_key?: InputMaybe<Scalars['String']>;
   count?: InputMaybe<Scalars['Int']>;
   search_items: Array<OptionInput>;
   search_term: Scalars['String'];
@@ -72,7 +115,6 @@ export type MutationSignUpUserArgs = {
 
 
 export type MutationStringListSearchArgs = {
-  api_key?: InputMaybe<Scalars['String']>;
   count?: InputMaybe<Scalars['Int']>;
   search_items: Array<Scalars['String']>;
   search_term: Scalars['String'];
@@ -101,6 +143,34 @@ export type MutationUpdateUserArgs = {
   last_name?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
   token: Scalars['String'];
+};
+
+export type MutationCreateApiKeyResult = BaseError | MutationCreateApiKeySuccess;
+
+export type MutationCreateApiKeySuccess = {
+  __typename?: 'MutationCreateApiKeySuccess';
+  data: Scalars['String'];
+};
+
+export type MutationCreateCheckoutSessionResult = BaseError | MutationCreateCheckoutSessionSuccess;
+
+export type MutationCreateCheckoutSessionSuccess = {
+  __typename?: 'MutationCreateCheckoutSessionSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationCreateStripePortalSessionResult = BaseError | MutationCreateStripePortalSessionSuccess;
+
+export type MutationCreateStripePortalSessionSuccess = {
+  __typename?: 'MutationCreateStripePortalSessionSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationDeleteApiKeyResult = BaseError | MutationDeleteApiKeySuccess;
+
+export type MutationDeleteApiKeySuccess = {
+  __typename?: 'MutationDeleteApiKeySuccess';
+  data: User;
 };
 
 export type MutationOptionListSearchResult = BaseError | MutationOptionListSearchSuccess;
@@ -244,19 +314,28 @@ export type QuerySignInUserSuccess = {
   data: Scalars['String'];
 };
 
+export type RequestOrigin = {
+  __typename?: 'RequestOrigin';
+  daily_usage_record_id?: Maybe<Scalars['ID']>;
+  id?: Maybe<Scalars['ID']>;
+  origin?: Maybe<Scalars['String']>;
+  request_count?: Maybe<Scalars['Int']>;
+};
+
 export type User = {
   __typename?: 'User';
+  api_keys?: Maybe<Array<ApiKey>>;
   created_at?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   first_name?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['ID']>;
   last_name?: Maybe<Scalars['String']>;
+  subscription_status?: Maybe<Scalars['String']>;
 };
 
 export type OptionOutputFlatFragment = { __typename?: 'OptionOutput', id: string, text: string };
 
 export type StringListSearchMutationVariables = Exact<{
-  api_key?: InputMaybe<Scalars['String']>;
   count?: InputMaybe<Scalars['Int']>;
   search_term: Scalars['String'];
   search_items: Array<Scalars['String']> | Scalars['String'];
@@ -266,7 +345,6 @@ export type StringListSearchMutationVariables = Exact<{
 export type StringListSearchMutation = { __typename?: 'Mutation', stringListSearch?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationStringListSearchSuccess', data: Array<string> } | null };
 
 export type OptionListSearchMutationVariables = Exact<{
-  api_key?: InputMaybe<Scalars['String']>;
   count?: InputMaybe<Scalars['Int']>;
   search_term: Scalars['String'];
   search_items: Array<OptionInput> | OptionInput;
@@ -282,9 +360,8 @@ export const OptionOutputFlatFragmentDoc = gql`
 }
     `;
 export const StringListSearchDocument = gql`
-    mutation stringListSearch($api_key: String, $count: Int, $search_term: String!, $search_items: [String!]!) {
+    mutation stringListSearch($count: Int, $search_term: String!, $search_items: [String!]!) {
   stringListSearch(
-    api_key: $api_key
     count: $count
     search_term: $search_term
     search_items: $search_items
@@ -300,9 +377,8 @@ export const StringListSearchDocument = gql`
 }
     `;
 export const OptionListSearchDocument = gql`
-    mutation optionListSearch($api_key: String, $count: Int, $search_term: String!, $search_items: [OptionInput!]!) {
+    mutation optionListSearch($count: Int, $search_term: String!, $search_items: [OptionInput!]!) {
   optionListSearch(
-    api_key: $api_key
     count: $count
     search_term: $search_term
     search_items: $search_items
