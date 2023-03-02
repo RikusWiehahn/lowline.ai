@@ -1,16 +1,7 @@
 import { stringListSearch } from "..";
 
-test("helloNpm", () => {
-  const helloNpm = jest.fn();
-  helloNpm();
-  expect(helloNpm).toHaveBeenCalled();
-});
-
 describe("stringListSearch", () => {
   test("should return the data and no error message on success", async () => {
-    const options = {
-      // Set the options as needed for this test case
-    };
     const result = await stringListSearch({
       count: 1,
       search_term: "test2",
@@ -23,10 +14,6 @@ describe("stringListSearch", () => {
   });
 
   test("should return an empty data array and an error message on failure", async () => {
-
-    const options = {
-      // Set the options as needed for this test case
-    };
     const result = await stringListSearch({
       count: 1,
       search_term: "",
