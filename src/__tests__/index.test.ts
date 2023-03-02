@@ -1,4 +1,5 @@
 import { _ai } from "..";
+
 jest.setTimeout(30000);
 
 _ai.init({

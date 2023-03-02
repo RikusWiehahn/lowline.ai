@@ -1,30 +1,112 @@
-# lowline.ai
+# 🤖 lowline.ai 
 
-## 🚧 Under construction 🚧
+[🔗 Website](https://lowline.ai)
+[🔗 Documentation](https://lowline.ai/getting-started)
 
-My aim is to make a utility-first library for completing all sorts of small useful AI tasks like below:
+Lowline.ai is a javascript utility library with 100+ functions powered by ChatGPT.
+
+- Use it straight away by installing the NPM module.
+- For faster completions sign up for a pay-per-use plan and create an API key.
+
+---
+
+## 📖 Table of Contents
+
+- [Getting started](#getting-started)
+- [Full list of functions](#full-list-of-functions)
+- [Pricing](#pricing)
+
+---
+
+##  🚀 Getting started
+
+Install the NPM package
+
+```bash
+npm install lowline.ai
+```
+
+Once the package is installed you can use the import using the require or import approach.
+
+```js
+// import
+import { _ai } from "lowline.ai";
+
+// or require
+const lowline = require("lowline.ai");
+const _ai = lowline._ai;
+```
+
+Search example
+
+```js
+import { _ai } from "lowline.ai";
+
+const list = ["test1", "test2", "test3", "test4", "test5"],
+
+const res = await _ai.stringListSearch({
+  count: 1,
+  search_term: "second test",
+  search_items: list,
+});
+if (res.error) {
+  console.log(error)
+} else {
+  console.log(res.data) // --> ["test2"]
+}
+```
+
+Recommendation example
 
 ```js
 import { _ai } from "lowline.ai";
 
 const purchases = ["apple", "banana"];
-const products  = ["apple", "banana", "orange", "grape", "eggs", "chicken", "potato", "pasta"];
+const products = [
+  "apple",
+  "banana",
+  "orange",
+  "grape",
+  "eggs",
+  "chicken",
+  "potato",
+  "pasta",
+];
 
-const rec = await _ai.recommend({
+const res = await _ai.recommend({
   options: products,
   interests: purchases,
   count: 3,
 });
-if (rec.error) {
+if (res.error) {
   console.lg(rec.error);
 } else {
   console.log(rec.result); // -->  ["orange", "grape", "pasta"]
 }
-
 ```
+---
 
-- By building a big set of tried and tested prompts and pipelines I hope I can save myself and other developers lots of time!
-- I plan to make it free to use with a small built-in delay and an optional **pay-per-use** tier that will cover the costs help subsidize the free tier.
-- Using these two levers I hope to create a tool that generates as much overall value as possible while staying financially sustainable.
+## 📒 Full list of functions
+
+- searchStringList
+- searchOptionList
+- recommendStringList
+- recommendOptionList
+
+🚧 In progress 🚧
+
+More coming soon!
+
+---
+
+## 🏷️ Pricing
+
+The free version has a small delay, for faster completions, go to https://www.lowline.ai, sign up for a paid account and create an API Key.
+
+- Unlimited free use with a small delay.
+- This delay is currently 5 seconds
+- For no delay, create a paid plan at USD $0.01 per request.
+- Pricing and delay length may change if needed to make the project financially sustainable.
+
 
 Stay tuned!
