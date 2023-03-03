@@ -4,41 +4,7 @@ jest.setTimeout(30000);
 
 _ai.init({
   mode: "development", // or "production"
-  // apiKey: "",
-});
-
-//
-//   ####  ##### #####  # #    #  ####     #      #  ####  #####     ####  ######   ##   #####   ####  #    #
-//  #        #   #    # # ##   # #    #    #      # #        #      #      #       #  #  #    # #    # #    #
-//   ####    #   #    # # # #  # #         #      #  ####    #       ####  #####  #    # #    # #      ######
-//       #   #   #####  # #  # # #  ###    #      #      #   #           # #      ###### #####  #      #    #
-//  #    #   #   #   #  # #   ## #    #    #      # #    #   #      #    # #      #    # #   #  #    # #    #
-//   ####    #   #    # # #    #  ####     ###### #  ####    #       ####  ###### #    # #    #  ####  #    #
-
-describe("searchStringList", () => {
-  test("should return the data and no error message on success", async () => {
-    const result = await _ai.searchStringList({
-      count: 1,
-      search_term: "second test",
-      search_items: ["test1", "test2", "test3", "test4", "test5"],
-    });
-    expect(result).toEqual({
-      data: ["test2"],
-      error: "",
-    });
-  });
-
-  test("should return an empty data array and an error message on failure", async () => {
-    const result = await _ai.searchStringList({
-      count: 1,
-      search_term: "",
-      search_items: ["test1", "test2", "test3", "test4", "test5"],
-    });
-    expect(result).toEqual({
-      data: [],
-      error: "Search term not provided",
-    });
-  });
+  apiKey: "sk-1ef06007689f8c5183cbedf05f3d3a89a236f544a10a1f6e0fdcd24842ecc965",
 });
 
 //
@@ -303,7 +269,7 @@ describe("sortOptionList", () => {
           id: "a4b270fa-b9a8-11ed-afa1-0242ac120002",
           text: "Polystyrene",
         },
-      ]
+      ],
     });
     expect(result).toEqual({
       data: [],
@@ -381,7 +347,7 @@ describe("filterOptionList", () => {
           id: "a4b270fa-b9a8-11ed-afa1-0242ac120002",
           text: "Polystyrene",
         },
-      ]
+      ],
     });
     expect(result).toEqual({
       data: [],
@@ -397,6 +363,227 @@ describe("filterOptionList", () => {
     expect(result).toEqual({
       data: [],
       error: "Options not provided",
+    });
+  });
+});
+
+//
+//   ####  ######   ##   #####   ####  #    #     ####  ##### #####  # #    #  ####     #      #  ####  #####
+//  #      #       #  #  #    # #    # #    #    #        #   #    # # ##   # #    #    #      # #        #
+//   ####  #####  #    # #    # #      ######     ####    #   #    # # # #  # #         #      #  ####    #
+//       # #      ###### #####  #      #    #         #   #   #####  # #  # # #  ###    #      #      #   #
+//  #    # #      #    # #   #  #    # #    #    #    #   #   #   #  # #   ## #    #    #      # #    #   #
+//   ####  ###### #    # #    #  ####  #    #     ####    #   #    # # #    #  ####     ###### #  ####    #
+
+describe("searchStringList", () => {
+  test("should return the data and no error message on success", async () => {
+    const result = await _ai.searchStringList({
+      count: 1,
+      search_term: "The second test",
+      items: ["test1", "test2", "test3", "test4", "test5"],
+    });
+    expect(result).toEqual({
+      data: ["test2"],
+      error: "",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const result = await _ai.searchStringList({
+      count: 1,
+      search_term: "",
+      items: ["test1", "test2", "test3", "test4", "test5"],
+    });
+    expect(result).toEqual({
+      data: [],
+      error: "Search term not provided",
+    });
+  });
+});
+
+//
+//  #####  ######  ####   ####  #    # #    # ###### #    # #####      ####  ##### #####     #      #  ####  #####
+//  #    # #      #    # #    # ##  ## ##  ## #      ##   # #    #    #        #   #    #    #      # #        #
+//  #    # #####  #      #    # # ## # # ## # #####  # #  # #    #     ####    #   #    #    #      #  ####    #
+//  #####  #      #      #    # #    # #    # #      #  # # #    #         #   #   #####     #      #      #   #
+//  #   #  #      #    # #    # #    # #    # #      #   ## #    #    #    #   #   #   #     #      # #    #   #
+//  #    # ######  ####   ####  #    # #    # ###### #    # #####      ####    #   #    #    ###### #  ####    #
+
+describe("recommendStringList", () => {
+  test("should return the data and no error message on success", async () => {
+    const result = await _ai.recommendStringList({
+      count: 2,
+      interests: ["Clothes shopping", "History"],
+      items: [
+        "The beach",
+        "The local mall",
+        "A forest reserve",
+        "The sports club",
+        "The local heritage museum",
+      ],
+    });
+    expect(result).toEqual({
+      data: ["The local mall", "The local heritage museum"],
+      error: "",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const result = await _ai.recommendStringList({
+      count: 1,
+      interests: [],
+      items: [
+        "The beach",
+        "The local mall",
+        "A forest reserve",
+        "The sports club",
+        "The local heritage museum",
+      ],
+    });
+    expect(result).toEqual({
+      data: [],
+      error: "Interests not provided",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const result = await _ai.recommendStringList({
+      count: 1,
+      interests: ["The beach"],
+      items: [],
+    });
+    expect(result).toEqual({
+      data: [],
+      error: "Items not provided",
+    });
+  });
+});
+
+//
+//   ####  #####  ######   ##   ##### ######     ####  ##### #####     #      #  ####  #####
+//  #    # #    # #       #  #    #   #         #        #   #    #    #      # #        #
+//  #      #    # #####  #    #   #   #####      ####    #   #    #    #      #  ####    #
+//  #      #####  #      ######   #   #              #   #   #####     #      #      #   #
+//  #    # #   #  #      #    #   #   #         #    #   #   #   #     #      # #    #   #
+//   ####  #    # ###### #    #   #   ######     ####    #   #    #    ###### #  ####    #
+
+describe("createStringList", () => {
+  test("should return the data and no error message on success", async () => {
+    const result = await _ai.createStringList({
+      count: 4,
+      item_type: "largest countries by landmass in descending order",
+    });
+    expect(result).toEqual({
+      data: ["Russia", "Canada", "China", "United States"],
+      error: "",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const result = await _ai.createStringList({
+      count: 1,
+      item_type: "",
+    });
+    expect(result).toEqual({
+      data: [],
+      error: "Item type not provided",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const result = await _ai.createStringList({
+      count: 0,
+      item_type: "largest countries by landmass in descending order",
+    });
+    expect(result).toEqual({
+      data: [],
+      error: "Count not provided",
+    });
+  });
+});
+
+//
+//   ####   ####  #####  #####     ####  ##### #####     #      #  ####  #####
+//  #      #    # #    #   #      #        #   #    #    #      # #        #
+//   ####  #    # #    #   #       ####    #   #    #    #      #  ####    #
+//       # #    # #####    #           #   #   #####     #      #      #   #
+//  #    # #    # #   #    #      #    #   #   #   #     #      # #    #   #
+//   ####   ####  #    #   #       ####    #   #    #    ###### #  ####    #
+
+describe("sortStringList", () => {
+  test("should return the data and no error message on success", async () => {
+    const result = await _ai.sortStringList({
+      criteria: "Hardness",
+      items: ["Granite", "Polystyrene foam", "Wood", "Diamond"],
+    });
+    expect(result).toEqual({
+      data: ["Diamond", "Granite", "Wood", "Polystyrene foam"],
+      error: "",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const result = await _ai.sortStringList({
+      criteria: "",
+      items: ["Granite", "Polystyrene foam", "Wood", "Diamond"],
+    });
+    expect(result).toEqual({
+      data: [],
+      error: "Criteria not provided",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const result = await _ai.sortStringList({
+      criteria: "Hardness",
+      items: [],
+    });
+    expect(result).toEqual({
+      data: [],
+      error: "Items not provided",
+    });
+  });
+});
+
+//
+//  ###### # #      ##### ###### #####      ####  ##### #####     #      #  ####  #####
+//  #      # #        #   #      #    #    #        #   #    #    #      # #        #
+//  #####  # #        #   #####  #    #     ####    #   #    #    #      #  ####    #
+//  #      # #        #   #      #####          #   #   #####     #      #      #   #
+//  #      # #        #   #      #   #     #    #   #   #   #     #      # #    #   #
+//  #      # ######   #   ###### #    #     ####    #   #    #    ###### #  ####    #
+
+describe("filterStringList", () => {
+  test("should return the data and no error message on success", async () => {
+    const result = await _ai.filterStringList({
+      criteria: "Type of rock",
+      items: ["Granite", "Polystyrene foam", "Wood", "Iron ore", "Potato"],
+    });
+    expect(result).toEqual({
+      data: ["Granite", "Iron ore"],
+      error: "",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const result = await _ai.filterStringList({
+      criteria: "",
+      items: ["Granite", "Polystyrene foam", "Wood", "Diamond", "Potato"],
+    });
+    expect(result).toEqual({
+      data: [],
+      error: "Criteria not provided",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const result = await _ai.filterStringList({
+      criteria: "Type of rock",
+      items: [],
+    });
+    expect(result).toEqual({
+      data: [],
+      error: "Items not provided",
     });
   });
 });

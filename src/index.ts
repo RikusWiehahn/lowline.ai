@@ -1,11 +1,15 @@
 import { GraphQLClient } from "graphql-request";
 import {
   createOptionList,
+  createStringList,
   filterOptionList,
+  filterStringList,
   recommendOptionList,
+  recommendStringList,
   searchOptionList,
   searchStringList,
   sortOptionList,
+  sortStringList,
 } from "./functions/search_recommend";
 import { getSdk, Sdk, SdkFunctionWrapper } from "./schema";
 //
@@ -113,12 +117,16 @@ export let api: Sdk = getSdk(client, clientWrapper);
 
 export const _ai = {
   init,
-  searchStringList,
   searchOptionList,
   recommendOptionList,
   createOptionList,
   sortOptionList,
   filterOptionList,
+  searchStringList,
+  recommendStringList,
+  createStringList,
+  sortStringList,
+  filterStringList,
 };
 
 export default _ai;

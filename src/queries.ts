@@ -16,38 +16,6 @@ const optionOutput = gql`
 `;
 
 
-
-//
-//   ####  ######   ##   #####   ####  #    #     ####  ##### #####  # #    #  ####     #      #  ####  #####
-//  #      #       #  #  #    # #    # #    #    #        #   #    # # ##   # #    #    #      # #        #
-//   ####  #####  #    # #    # #      ######     ####    #   #    # # # #  # #         #      #  ####    #
-//       # #      ###### #####  #      #    #         #   #   #####  # #  # # #  ###    #      #      #   #
-//  #    # #      #    # #   #  #    # #    #    #    #   #   #   #  # #   ## #    #    #      # #    #   #
-//   ####  ###### #    # #    #  ####  #    #     ####    #   #    # # #    #  ####     ###### #  ####    #
-
-const searchStringList = gql`
-  mutation searchStringList(
-    $count: Int
-    $search_term: String!
-    $search_items: [String!]!
-  ) {
-    searchStringList(
-      count: $count
-      search_term: $search_term
-      search_items: $search_items
-    ) {
-      __typename
-      ... on BaseError {
-        message
-      }
-      ... on MutationSearchStringListSuccess {
-        data
-      }
-    }
-  }
-`;
-
-
 //
 //   ####  ######   ##   #####   ####  #    #     ####  #####  #####    #      #  ####  #####
 //  #      #       #  #  #    # #    # #    #    #    # #    #   #      #      # #        #
@@ -198,6 +166,150 @@ const filterOptionList = gql`
         data {
           ...OptionOutputFlat
         }
+      }
+    }
+  }
+`;
+
+//
+//   ####  ######   ##   #####   ####  #    #     ####  ##### #####  # #    #  ####     #      #  ####  #####
+//  #      #       #  #  #    # #    # #    #    #        #   #    # # ##   # #    #    #      # #        #
+//   ####  #####  #    # #    # #      ######     ####    #   #    # # # #  # #         #      #  ####    #
+//       # #      ###### #####  #      #    #         #   #   #####  # #  # # #  ###    #      #      #   #
+//  #    # #      #    # #   #  #    # #    #    #    #   #   #   #  # #   ## #    #    #      # #    #   #
+//   ####  ###### #    # #    #  ####  #    #     ####    #   #    # # #    #  ####     ###### #  ####    #
+
+const searchStringList = gql`
+  mutation searchStringList(
+    $search_term: String!
+    $items: [String!]!
+    $count: Int
+  ) {
+    searchStringList(
+      search_term: $search_term
+      items: $items
+      count: $count
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSearchStringListSuccess {
+        data
+      }
+    }
+  }
+`;
+
+//
+//  #####  ######  ####   ####  #    # #    # ###### #    # #####      ####  ##### #####     #      #  ####  #####
+//  #    # #      #    # #    # ##  ## ##  ## #      ##   # #    #    #        #   #    #    #      # #        #
+//  #    # #####  #      #    # # ## # # ## # #####  # #  # #    #     ####    #   #    #    #      #  ####    #
+//  #####  #      #      #    # #    # #    # #      #  # # #    #         #   #   #####     #      #      #   #
+//  #   #  #      #    # #    # #    # #    # #      #   ## #    #    #    #   #   #   #     #      # #    #   #
+//  #    # ######  ####   ####  #    # #    # ###### #    # #####      ####    #   #    #    ###### #  ####    #
+
+const recommendStringList = gql`
+  mutation recommendStringList(
+    $items: [String!]!
+    $interests: [String!]!
+    $count: Int
+  ) {
+    recommendStringList(
+      items: $items
+      interests: $interests
+      count: $count
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationRecommendStringListSuccess {
+        data 
+      }
+    }
+  }
+`;
+
+//
+//   ####  #####  ######   ##   ##### ######     ####  ##### #####     #      #  ####  #####
+//  #    # #    # #       #  #    #   #         #        #   #    #    #      # #        #
+//  #      #    # #####  #    #   #   #####      ####    #   #    #    #      #  ####    #
+//  #      #####  #      ######   #   #              #   #   #####     #      #      #   #
+//  #    # #   #  #      #    #   #   #         #    #   #   #   #     #      # #    #   #
+//   ####  #    # ###### #    #   #   ######     ####    #   #    #    ###### #  ####    #
+
+const createStringList = gql`
+  mutation createStringList(
+    $count: Int!
+    $item_type: String!
+  ) {
+    createStringList(
+      count: $count
+      item_type: $item_type
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationCreateStringListSuccess {
+        data 
+      }
+    }
+  }
+`;
+
+//
+//   ####   ####  #####  #####     ####  ##### #####     #      #  ####  #####
+//  #      #    # #    #   #      #        #   #    #    #      # #        #
+//   ####  #    # #    #   #       ####    #   #    #    #      #  ####    #
+//       # #    # #####    #           #   #   #####     #      #      #   #
+//  #    # #    # #   #    #      #    #   #   #   #     #      # #    #   #
+//   ####   ####  #    #   #       ####    #   #    #    ###### #  ####    #
+
+const sortStringList = gql`
+  mutation sortStringList(
+    $criteria: String!
+    $items: [String!]!
+  ) {
+    sortStringList(
+      criteria: $criteria
+      items: $items
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSortStringListSuccess {
+        data 
+      }
+    }
+  }
+`;
+
+//
+//  ###### # #      ##### ###### #####      ####  ##### #####     #      #  ####  #####
+//  #      # #        #   #      #    #    #        #   #    #    #      # #        #
+//  #####  # #        #   #####  #    #     ####    #   #    #    #      #  ####    #
+//  #      # #        #   #      #####          #   #   #####     #      #      #   #
+//  #      # #        #   #      #   #     #    #   #   #   #     #      # #    #   #
+//  #      # ######   #   ###### #    #     ####    #   #    #    ###### #  ####    #
+
+const filterStringList = gql`
+  mutation filterStringList(
+    $criteria: String!
+    $items: [String!]!
+  ) {
+    filterStringList(
+      criteria: $criteria
+      items: $items
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationFilterStringListSuccess {
+        data 
       }
     }
   }

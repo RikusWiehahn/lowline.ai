@@ -17,9 +17,10 @@ Lowline.ai is a javascript utility library that lets you easily sprinkle powerfu
 
 ## 📖 Table of Contents
 
-- [Getting started](#-getting-started)
-- [Full list of functions](#-full-list-of-functions)
-- [Pricing](#-pricing)
+- [Getting started](#-🚀-getting-started)
+- [Full list of functions](#-📒-full-list-of-functions)
+- [Search and recommend](#🔍-search-and-recommend)
+- [Pricing](#-🏷️-pricing)
 
 ---
 
@@ -94,6 +95,17 @@ if (res.error) {
 
 # 📒 Full list of functions
 
+- \_ai.searchOptionList
+- \_ai.recommendOptionList
+- \_ai.createOptionList
+- \_ai.sortOptionList
+- \_ai.filterOptionList
+- \_ai.searchStringList
+- \_ai.recommendStringList
+- \_ai.createStringList
+- \_ai.sortStringList
+- \_ai.filterStringList
+
 ---
 
 ## 🔍 Search and recommend
@@ -105,10 +117,9 @@ if (res.error) {
 
 ```
 
+### \_ai.searchOptionList
 
-#### _ai.searchOptionList
-
-Search for one or more options from a list of options, based on a search term.
+Search in a list of options, based on a search term.
 
 ```js
 const search_term = "Best place to go for a nature walk and hear the ocean";
@@ -144,8 +155,7 @@ if (res.error) {
 }
 ```
 
-
-#### _ai.recommendOptionList
+### \_ai.recommendOptionList
 
 Recommend one or more options from a list of options, based on a list of interests.
 
@@ -199,8 +209,7 @@ if (res.error) {
 }
 ```
 
-
-#### _ai.createOptionList
+### \_ai.createOptionList
 
 Create a list of options, based on a option type that describes the kind of options to create.
 
@@ -230,8 +239,7 @@ if (res.error) {
 }
 ```
 
-
-#### _ai.sortOptionList
+### \_ai.sortOptionList
 
 Sort a list of options, based on a criteria.
 
@@ -282,8 +290,7 @@ if (res.error) {
 }
 ```
 
-
-#### _ai.filterOptionList
+### \_ai.filterOptionList
 
 Filter a list of options, based on a criteria.
 
@@ -326,17 +333,103 @@ if (res.error) {
 }
 ```
 
-🚧 The below functions are under construction 🚧
+### string_list type
 
-### `string_list`
+```php
+string[];
+```
 
-- searchStringList
-- recommendStringList
-- createStringList
-- sortStringList
-- filterStringList
+### \_ai.searchStringList
+
+Search through a list of strings, based on a search term provided.
+
+```js
+const res = await _ai.searchStringList({
+  count: 1,
+  search_term: "The second test",
+  items: ["test1", "test2", "test3", "test4", "test5"],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.lg(res.result); // -> ["test2"]
+}
+```
+
+### \_ai.recommendStringList
+
+Recommend from a list of strings, based on interests provided.
+
+```js
+const res = await _ai.recommendStringList({
+  count: 2,
+  interests: ["Clothes shopping", "History"],
+  items: [
+    "The beach",
+    "The local mall",
+    "A forest reserve",
+    "The sports club",
+    "The local heritage museum",
+  ],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // --> ["The local mall", "The local heritage museum"]
+}
+```
+
+### \_ai.createStringList
+
+Create a list of strings, based on an item type and count.
+
+```js
+const res = await _ai.createStringList({
+  count: 4,
+  item_type: "largest countries by landmass in descending order",
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // --> ["Russia", "Canada", "China", "United States"],
+}
+```
+
+### \_ai.sortStringList
+
+Sort a list of strings, based on a criteria.
+
+```js
+const res = await _ai.sortStringList({
+  criteria: "Hardness",
+  items: ["Granite", "Polystyrene foam", "Wood", "Diamond"],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // -> ["Diamond", "Granite", "Wood", "Polystyrene foam"]
+}
+```
+
+### \_ai.filterStringList
+
+Filter a list of strings, based on a criteria.
+
+```js
+const res = await _ai.filterStringList({
+  criteria: "Type of rock",
+  items: ["Granite", "Polystyrene foam", "Wood", "Iron ore", "Potato"],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // --> ["Granite", "Iron ore"],
+}
+```
 
 ## 💬 Messaging
+
+🚧 The below functions are under construction 🚧
 
 ### `chat_message`
 
