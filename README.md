@@ -1,7 +1,7 @@
 # 🤖 lowline.ai
 
 [🔗 Website](https://www.lowline.ai)
-[🔗 Documentation](https://www.lowline.ai/getting-started)
+[🔗 Documentation](https://www.lowline.ai/docs/getting-started)
 
 Lowline.ai is a javascript utility library that lets you easily sprinkle powerful AI magic all through your codebases.
 
@@ -11,7 +11,7 @@ Lowline.ai is a javascript utility library that lets you easily sprinkle powerfu
 
 ---
 
-## 🚧 Under development 🚧
+## 🚧 Under development, still quite unstable, use at own risk. 🚧
 
 ---
 
@@ -325,6 +325,8 @@ if (res.error) {
   // ],
 }
 ```
+
+🚧 The below functions are under construction 🚧
 
 ### `string_list`
 
