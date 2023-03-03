@@ -9,11 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._ai = void 0;
-const schema_1 = require("./schema");
+exports._ai = exports.api = void 0;
 const graphql_request_1 = require("graphql-request");
+const search_and_rec_1 = require("./functions/search_and_rec");
+const schema_1 = require("./schema");
 const createClient = (url, isDev) => {
-    client = new graphql_request_1.GraphQLClient(`${url}/graphql`, {
+    const newClient = new graphql_request_1.GraphQLClient(`${url}/graphql`, {
         headers: {
             "api-key": API_KEY,
         },
@@ -35,19 +36,19 @@ const createClient = (url, isDev) => {
             return response;
         },
     });
-    return client;
+    return newClient;
 };
-let API_KEY = "";
-const DEV_SERVER_URL = "https://localhost:4000";
-const LIVE_SERVER_URL = "https://api.lowline.ai";
-let client = createClient(LIVE_SERVER_URL, false);
 const init = ({ apiKey, mode = "production", }) => {
-    if (!apiKey)
-        throw new Error("lowline.ai: API key is required");
-    API_KEY = apiKey;
+    if (!apiKey) {
+        console.log("No API key provided. Requests will have a delayed response.");
+    }
+    else {
+        API_KEY = apiKey;
+    }
     const isDev = mode === "development";
     const serverURL = isDev ? DEV_SERVER_URL : LIVE_SERVER_URL;
     client = createClient(serverURL, isDev);
+    exports.api = (0, schema_1.getSdk)(client, clientWrapper);
 };
 const clientWrapper = (action, operationName, operationType) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -64,37 +65,18 @@ const clientWrapper = (action, operationName, operationType) => __awaiter(void 0
         };
     }
 });
-const api = (0, schema_1.getSdk)(client, clientWrapper);
-const stringListSearch = (options) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b;
-    const res = yield api.stringListSearch(options);
-    if (((_a = res.stringListSearch) === null || _a === void 0 ? void 0 : _a.__typename) === "MutationStringListSearchSuccess") {
-        return {
-            data: res.stringListSearch.data,
-            error: "",
-        };
-    }
-    return {
-        data: [],
-        error: ((_b = res.stringListSearch) === null || _b === void 0 ? void 0 : _b.message) || "Unknown error",
-    };
-});
-const optionListSearch = (options) => __awaiter(void 0, void 0, void 0, function* () {
-    var _c, _d;
-    const res = yield api.optionListSearch(options);
-    if (((_c = res.optionListSearch) === null || _c === void 0 ? void 0 : _c.__typename) === "MutationOptionListSearchSuccess") {
-        return {
-            data: res.optionListSearch.data,
-            error: "",
-        };
-    }
-    return {
-        data: [],
-        error: ((_d = res.optionListSearch) === null || _d === void 0 ? void 0 : _d.message) || "Unknown error",
-    };
-});
+let API_KEY = "";
+const DEV_SERVER_URL = "http://localhost:4000";
+const LIVE_SERVER_URL = "https://api.lowline.ai";
+let client = createClient(LIVE_SERVER_URL, false);
+exports.api = (0, schema_1.getSdk)(client, clientWrapper);
 exports._ai = {
     init,
-    stringListSearch,
-    optionListSearch,
+    searchStringList: search_and_rec_1.searchStringList,
+    searchOptionList: search_and_rec_1.searchOptionList,
+    recommendOptionList: search_and_rec_1.recommendOptionList,
+    createOptionList: search_and_rec_1.createOptionList,
+    sortOptionList: search_and_rec_1.sortOptionList,
+    filterOptionList: search_and_rec_1.filterOptionList,
 };
+exports.default = exports._ai;
