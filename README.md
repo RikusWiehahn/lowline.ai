@@ -49,7 +49,7 @@ import { _ai } from "lowline.ai";
 
 const list = ["test1", "test2", "test3", "test4", "test5"],
 
-const res = await _ai.stringListSearch({
+const res = await _ai.searchStringList({
   count: 1,
   search_term: "second test",
   search_items: list,
@@ -78,7 +78,7 @@ const products = [
   "pasta",
 ];
 
-const res = await _ai.recommend({
+const res = await _ai.recommendStringList({
   options: products,
   interests: purchases,
   count: 3,
@@ -98,14 +98,236 @@ if (res.error) {
 
 ## 🔍 Search and recommend
 
-### `option_list`
-- searchOptionList
-- recommendOptionList
-- createOptionList
-- sortOptionList
-- filterOptionList
+### option_list
+
+```php
+{ id: string; text: string; }[];
+
+```
+
+
+#### _ai.searchOptionList
+
+Search for one or more options from a list of options, based on a search term.
+
+```js
+const search_term = "Best place to go for a nature walk and hear the ocean";
+const options = [
+  { id: "967ea024-b996-11ed-afa1-0242ac120002", text: "The beach" },
+  {
+    id: "a9c50ee8-b996-11ed-afa1-0242ac120002",
+    text: "The local mall",
+  },
+  {
+    id: "c4b2d762-b996-11ed-afa1-0242ac120002",
+    text: "A botanical garden",
+  },
+  {
+    id: "d5956108-b996-11ed-afa1-0242ac120002",
+    text: "On a treadmill at the gym",
+  },
+  {
+    id: "f129c558-b996-11ed-afa1-0242ac120002",
+    text: "Down the main street of your town",
+  },
+];
+
+const res = await _ai.searchOptionList({
+  count: 1,
+  search_term,
+  options,
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // --> The beach
+}
+```
+
+
+#### _ai.recommendOptionList
+
+Recommend one or more options from a list of options, based on a list of interests.
+
+```js
+const res = await _ai.recommendOptionList({
+  count: 2,
+  interests: [
+    {
+      id: "53932a26-b9a2-11ed-afa1-0242ac120002",
+      text: "Clothes shopping",
+    },
+    {
+      id: "69dc9b78-b9a2-11ed-afa1-0242ac120002",
+      text: "History",
+    },
+  ],
+  options: [
+    { id: "967ea024-b996-11ed-afa1-0242ac120002", text: "The beach" },
+    {
+      id: "a9c50ee8-b996-11ed-afa1-0242ac120002",
+      text: "The local mall",
+    },
+    {
+      id: "c4b2d762-b996-11ed-afa1-0242ac120002",
+      text: "A forest reserve",
+    },
+    {
+      id: "d5956108-b996-11ed-afa1-0242ac120002",
+      text: "The sports club",
+    },
+    {
+      id: "f129c558-b996-11ed-afa1-0242ac120002",
+      text: "The local heritage museum",
+    },
+  ],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result);
+  // [
+  //   {
+  //     id: "a9c50ee8-b996-11ed-afa1-0242ac120002",
+  //     text: "The local mall",
+  //   },
+  //   {
+  //     id: "f129c558-b996-11ed-afa1-0242ac120002",
+  //     text: "The local heritage museum",
+  //   },
+  // ],
+}
+```
+
+
+#### _ai.createOptionList
+
+Create a list of options, based on a option type that describes the kind of options to create.
+
+```js
+const res = await _ai.createOptionList({
+  count: 3,
+  option_type: "largest countries by land area, descending",
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result);
+  // [
+  //   {
+  //     id: "42b58fce-b9b5-11ed-afa1-0242ac120002",
+  //     text: "Russia",
+  //   },
+  //   {
+  //     id: "4b3dd782-b9b5-11ed-afa1-0242ac120002",
+  //     text: "Canada",
+  //   },
+  //   {
+  //     id: "5310e8aa-b9b5-11ed-afa1-0242ac120002",
+  //     text: "China",
+  //   },
+  // ],
+}
+```
+
+
+#### _ai.sortOptionList
+
+Sort a list of options, based on a criteria.
+
+```js
+const res = await _ai.sortOptionList({
+  criteria: "Hardness",
+  options: [
+    {
+      id: "8a715e2c-b9a8-11ed-afa1-0242ac120002",
+      text: "Granite",
+    },
+    {
+      id: "a4b270fa-b9a8-11ed-afa1-0242ac120002",
+      text: "Polystyrene foam",
+    },
+    {
+      id: "800c6e9a-b9a8-11ed-afa1-0242ac120002",
+      text: "Diamond",
+    },
+    {
+      id: "9730bc02-b9a8-11ed-afa1-0242ac120002",
+      text: "Wood",
+    },
+  ],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result);
+  // [
+  //   {
+  //     id: "800c6e9a-b9a8-11ed-afa1-0242ac120002",
+  //     text: "Diamond",
+  //   },
+  //   {
+  //     id: "8a715e2c-b9a8-11ed-afa1-0242ac120002",
+  //     text: "Granite",
+  //   },
+  //   {
+  //     id: "9730bc02-b9a8-11ed-afa1-0242ac120002",
+  //     text: "Wood",
+  //   },
+  //   {
+  //     id: "a4b270fa-b9a8-11ed-afa1-0242ac120002",
+  //     text: "Polystyrene foam",
+  //   },
+  // ]
+}
+```
+
+
+#### _ai.filterOptionList
+
+Filter a list of options, based on a criteria.
+
+```js
+const res = await _ai.filterOptionList({
+  criteria: "Types of rocks",
+  options: [
+    {
+      id: "8a715e2c-b9a8-11ed-afa1-0242ac120002",
+      text: "Granite",
+    },
+    {
+      id: "a4b270fa-b9a8-11ed-afa1-0242ac120002",
+      text: "Polystyrene foam",
+    },
+    {
+      id: "800c6e9a-b9a8-11ed-afa1-0242ac120002",
+      text: "Sandstone",
+    },
+    {
+      id: "9730bc02-b9a8-11ed-afa1-0242ac120002",
+      text: "Wood",
+    },
+  ],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result);
+  // [
+  //   {
+  //     id: "8a715e2c-b9a8-11ed-afa1-0242ac120002",
+  //     text: "Granite",
+  //   },
+  //   {
+  //     id: "800c6e9a-b9a8-11ed-afa1-0242ac120002",
+  //     text: "Sandstone",
+  //   },
+  // ],
+}
+```
 
 ### `string_list`
+
 - searchStringList
 - recommendStringList
 - createStringList
@@ -115,21 +337,25 @@ if (res.error) {
 ## 💬 Messaging
 
 ### `chat_message`
+
 - suggestChatResponse
 - suggestChatResponseIntents
 - suggestChatResponseMultiple
 
 ### `chat_chain`
+
 - suggestChatChainResponse
 - suggestChatChainResponseIntents
 - suggestChatChainResponseMultiple
 
 ### `email_message`
+
 - suggestEmailResponse
 - suggestEmailResponseIntents
 - suggestEmailResponseMultiple
 
 ### `email_chain`
+
 - suggestEmailChainResponse
 - suggestEmailChainResponseIntents
 - suggestEmailChainResponseMultiple
@@ -137,6 +363,7 @@ if (res.error) {
 ## 📘 Text processing
 
 ### `plaintext`
+
 - hasSpellingMistakes
 - fixSpelling
 - hasGrammarMistakes
@@ -156,15 +383,18 @@ if (res.error) {
 - convertToHTML
 
 ### `emoji`
+
 - detectEmoji
 - suggestEmoji
 
 ### `formality`
+
 - detectFormality
 - detectFormalityValue
 - editFormality
 
 ### `sentiment`
+
 - detectMainSentiment
 - getSentimentHappiness
 - getSentimentAnger
@@ -175,12 +405,14 @@ if (res.error) {
 - changeSentiment
 
 ### `html`
+
 - hasHTML
 - removeHTML
 - convertHTMLToMarkdown
 - convertHTMLToPlainText
 
 ### `markdown`
+
 - hasMarkdown
 - removeMarkdown
 - convertMarkdownToHTML
@@ -189,13 +421,16 @@ if (res.error) {
 ## 🌍 Geography
 
 ### `coordinates`
+
 - convertCoordsToAddress
 - getDistanceBetweenCoords
 - getCoordsFromAddress
 - getCoordsFromLocation
 
 ### `location`
+
 Open-ended, city, state, country, etc.
+
 - detectLocation
 - suggestLocation
 - suggestLocationMultiple
@@ -209,6 +444,7 @@ Open-ended, city, state, country, etc.
 - getCityFromLocation
 
 ### `country`
+
 - detectCountry
 - suggestCountry
 - suggestCountryMultiple
@@ -218,11 +454,13 @@ Open-ended, city, state, country, etc.
 - getCountryFlagEmoji
 
 ### `currency`
+
 - getCurrencySymbol
 - getCurrencyCode
 - getCurrencyName
 
 ### `timezone`
+
 - detectTimezone
 - getTimezoneName
 - getTimezoneOffset
@@ -230,6 +468,7 @@ Open-ended, city, state, country, etc.
 - getTimezoneUTCOffset
 
 ### `language`
+
 - detectLanguage
 - getLanguageCode
 - getLanguageName
@@ -238,6 +477,7 @@ Open-ended, city, state, country, etc.
 ## 🧮 Number representation
 
 ### `color`
+
 - isColor
 - getColorName
 - getColorFormat
@@ -255,6 +495,7 @@ Open-ended, city, state, country, etc.
 - getContrastingColor
 
 ### `url`
+
 - isURL
 - getURLProtocol
 - getURLDomain
@@ -263,20 +504,24 @@ Open-ended, city, state, country, etc.
 - getURLQueryParams
 
 ### `decimal`
+
 - toDecimal
-- fromDecimal 
+- fromDecimal
 
 ### `percentage`
+
 - prettyPrintPercentage
 - ratioToPercentage // 0-1 to 0-100
 - percentageToRatio // 0-100 to 0-1
 
 ### `fraction`
+
 - prettyPrintFraction
 - ratioToFraction // 0-1 to fraction
 - fractionToRatio // fraction to 0-1
 
 ### `number`
+
 - isNumber
 - isWholeNumber
 - isDecimal
@@ -288,6 +533,7 @@ Open-ended, city, state, country, etc.
 ## 📍 Addresses and contact info
 
 ### `names`
+
 - detectName
 - suggestName
 - suggestNameMultiple
@@ -297,6 +543,7 @@ Open-ended, city, state, country, etc.
 - getInitials
 
 ### `address`
+
 - detectAddress
 - suggestAddress
 - formatAddress
@@ -307,9 +554,11 @@ Open-ended, city, state, country, etc.
 - getCountryFromAddress
 
 ### `email_address`
+
 - isEmailAddress
 
 ### `phone_number`
+
 - isPhoneNumber
 - getPhoneNumberCountryCode
 - getPhoneNumberAreaCode
@@ -320,6 +569,7 @@ Open-ended, city, state, country, etc.
 ## 💽 Data formats
 
 ### `json`
+
 - isJSON
 - flattenJSON
 - convertJSONToYAML
@@ -327,24 +577,25 @@ Open-ended, city, state, country, etc.
 - convertJSONToCSV
 
 ### `xml`
+
 - isXML
 - convertXMLToJSON
 - convertXMLToYAML
 - convertXMLToCSV
 
 ### `yaml`
+
 - isYAML
 - convertYAMLToJSON
 - convertYAMLToXML
 - convertYAMLToCSV
 
 ### `csv`
+
 - isCSV
 - convertCSVToJSON
 - convertCSVToXML
 - convertCSVToYAML
-
-
 
 ---
 

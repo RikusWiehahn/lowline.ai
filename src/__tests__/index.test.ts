@@ -4,7 +4,7 @@ jest.setTimeout(30000);
 
 _ai.init({
   mode: "development", // or "production"
-  apiKey: "",
+  // apiKey: "",
 });
 
 //
