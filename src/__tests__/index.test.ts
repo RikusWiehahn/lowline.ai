@@ -4,7 +4,7 @@ jest.setTimeout(30000);
 
 _ai.init({
   mode: "development", // or "production"
-  apiKey: "sk-46ca976bc37474d0fd094cb2ff68dfabe13b5f44fed04bbef4871844ab4e300b",
+  apiKey: "",
 });
 
 //
