@@ -1,13 +1,13 @@
 import { GraphQLClient } from "graphql-request";
 import {
-  getSdk,
-  OptionListSearchMutationVariables,
-  OptionOutput,
-  Sdk,
-  SdkFunctionWrapper,
-  StringListSearchMutationVariables,
-} from "./schema";
-
+  createOptionList,
+  filterOptionList,
+  recommendOptionList,
+  searchOptionList,
+  searchStringList,
+  sortOptionList,
+} from "./functions/search_and_rec";
+import { getSdk, Sdk, SdkFunctionWrapper } from "./schema";
 //
 //   ####  #####  ######   ##   ##### ######     ####  #      # ###### #    # #####
 //  #    # #    # #       #  #    #   #         #    # #      # #      ##   #   #
@@ -101,53 +101,7 @@ let API_KEY = "";
 const DEV_SERVER_URL = "http://localhost:4000";
 const LIVE_SERVER_URL = "https://api.lowline.ai";
 let client: GraphQLClient = createClient(LIVE_SERVER_URL, false);
-let api: Sdk = getSdk(client, clientWrapper);
-
-//
-//  ###### #    # #    #  ####  ##### #  ####  #    #  ####
-//  #      #    # ##   # #    #   #   # #    # ##   # #
-//  #####  #    # # #  # #        #   # #    # # #  #  ####
-//  #      #    # #  # # #        #   # #    # #  # #      #
-//  #      #    # #   ## #    #   #   # #    # #   ## #    #
-//  #       ####  #    #  ####    #   #  ####  #    #  ####
-
-export const stringListSearch = async (
-  options: StringListSearchMutationVariables
-): Promise<{
-  data: string[];
-  error: string;
-}> => {
-  const res = await api.stringListSearch(options);
-  if (res.stringListSearch?.__typename === "MutationStringListSearchSuccess") {
-    return {
-      data: res.stringListSearch.data,
-      error: "",
-    };
-  }
-  return {
-    data: [],
-    error: res.stringListSearch?.message || "Unknown error",
-  };
-};
-
-export const optionListSearch = async (
-  options: OptionListSearchMutationVariables
-): Promise<{
-  data: OptionOutput[];
-  error: string;
-}> => {
-  const res = await api.optionListSearch(options);
-  if (res.optionListSearch?.__typename === "MutationOptionListSearchSuccess") {
-    return {
-      data: res.optionListSearch.data,
-      error: "",
-    };
-  }
-  return {
-    data: [],
-    error: res.optionListSearch?.message || "Unknown error",
-  };
-};
+export let api: Sdk = getSdk(client, clientWrapper);
 
 //
 //  ###### #    # #####   ####  #####  #####
@@ -159,8 +113,12 @@ export const optionListSearch = async (
 
 export const _ai = {
   init,
-  stringListSearch,
-  optionListSearch,
+  searchStringList,
+  searchOptionList,
+  recommendOptionList,
+  createOptionList,
+  sortOptionList,
+  filterOptionList,
 };
 
 export default _ai;

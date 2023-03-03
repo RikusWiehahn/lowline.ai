@@ -15,21 +15,23 @@ const optionOutput = gql`
   }
 `;
 
-//
-//   ####  ##### #####  # #    #  ####     #      #  ####  #####     ####  ######   ##   #####   ####  #    #
-//  #        #   #    # # ##   # #    #    #      # #        #      #      #       #  #  #    # #    # #    #
-//   ####    #   #    # # # #  # #         #      #  ####    #       ####  #####  #    # #    # #      ######
-//       #   #   #####  # #  # # #  ###    #      #      #   #           # #      ###### #####  #      #    #
-//  #    #   #   #   #  # #   ## #    #    #      # #    #   #      #    # #      #    # #   #  #    # #    #
-//   ####    #   #    # # #    #  ####     ###### #  ####    #       ####  ###### #    # #    #  ####  #    #
 
-const stringListSearch = gql`
-  mutation stringListSearch(
+
+//
+//   ####  ######   ##   #####   ####  #    #     ####  ##### #####  # #    #  ####     #      #  ####  #####
+//  #      #       #  #  #    # #    # #    #    #        #   #    # # ##   # #    #    #      # #        #
+//   ####  #####  #    # #    # #      ######     ####    #   #    # # # #  # #         #      #  ####    #
+//       # #      ###### #####  #      #    #         #   #   #####  # #  # # #  ###    #      #      #   #
+//  #    # #      #    # #   #  #    # #    #    #    #   #   #   #  # #   ## #    #    #      # #    #   #
+//   ####  ###### #    # #    #  ####  #    #     ####    #   #    # # #    #  ####     ###### #  ####    #
+
+const searchStringList = gql`
+  mutation searchStringList(
     $count: Int
     $search_term: String!
     $search_items: [String!]!
   ) {
-    stringListSearch(
+    searchStringList(
       count: $count
       search_term: $search_term
       search_items: $search_items
@@ -38,37 +40,161 @@ const stringListSearch = gql`
       ... on BaseError {
         message
       }
-      ... on MutationStringListSearchSuccess {
+      ... on MutationSearchStringListSuccess {
         data
       }
     }
   }
 `;
 
-//
-//   ####  #####  ##### #  ####  #    #    #      #  ####  #####     ####  ######   ##   #####   ####  #    #
-//  #    # #    #   #   # #    # ##   #    #      # #        #      #      #       #  #  #    # #    # #    #
-//  #    # #    #   #   # #    # # #  #    #      #  ####    #       ####  #####  #    # #    # #      ######
-//  #    # #####    #   # #    # #  # #    #      #      #   #           # #      ###### #####  #      #    #
-//  #    # #        #   # #    # #   ##    #      # #    #   #      #    # #      #    # #   #  #    # #    #
-//   ####  #        #   #  ####  #    #    ###### #  ####    #       ####  ###### #    # #    #  ####  #    #
 
-const optionListSearch = gql`
-  mutation optionListSearch(
+//
+//   ####  ######   ##   #####   ####  #    #     ####  #####  #####    #      #  ####  #####
+//  #      #       #  #  #    # #    # #    #    #    # #    #   #      #      # #        #
+//   ####  #####  #    # #    # #      ######    #    # #    #   #      #      #  ####    #
+//       # #      ###### #####  #      #    #    #    # #####    #      #      #      #   #
+//  #    # #      #    # #   #  #    # #    #    #    # #        #      #      # #    #   #
+//   ####  ###### #    # #    #  ####  #    #     ####  #        #      ###### #  ####    #
+
+const searchOptionList = gql`
+  mutation searchOptionList(
     $count: Int
     $search_term: String!
-    $search_items: [OptionInput!]!
+    $options: [OptionInput!]!
   ) {
-    optionListSearch(
+    searchOptionList(
       count: $count
       search_term: $search_term
-      search_items: $search_items
+      options: $options
     ) {
       __typename
       ... on BaseError {
         message
       }
-      ... on MutationOptionListSearchSuccess {
+      ... on MutationSearchOptionListSuccess {
+        data {
+          ...OptionOutputFlat
+        }
+      }
+    }
+  }
+`;
+
+//
+//  #####  ######  ####   ####  #    # #    # ###### #    # #####      ####  #####  #####    #      #  ####  #####
+//  #    # #      #    # #    # ##  ## ##  ## #      ##   # #    #    #    # #    #   #      #      # #        #
+//  #    # #####  #      #    # # ## # # ## # #####  # #  # #    #    #    # #    #   #      #      #  ####    #
+//  #####  #      #      #    # #    # #    # #      #  # # #    #    #    # #####    #      #      #      #   #
+//  #   #  #      #    # #    # #    # #    # #      #   ## #    #    #    # #        #      #      # #    #   #
+//  #    # ######  ####   ####  #    # #    # ###### #    # #####      ####  #        #      ###### #  ####    #
+
+const recommendOptionList = gql`
+  mutation recommendOptionList(
+    $count: Int
+    $options: [OptionInput!]!
+    $interests: [OptionInput!]!
+  ) {
+    recommendOptionList(
+      count: $count
+      options: $options
+      interests: $interests
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationRecommendOptionListSuccess {
+        data {
+          ...OptionOutputFlat
+        }
+      }
+    }
+  }
+`;
+
+//
+//   ####  #####  ######   ##   ##### ######     ####  #####  #####    #      #  ####  #####
+//  #    # #    # #       #  #    #   #         #    # #    #   #      #      # #        #
+//  #      #    # #####  #    #   #   #####     #    # #    #   #      #      #  ####    #
+//  #      #####  #      ######   #   #         #    # #####    #      #      #      #   #
+//  #    # #   #  #      #    #   #   #         #    # #        #      #      # #    #   #
+//   ####  #    # ###### #    #   #   ######     ####  #        #      ###### #  ####    #
+
+
+const createOptionList = gql`
+  mutation createOptionList(
+    $count: Int!
+    $option_type: String!
+  ) {
+    createOptionList(
+      count: $count
+      option_type: $option_type
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationCreateOptionListSuccess {
+        data {
+          ...OptionOutputFlat
+        }
+      }
+    }
+  }
+`;
+
+//
+//   ####   ####  #####  #####     ####  #####  #####    #      #  ####  #####
+//  #      #    # #    #   #      #    # #    #   #      #      # #        #
+//   ####  #    # #    #   #      #    # #    #   #      #      #  ####    #
+//       # #    # #####    #      #    # #####    #      #      #      #   #
+//  #    # #    # #   #    #      #    # #        #      #      # #    #   #
+//   ####   ####  #    #   #       ####  #        #      ###### #  ####    #
+
+const sortOptionList = gql`
+  mutation sortOptionList(
+    $criteria: String!
+    $options: [OptionInput!]!
+  ) {
+    sortOptionList(
+      criteria: $criteria
+      options: $options
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSortOptionListSuccess {
+        data {
+          ...OptionOutputFlat
+        }
+      }
+    }
+  }
+`;
+
+//
+//  ###### # #      ##### ###### #####      ####  #####  #####    #      #  ####  #####
+//  #      # #        #   #      #    #    #    # #    #   #      #      # #        #
+//  #####  # #        #   #####  #    #    #    # #    #   #      #      #  ####    #
+//  #      # #        #   #      #####     #    # #####    #      #      #      #   #
+//  #      # #        #   #      #   #     #    # #        #      #      # #    #   #
+//  #      # ######   #   ###### #    #     ####  #        #      ###### #  ####    #
+
+const filterOptionList = gql`
+  mutation filterOptionList(
+    $criteria: String!
+    $options: [OptionInput!]!
+  ) {
+    filterOptionList(
+      criteria: $criteria
+      options: $options
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationFilterOptionListSuccess {
         data {
           ...OptionOutputFlat
         }

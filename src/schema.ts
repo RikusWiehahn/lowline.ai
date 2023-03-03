@@ -47,14 +47,18 @@ export type Mutation = {
   __typename?: 'Mutation';
   createApiKey?: Maybe<MutationCreateApiKeyResult>;
   createCheckoutSession?: Maybe<MutationCreateCheckoutSessionResult>;
+  createOptionList?: Maybe<MutationCreateOptionListResult>;
   createStripePortalSession?: Maybe<MutationCreateStripePortalSessionResult>;
   deleteApiKey?: Maybe<MutationDeleteApiKeyResult>;
+  filterOptionList?: Maybe<MutationFilterOptionListResult>;
   helloMutation?: Maybe<Scalars['String']>;
-  optionListSearch?: Maybe<MutationOptionListSearchResult>;
+  recommendOptionList?: Maybe<MutationRecommendOptionListResult>;
   requestNewPassword?: Maybe<MutationRequestNewPasswordResult>;
+  searchOptionList?: Maybe<MutationSearchOptionListResult>;
+  searchStringList?: Maybe<MutationSearchStringListResult>;
   seenNotifications?: Maybe<MutationSeenNotificationsResult>;
   signUpUser?: Maybe<MutationSignUpUserResult>;
-  stringListSearch?: Maybe<MutationStringListSearchResult>;
+  sortOptionList?: Maybe<MutationSortOptionListResult>;
   submitEnquiry?: Maybe<MutationSubmitEnquiryResult>;
   submitFeedback?: Maybe<MutationSubmitFeedbackResult>;
   updateUser?: Maybe<MutationUpdateUserResult>;
@@ -72,6 +76,12 @@ export type MutationCreateCheckoutSessionArgs = {
 };
 
 
+export type MutationCreateOptionListArgs = {
+  count: Scalars['Int'];
+  option_type: Scalars['String'];
+};
+
+
 export type MutationCreateStripePortalSessionArgs = {
   token?: InputMaybe<Scalars['String']>;
 };
@@ -83,20 +93,40 @@ export type MutationDeleteApiKeyArgs = {
 };
 
 
+export type MutationFilterOptionListArgs = {
+  criteria: Scalars['String'];
+  options: Array<OptionInput>;
+};
+
+
 export type MutationHelloMutationArgs = {
   name: Scalars['String'];
 };
 
 
-export type MutationOptionListSearchArgs = {
+export type MutationRecommendOptionListArgs = {
   count?: InputMaybe<Scalars['Int']>;
-  search_items: Array<OptionInput>;
-  search_term: Scalars['String'];
+  interests: Array<OptionInput>;
+  options: Array<OptionInput>;
 };
 
 
 export type MutationRequestNewPasswordArgs = {
   email: Scalars['String'];
+};
+
+
+export type MutationSearchOptionListArgs = {
+  count?: InputMaybe<Scalars['Int']>;
+  options: Array<OptionInput>;
+  search_term: Scalars['String'];
+};
+
+
+export type MutationSearchStringListArgs = {
+  count?: InputMaybe<Scalars['Int']>;
+  search_items: Array<Scalars['String']>;
+  search_term: Scalars['String'];
 };
 
 
@@ -114,10 +144,9 @@ export type MutationSignUpUserArgs = {
 };
 
 
-export type MutationStringListSearchArgs = {
-  count?: InputMaybe<Scalars['Int']>;
-  search_items: Array<Scalars['String']>;
-  search_term: Scalars['String'];
+export type MutationSortOptionListArgs = {
+  criteria: Scalars['String'];
+  options: Array<OptionInput>;
 };
 
 
@@ -159,6 +188,13 @@ export type MutationCreateCheckoutSessionSuccess = {
   data: Scalars['String'];
 };
 
+export type MutationCreateOptionListResult = BaseError | MutationCreateOptionListSuccess;
+
+export type MutationCreateOptionListSuccess = {
+  __typename?: 'MutationCreateOptionListSuccess';
+  data: Array<OptionOutput>;
+};
+
 export type MutationCreateStripePortalSessionResult = BaseError | MutationCreateStripePortalSessionSuccess;
 
 export type MutationCreateStripePortalSessionSuccess = {
@@ -173,10 +209,17 @@ export type MutationDeleteApiKeySuccess = {
   data: User;
 };
 
-export type MutationOptionListSearchResult = BaseError | MutationOptionListSearchSuccess;
+export type MutationFilterOptionListResult = BaseError | MutationFilterOptionListSuccess;
 
-export type MutationOptionListSearchSuccess = {
-  __typename?: 'MutationOptionListSearchSuccess';
+export type MutationFilterOptionListSuccess = {
+  __typename?: 'MutationFilterOptionListSuccess';
+  data: Array<OptionOutput>;
+};
+
+export type MutationRecommendOptionListResult = BaseError | MutationRecommendOptionListSuccess;
+
+export type MutationRecommendOptionListSuccess = {
+  __typename?: 'MutationRecommendOptionListSuccess';
   data: Array<OptionOutput>;
 };
 
@@ -185,6 +228,20 @@ export type MutationRequestNewPasswordResult = BaseError | MutationRequestNewPas
 export type MutationRequestNewPasswordSuccess = {
   __typename?: 'MutationRequestNewPasswordSuccess';
   data: Scalars['String'];
+};
+
+export type MutationSearchOptionListResult = BaseError | MutationSearchOptionListSuccess;
+
+export type MutationSearchOptionListSuccess = {
+  __typename?: 'MutationSearchOptionListSuccess';
+  data: Array<OptionOutput>;
+};
+
+export type MutationSearchStringListResult = BaseError | MutationSearchStringListSuccess;
+
+export type MutationSearchStringListSuccess = {
+  __typename?: 'MutationSearchStringListSuccess';
+  data: Array<Scalars['String']>;
 };
 
 export type MutationSeenNotificationsResult = BaseError | MutationSeenNotificationsSuccess;
@@ -201,11 +258,11 @@ export type MutationSignUpUserSuccess = {
   data: Scalars['String'];
 };
 
-export type MutationStringListSearchResult = BaseError | MutationStringListSearchSuccess;
+export type MutationSortOptionListResult = BaseError | MutationSortOptionListSuccess;
 
-export type MutationStringListSearchSuccess = {
-  __typename?: 'MutationStringListSearchSuccess';
-  data: Array<Scalars['String']>;
+export type MutationSortOptionListSuccess = {
+  __typename?: 'MutationSortOptionListSuccess';
+  data: Array<OptionOutput>;
 };
 
 export type MutationSubmitEnquiryResult = BaseError | MutationSubmitEnquirySuccess;
@@ -335,23 +392,56 @@ export type User = {
 
 export type OptionOutputFlatFragment = { __typename?: 'OptionOutput', id: string, text: string };
 
-export type StringListSearchMutationVariables = Exact<{
+export type SearchStringListMutationVariables = Exact<{
   count?: InputMaybe<Scalars['Int']>;
   search_term: Scalars['String'];
   search_items: Array<Scalars['String']> | Scalars['String'];
 }>;
 
 
-export type StringListSearchMutation = { __typename?: 'Mutation', stringListSearch?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationStringListSearchSuccess', data: Array<string> } | null };
+export type SearchStringListMutation = { __typename?: 'Mutation', searchStringList?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSearchStringListSuccess', data: Array<string> } | null };
 
-export type OptionListSearchMutationVariables = Exact<{
+export type SearchOptionListMutationVariables = Exact<{
   count?: InputMaybe<Scalars['Int']>;
   search_term: Scalars['String'];
-  search_items: Array<OptionInput> | OptionInput;
+  options: Array<OptionInput> | OptionInput;
 }>;
 
 
-export type OptionListSearchMutation = { __typename?: 'Mutation', optionListSearch?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationOptionListSearchSuccess', data: Array<{ __typename?: 'OptionOutput', id: string, text: string }> } | null };
+export type SearchOptionListMutation = { __typename?: 'Mutation', searchOptionList?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSearchOptionListSuccess', data: Array<{ __typename?: 'OptionOutput', id: string, text: string }> } | null };
+
+export type RecommendOptionListMutationVariables = Exact<{
+  count?: InputMaybe<Scalars['Int']>;
+  options: Array<OptionInput> | OptionInput;
+  interests: Array<OptionInput> | OptionInput;
+}>;
+
+
+export type RecommendOptionListMutation = { __typename?: 'Mutation', recommendOptionList?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationRecommendOptionListSuccess', data: Array<{ __typename?: 'OptionOutput', id: string, text: string }> } | null };
+
+export type CreateOptionListMutationVariables = Exact<{
+  count: Scalars['Int'];
+  option_type: Scalars['String'];
+}>;
+
+
+export type CreateOptionListMutation = { __typename?: 'Mutation', createOptionList?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationCreateOptionListSuccess', data: Array<{ __typename?: 'OptionOutput', id: string, text: string }> } | null };
+
+export type SortOptionListMutationVariables = Exact<{
+  criteria: Scalars['String'];
+  options: Array<OptionInput> | OptionInput;
+}>;
+
+
+export type SortOptionListMutation = { __typename?: 'Mutation', sortOptionList?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSortOptionListSuccess', data: Array<{ __typename?: 'OptionOutput', id: string, text: string }> } | null };
+
+export type FilterOptionListMutationVariables = Exact<{
+  criteria: Scalars['String'];
+  options: Array<OptionInput> | OptionInput;
+}>;
+
+
+export type FilterOptionListMutation = { __typename?: 'Mutation', filterOptionList?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationFilterOptionListSuccess', data: Array<{ __typename?: 'OptionOutput', id: string, text: string }> } | null };
 
 export const OptionOutputFlatFragmentDoc = gql`
     fragment OptionOutputFlat on OptionOutput {
@@ -359,9 +449,9 @@ export const OptionOutputFlatFragmentDoc = gql`
   text
 }
     `;
-export const StringListSearchDocument = gql`
-    mutation stringListSearch($count: Int, $search_term: String!, $search_items: [String!]!) {
-  stringListSearch(
+export const SearchStringListDocument = gql`
+    mutation searchStringList($count: Int, $search_term: String!, $search_items: [String!]!) {
+  searchStringList(
     count: $count
     search_term: $search_term
     search_items: $search_items
@@ -370,24 +460,80 @@ export const StringListSearchDocument = gql`
     ... on BaseError {
       message
     }
-    ... on MutationStringListSearchSuccess {
+    ... on MutationSearchStringListSuccess {
       data
     }
   }
 }
     `;
-export const OptionListSearchDocument = gql`
-    mutation optionListSearch($count: Int, $search_term: String!, $search_items: [OptionInput!]!) {
-  optionListSearch(
-    count: $count
-    search_term: $search_term
-    search_items: $search_items
-  ) {
+export const SearchOptionListDocument = gql`
+    mutation searchOptionList($count: Int, $search_term: String!, $options: [OptionInput!]!) {
+  searchOptionList(count: $count, search_term: $search_term, options: $options) {
     __typename
     ... on BaseError {
       message
     }
-    ... on MutationOptionListSearchSuccess {
+    ... on MutationSearchOptionListSuccess {
+      data {
+        ...OptionOutputFlat
+      }
+    }
+  }
+}
+    ${OptionOutputFlatFragmentDoc}`;
+export const RecommendOptionListDocument = gql`
+    mutation recommendOptionList($count: Int, $options: [OptionInput!]!, $interests: [OptionInput!]!) {
+  recommendOptionList(count: $count, options: $options, interests: $interests) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationRecommendOptionListSuccess {
+      data {
+        ...OptionOutputFlat
+      }
+    }
+  }
+}
+    ${OptionOutputFlatFragmentDoc}`;
+export const CreateOptionListDocument = gql`
+    mutation createOptionList($count: Int!, $option_type: String!) {
+  createOptionList(count: $count, option_type: $option_type) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationCreateOptionListSuccess {
+      data {
+        ...OptionOutputFlat
+      }
+    }
+  }
+}
+    ${OptionOutputFlatFragmentDoc}`;
+export const SortOptionListDocument = gql`
+    mutation sortOptionList($criteria: String!, $options: [OptionInput!]!) {
+  sortOptionList(criteria: $criteria, options: $options) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSortOptionListSuccess {
+      data {
+        ...OptionOutputFlat
+      }
+    }
+  }
+}
+    ${OptionOutputFlatFragmentDoc}`;
+export const FilterOptionListDocument = gql`
+    mutation filterOptionList($criteria: String!, $options: [OptionInput!]!) {
+  filterOptionList(criteria: $criteria, options: $options) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationFilterOptionListSuccess {
       data {
         ...OptionOutputFlat
       }
@@ -403,11 +549,23 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    stringListSearch(variables: StringListSearchMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<StringListSearchMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<StringListSearchMutation>(StringListSearchDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'stringListSearch', 'mutation');
+    searchStringList(variables: SearchStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SearchStringListMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchStringListMutation>(SearchStringListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchStringList', 'mutation');
     },
-    optionListSearch(variables: OptionListSearchMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<OptionListSearchMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<OptionListSearchMutation>(OptionListSearchDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'optionListSearch', 'mutation');
+    searchOptionList(variables: SearchOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SearchOptionListMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchOptionListMutation>(SearchOptionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchOptionList', 'mutation');
+    },
+    recommendOptionList(variables: RecommendOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RecommendOptionListMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RecommendOptionListMutation>(RecommendOptionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'recommendOptionList', 'mutation');
+    },
+    createOptionList(variables: CreateOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateOptionListMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CreateOptionListMutation>(CreateOptionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'createOptionList', 'mutation');
+    },
+    sortOptionList(variables: SortOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SortOptionListMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SortOptionListMutation>(SortOptionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'sortOptionList', 'mutation');
+    },
+    filterOptionList(variables: FilterOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<FilterOptionListMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<FilterOptionListMutation>(FilterOptionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'filterOptionList', 'mutation');
     }
   };
 }
