@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._ai = exports.api = void 0;
 const graphql_request_1 = require("graphql-request");
-const search_and_rec_1 = require("./functions/search_and_rec");
+const search_recommend_1 = require("./functions/search_recommend");
 const schema_1 = require("./schema");
 const createClient = (url, isDev) => {
     const newClient = new graphql_request_1.GraphQLClient(`${url}/graphql`, {
@@ -72,11 +72,11 @@ let client = createClient(LIVE_SERVER_URL, false);
 exports.api = (0, schema_1.getSdk)(client, clientWrapper);
 exports._ai = {
     init,
-    searchStringList: search_and_rec_1.searchStringList,
-    searchOptionList: search_and_rec_1.searchOptionList,
-    recommendOptionList: search_and_rec_1.recommendOptionList,
-    createOptionList: search_and_rec_1.createOptionList,
-    sortOptionList: search_and_rec_1.sortOptionList,
-    filterOptionList: search_and_rec_1.filterOptionList,
+    searchStringList: search_recommend_1.searchStringList,
+    searchOptionList: search_recommend_1.searchOptionList,
+    recommendOptionList: search_recommend_1.recommendOptionList,
+    createOptionList: search_recommend_1.createOptionList,
+    sortOptionList: search_recommend_1.sortOptionList,
+    filterOptionList: search_recommend_1.filterOptionList,
 };
 exports.default = exports._ai;

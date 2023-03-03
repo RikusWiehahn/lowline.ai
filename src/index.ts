@@ -6,7 +6,7 @@ import {
   searchOptionList,
   searchStringList,
   sortOptionList,
-} from "./functions/search_and_rec";
+} from "./functions/search_recommend";
 import { getSdk, Sdk, SdkFunctionWrapper } from "./schema";
 //
 //   ####  #####  ######   ##   ##### ######     ####  #      # ###### #    # #####
