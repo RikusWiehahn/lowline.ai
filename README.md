@@ -17,9 +17,9 @@ Lowline.ai is a javascript utility library that lets you easily sprinkle powerfu
 
 ## 📖 Table of Contents
 
-- [Getting started](#getting-started)
-- [Full list of functions](#full-list-of-functions)
-- [Pricing](#pricing)
+- [Getting started](#-getting-started)
+- [Full list of functions](#-full-list-of-functions)
+- [Pricing](#-pricing)
 
 ---
 
