@@ -1,4 +1,4 @@
-import { _ai } from "..";
+import _ai from "..";
 
 jest.setTimeout(30000);
 
