@@ -7,27 +7,6 @@ const optionOutput = (0, graphql_request_1.gql) `
     text
   }
 `;
-const searchStringList = (0, graphql_request_1.gql) `
-  mutation searchStringList(
-    $count: Int
-    $search_term: String!
-    $search_items: [String!]!
-  ) {
-    searchStringList(
-      count: $count
-      search_term: $search_term
-      search_items: $search_items
-    ) {
-      __typename
-      ... on BaseError {
-        message
-      }
-      ... on MutationSearchStringListSuccess {
-        data
-      }
-    }
-  }
-`;
 const searchOptionList = (0, graphql_request_1.gql) `
   mutation searchOptionList(
     $count: Int
@@ -133,6 +112,105 @@ const filterOptionList = (0, graphql_request_1.gql) `
         data {
           ...OptionOutputFlat
         }
+      }
+    }
+  }
+`;
+const searchStringList = (0, graphql_request_1.gql) `
+  mutation searchStringList(
+    $search_term: String!
+    $items: [String!]!
+    $count: Int
+  ) {
+    searchStringList(
+      search_term: $search_term
+      items: $items
+      count: $count
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSearchStringListSuccess {
+        data
+      }
+    }
+  }
+`;
+const recommendStringList = (0, graphql_request_1.gql) `
+  mutation recommendStringList(
+    $items: [String!]!
+    $interests: [String!]!
+    $count: Int
+  ) {
+    recommendStringList(
+      items: $items
+      interests: $interests
+      count: $count
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationRecommendStringListSuccess {
+        data 
+      }
+    }
+  }
+`;
+const createStringList = (0, graphql_request_1.gql) `
+  mutation createStringList(
+    $count: Int!
+    $item_type: String!
+  ) {
+    createStringList(
+      count: $count
+      item_type: $item_type
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationCreateStringListSuccess {
+        data 
+      }
+    }
+  }
+`;
+const sortStringList = (0, graphql_request_1.gql) `
+  mutation sortStringList(
+    $criteria: String!
+    $items: [String!]!
+  ) {
+    sortStringList(
+      criteria: $criteria
+      items: $items
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSortStringListSuccess {
+        data 
+      }
+    }
+  }
+`;
+const filterStringList = (0, graphql_request_1.gql) `
+  mutation filterStringList(
+    $criteria: String!
+    $items: [String!]!
+  ) {
+    filterStringList(
+      criteria: $criteria
+      items: $items
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationFilterStringListSuccess {
+        data 
       }
     }
   }

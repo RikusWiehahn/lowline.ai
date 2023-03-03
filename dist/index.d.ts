@@ -5,14 +5,6 @@ export declare const _ai: {
         apiKey?: string | undefined;
         mode?: "production" | "development" | undefined;
     }) => void;
-    searchStringList: (options: import("./schema").Exact<{
-        count?: import("./schema").InputMaybe<number> | undefined;
-        search_term: string;
-        search_items: string | string[];
-    }>) => Promise<{
-        data: string[];
-        error: string;
-    }>;
     searchOptionList: (options: import("./schema").Exact<{
         count?: import("./schema").InputMaybe<number> | undefined;
         search_term: string;
@@ -48,6 +40,43 @@ export declare const _ai: {
         options: import("./schema").OptionInput | import("./schema").OptionInput[];
     }>) => Promise<{
         data: import("./schema").OptionOutput[];
+        error: string;
+    }>;
+    searchStringList: (options: import("./schema").Exact<{
+        search_term: string;
+        items: string | string[];
+        count?: import("./schema").InputMaybe<number> | undefined;
+    }>) => Promise<{
+        data: string[];
+        error: string;
+    }>;
+    recommendStringList: (options: import("./schema").Exact<{
+        items: string | string[];
+        interests: string | string[];
+        count?: import("./schema").InputMaybe<number> | undefined;
+    }>) => Promise<{
+        data: string[];
+        error: string;
+    }>;
+    createStringList: (options: import("./schema").Exact<{
+        count: number;
+        item_type: string;
+    }>) => Promise<{
+        data: string[];
+        error: string;
+    }>;
+    sortStringList: (options: import("./schema").Exact<{
+        criteria: string;
+        items: string | string[];
+    }>) => Promise<{
+        data: string[];
+        error: string;
+    }>;
+    filterStringList: (options: import("./schema").Exact<{
+        criteria: string;
+        items: string | string[];
+    }>) => Promise<{
+        data: string[];
         error: string;
     }>;
 };

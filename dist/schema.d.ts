@@ -49,17 +49,21 @@ export type Mutation = {
     createApiKey?: Maybe<MutationCreateApiKeyResult>;
     createCheckoutSession?: Maybe<MutationCreateCheckoutSessionResult>;
     createOptionList?: Maybe<MutationCreateOptionListResult>;
+    createStringList?: Maybe<MutationCreateStringListResult>;
     createStripePortalSession?: Maybe<MutationCreateStripePortalSessionResult>;
     deleteApiKey?: Maybe<MutationDeleteApiKeyResult>;
     filterOptionList?: Maybe<MutationFilterOptionListResult>;
+    filterStringList?: Maybe<MutationFilterStringListResult>;
     helloMutation?: Maybe<Scalars['String']>;
     recommendOptionList?: Maybe<MutationRecommendOptionListResult>;
+    recommendStringList?: Maybe<MutationRecommendStringListResult>;
     requestNewPassword?: Maybe<MutationRequestNewPasswordResult>;
     searchOptionList?: Maybe<MutationSearchOptionListResult>;
     searchStringList?: Maybe<MutationSearchStringListResult>;
     seenNotifications?: Maybe<MutationSeenNotificationsResult>;
     signUpUser?: Maybe<MutationSignUpUserResult>;
     sortOptionList?: Maybe<MutationSortOptionListResult>;
+    sortStringList?: Maybe<MutationSortStringListResult>;
     submitEnquiry?: Maybe<MutationSubmitEnquiryResult>;
     submitFeedback?: Maybe<MutationSubmitFeedbackResult>;
     updateUser?: Maybe<MutationUpdateUserResult>;
@@ -75,6 +79,10 @@ export type MutationCreateOptionListArgs = {
     count: Scalars['Int'];
     option_type: Scalars['String'];
 };
+export type MutationCreateStringListArgs = {
+    count: Scalars['Int'];
+    item_type: Scalars['String'];
+};
 export type MutationCreateStripePortalSessionArgs = {
     token?: InputMaybe<Scalars['String']>;
 };
@@ -86,6 +94,10 @@ export type MutationFilterOptionListArgs = {
     criteria: Scalars['String'];
     options: Array<OptionInput>;
 };
+export type MutationFilterStringListArgs = {
+    criteria: Scalars['String'];
+    items: Array<Scalars['String']>;
+};
 export type MutationHelloMutationArgs = {
     name: Scalars['String'];
 };
@@ -93,6 +105,11 @@ export type MutationRecommendOptionListArgs = {
     count?: InputMaybe<Scalars['Int']>;
     interests: Array<OptionInput>;
     options: Array<OptionInput>;
+};
+export type MutationRecommendStringListArgs = {
+    count?: InputMaybe<Scalars['Int']>;
+    interests: Array<Scalars['String']>;
+    items: Array<Scalars['String']>;
 };
 export type MutationRequestNewPasswordArgs = {
     email: Scalars['String'];
@@ -104,7 +121,7 @@ export type MutationSearchOptionListArgs = {
 };
 export type MutationSearchStringListArgs = {
     count?: InputMaybe<Scalars['Int']>;
-    search_items: Array<Scalars['String']>;
+    items: Array<Scalars['String']>;
     search_term: Scalars['String'];
 };
 export type MutationSeenNotificationsArgs = {
@@ -120,6 +137,10 @@ export type MutationSignUpUserArgs = {
 export type MutationSortOptionListArgs = {
     criteria: Scalars['String'];
     options: Array<OptionInput>;
+};
+export type MutationSortStringListArgs = {
+    criteria: Scalars['String'];
+    items: Array<Scalars['String']>;
 };
 export type MutationSubmitEnquiryArgs = {
     email: Scalars['String'];
@@ -155,6 +176,11 @@ export type MutationCreateOptionListSuccess = {
     __typename?: 'MutationCreateOptionListSuccess';
     data: Array<OptionOutput>;
 };
+export type MutationCreateStringListResult = BaseError | MutationCreateStringListSuccess;
+export type MutationCreateStringListSuccess = {
+    __typename?: 'MutationCreateStringListSuccess';
+    data: Array<Scalars['String']>;
+};
 export type MutationCreateStripePortalSessionResult = BaseError | MutationCreateStripePortalSessionSuccess;
 export type MutationCreateStripePortalSessionSuccess = {
     __typename?: 'MutationCreateStripePortalSessionSuccess';
@@ -170,10 +196,20 @@ export type MutationFilterOptionListSuccess = {
     __typename?: 'MutationFilterOptionListSuccess';
     data: Array<OptionOutput>;
 };
+export type MutationFilterStringListResult = BaseError | MutationFilterStringListSuccess;
+export type MutationFilterStringListSuccess = {
+    __typename?: 'MutationFilterStringListSuccess';
+    data: Array<Scalars['String']>;
+};
 export type MutationRecommendOptionListResult = BaseError | MutationRecommendOptionListSuccess;
 export type MutationRecommendOptionListSuccess = {
     __typename?: 'MutationRecommendOptionListSuccess';
     data: Array<OptionOutput>;
+};
+export type MutationRecommendStringListResult = BaseError | MutationRecommendStringListSuccess;
+export type MutationRecommendStringListSuccess = {
+    __typename?: 'MutationRecommendStringListSuccess';
+    data: Array<Scalars['String']>;
 };
 export type MutationRequestNewPasswordResult = BaseError | MutationRequestNewPasswordSuccess;
 export type MutationRequestNewPasswordSuccess = {
@@ -204,6 +240,11 @@ export type MutationSortOptionListResult = BaseError | MutationSortOptionListSuc
 export type MutationSortOptionListSuccess = {
     __typename?: 'MutationSortOptionListSuccess';
     data: Array<OptionOutput>;
+};
+export type MutationSortStringListResult = BaseError | MutationSortStringListSuccess;
+export type MutationSortStringListSuccess = {
+    __typename?: 'MutationSortStringListSuccess';
+    data: Array<Scalars['String']>;
 };
 export type MutationSubmitEnquiryResult = BaseError | MutationSubmitEnquirySuccess;
 export type MutationSubmitEnquirySuccess = {
@@ -305,21 +346,6 @@ export type OptionOutputFlatFragment = {
     id: string;
     text: string;
 };
-export type SearchStringListMutationVariables = Exact<{
-    count?: InputMaybe<Scalars['Int']>;
-    search_term: Scalars['String'];
-    search_items: Array<Scalars['String']> | Scalars['String'];
-}>;
-export type SearchStringListMutation = {
-    __typename?: 'Mutation';
-    searchStringList?: {
-        __typename: 'BaseError';
-        message?: string | null;
-    } | {
-        __typename: 'MutationSearchStringListSuccess';
-        data: Array<string>;
-    } | null;
-};
 export type SearchOptionListMutationVariables = Exact<{
     count?: InputMaybe<Scalars['Int']>;
     search_term: Scalars['String'];
@@ -412,20 +438,100 @@ export type FilterOptionListMutation = {
         }>;
     } | null;
 };
+export type SearchStringListMutationVariables = Exact<{
+    search_term: Scalars['String'];
+    items: Array<Scalars['String']> | Scalars['String'];
+    count?: InputMaybe<Scalars['Int']>;
+}>;
+export type SearchStringListMutation = {
+    __typename?: 'Mutation';
+    searchStringList?: {
+        __typename: 'BaseError';
+        message?: string | null;
+    } | {
+        __typename: 'MutationSearchStringListSuccess';
+        data: Array<string>;
+    } | null;
+};
+export type RecommendStringListMutationVariables = Exact<{
+    items: Array<Scalars['String']> | Scalars['String'];
+    interests: Array<Scalars['String']> | Scalars['String'];
+    count?: InputMaybe<Scalars['Int']>;
+}>;
+export type RecommendStringListMutation = {
+    __typename?: 'Mutation';
+    recommendStringList?: {
+        __typename: 'BaseError';
+        message?: string | null;
+    } | {
+        __typename: 'MutationRecommendStringListSuccess';
+        data: Array<string>;
+    } | null;
+};
+export type CreateStringListMutationVariables = Exact<{
+    count: Scalars['Int'];
+    item_type: Scalars['String'];
+}>;
+export type CreateStringListMutation = {
+    __typename?: 'Mutation';
+    createStringList?: {
+        __typename: 'BaseError';
+        message?: string | null;
+    } | {
+        __typename: 'MutationCreateStringListSuccess';
+        data: Array<string>;
+    } | null;
+};
+export type SortStringListMutationVariables = Exact<{
+    criteria: Scalars['String'];
+    items: Array<Scalars['String']> | Scalars['String'];
+}>;
+export type SortStringListMutation = {
+    __typename?: 'Mutation';
+    sortStringList?: {
+        __typename: 'BaseError';
+        message?: string | null;
+    } | {
+        __typename: 'MutationSortStringListSuccess';
+        data: Array<string>;
+    } | null;
+};
+export type FilterStringListMutationVariables = Exact<{
+    criteria: Scalars['String'];
+    items: Array<Scalars['String']> | Scalars['String'];
+}>;
+export type FilterStringListMutation = {
+    __typename?: 'Mutation';
+    filterStringList?: {
+        __typename: 'BaseError';
+        message?: string | null;
+    } | {
+        __typename: 'MutationFilterStringListSuccess';
+        data: Array<string>;
+    } | null;
+};
 export declare const OptionOutputFlatFragmentDoc: import("graphql").DocumentNode;
-export declare const SearchStringListDocument: import("graphql").DocumentNode;
 export declare const SearchOptionListDocument: import("graphql").DocumentNode;
 export declare const RecommendOptionListDocument: import("graphql").DocumentNode;
 export declare const CreateOptionListDocument: import("graphql").DocumentNode;
 export declare const SortOptionListDocument: import("graphql").DocumentNode;
 export declare const FilterOptionListDocument: import("graphql").DocumentNode;
+export declare const SearchStringListDocument: import("graphql").DocumentNode;
+export declare const RecommendStringListDocument: import("graphql").DocumentNode;
+export declare const CreateStringListDocument: import("graphql").DocumentNode;
+export declare const SortStringListDocument: import("graphql").DocumentNode;
+export declare const FilterStringListDocument: import("graphql").DocumentNode;
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 export declare function getSdk(client: GraphQLClient, withWrapper?: SdkFunctionWrapper): {
-    searchStringList(variables: SearchStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SearchStringListMutation>;
     searchOptionList(variables: SearchOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SearchOptionListMutation>;
     recommendOptionList(variables: RecommendOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RecommendOptionListMutation>;
     createOptionList(variables: CreateOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateOptionListMutation>;
     sortOptionList(variables: SortOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SortOptionListMutation>;
     filterOptionList(variables: FilterOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<FilterOptionListMutation>;
+    searchStringList(variables: SearchStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SearchStringListMutation>;
+    recommendStringList(variables: RecommendStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RecommendStringListMutation>;
+    createStringList(variables: CreateStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateStringListMutation>;
+    sortStringList(variables: SortStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SortStringListMutation>;
+    filterStringList(variables: FilterStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<FilterStringListMutation>;
 };
 export type Sdk = ReturnType<typeof getSdk>;

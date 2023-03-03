@@ -72,11 +72,15 @@ let client = createClient(LIVE_SERVER_URL, false);
 exports.api = (0, schema_1.getSdk)(client, clientWrapper);
 exports._ai = {
     init,
-    searchStringList: search_recommend_1.searchStringList,
     searchOptionList: search_recommend_1.searchOptionList,
     recommendOptionList: search_recommend_1.recommendOptionList,
     createOptionList: search_recommend_1.createOptionList,
     sortOptionList: search_recommend_1.sortOptionList,
     filterOptionList: search_recommend_1.filterOptionList,
+    searchStringList: search_recommend_1.searchStringList,
+    recommendStringList: search_recommend_1.recommendStringList,
+    createStringList: search_recommend_1.createStringList,
+    sortStringList: search_recommend_1.sortStringList,
+    filterStringList: search_recommend_1.filterStringList,
 };
 exports.default = exports._ai;
