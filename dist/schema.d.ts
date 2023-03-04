@@ -34,6 +34,11 @@ export type BaseError = Error & {
     __typename?: 'BaseError';
     message?: Maybe<Scalars['String']>;
 };
+export type ChatThreadInput = {
+    content: Scalars['String'];
+    name: Scalars['String'];
+    role: Scalars['String'];
+};
 export type DailyUsageRecord = {
     __typename?: 'DailyUsageRecord';
     api_key_id?: Maybe<Scalars['ID']>;
@@ -66,6 +71,12 @@ export type Mutation = {
     sortStringList?: Maybe<MutationSortStringListResult>;
     submitEnquiry?: Maybe<MutationSubmitEnquiryResult>;
     submitFeedback?: Maybe<MutationSubmitFeedbackResult>;
+    suggestChatResponse?: Maybe<MutationSuggestChatResponseResult>;
+    suggestChatResponseIntents?: Maybe<MutationSuggestChatResponseIntentsResult>;
+    suggestChatResponseMulti?: Maybe<MutationSuggestChatResponseMultiResult>;
+    suggestEmailResponse?: Maybe<MutationSuggestEmailResponseResult>;
+    suggestEmailResponseIntents?: Maybe<MutationSuggestEmailResponseIntentsResult>;
+    suggestEmailResponseMulti?: Maybe<MutationSuggestEmailResponseMultiResult>;
     updateUser?: Maybe<MutationUpdateUserResult>;
 };
 export type MutationCreateApiKeyArgs = {
@@ -153,6 +164,32 @@ export type MutationSubmitFeedbackArgs = {
     page: Scalars['String'];
     text: Scalars['String'];
     token: Scalars['String'];
+};
+export type MutationSuggestChatResponseArgs = {
+    chat_thread: Array<ChatThreadInput>;
+    intent: Scalars['String'];
+};
+export type MutationSuggestChatResponseIntentsArgs = {
+    chat_thread: Array<ChatThreadInput>;
+    count: Scalars['Int'];
+};
+export type MutationSuggestChatResponseMultiArgs = {
+    chat_thread: Array<ChatThreadInput>;
+    count: Scalars['Int'];
+    intent: Scalars['String'];
+};
+export type MutationSuggestEmailResponseArgs = {
+    email_thread: Array<ChatThreadInput>;
+    intent: Scalars['String'];
+};
+export type MutationSuggestEmailResponseIntentsArgs = {
+    count: Scalars['Int'];
+    email_thread: Array<ChatThreadInput>;
+};
+export type MutationSuggestEmailResponseMultiArgs = {
+    count: Scalars['Int'];
+    email_thread: Array<ChatThreadInput>;
+    intent: Scalars['String'];
 };
 export type MutationUpdateUserArgs = {
     email?: InputMaybe<Scalars['String']>;
@@ -254,6 +291,36 @@ export type MutationSubmitEnquirySuccess = {
 export type MutationSubmitFeedbackResult = BaseError | MutationSubmitFeedbackSuccess;
 export type MutationSubmitFeedbackSuccess = {
     __typename?: 'MutationSubmitFeedbackSuccess';
+    data: Scalars['String'];
+};
+export type MutationSuggestChatResponseIntentsResult = BaseError | MutationSuggestChatResponseIntentsSuccess;
+export type MutationSuggestChatResponseIntentsSuccess = {
+    __typename?: 'MutationSuggestChatResponseIntentsSuccess';
+    data: Array<Scalars['String']>;
+};
+export type MutationSuggestChatResponseMultiResult = BaseError | MutationSuggestChatResponseMultiSuccess;
+export type MutationSuggestChatResponseMultiSuccess = {
+    __typename?: 'MutationSuggestChatResponseMultiSuccess';
+    data: Array<Scalars['String']>;
+};
+export type MutationSuggestChatResponseResult = BaseError | MutationSuggestChatResponseSuccess;
+export type MutationSuggestChatResponseSuccess = {
+    __typename?: 'MutationSuggestChatResponseSuccess';
+    data: Scalars['String'];
+};
+export type MutationSuggestEmailResponseIntentsResult = BaseError | MutationSuggestEmailResponseIntentsSuccess;
+export type MutationSuggestEmailResponseIntentsSuccess = {
+    __typename?: 'MutationSuggestEmailResponseIntentsSuccess';
+    data: Array<Scalars['String']>;
+};
+export type MutationSuggestEmailResponseMultiResult = BaseError | MutationSuggestEmailResponseMultiSuccess;
+export type MutationSuggestEmailResponseMultiSuccess = {
+    __typename?: 'MutationSuggestEmailResponseMultiSuccess';
+    data: Array<Scalars['String']>;
+};
+export type MutationSuggestEmailResponseResult = BaseError | MutationSuggestEmailResponseSuccess;
+export type MutationSuggestEmailResponseSuccess = {
+    __typename?: 'MutationSuggestEmailResponseSuccess';
     data: Scalars['String'];
 };
 export type MutationUpdateUserResult = BaseError | MutationUpdateUserSuccess;
@@ -510,6 +577,49 @@ export type FilterStringListMutation = {
         data: Array<string>;
     } | null;
 };
+export type SuggestChatResponseMutationVariables = Exact<{
+    intent: Scalars['String'];
+    chat_thread: Array<ChatThreadInput> | ChatThreadInput;
+}>;
+export type SuggestChatResponseMutation = {
+    __typename?: 'Mutation';
+    suggestChatResponse?: {
+        __typename: 'BaseError';
+        message?: string | null;
+    } | {
+        __typename: 'MutationSuggestChatResponseSuccess';
+        data: string;
+    } | null;
+};
+export type SuggestChatResponseIntentsMutationVariables = Exact<{
+    count: Scalars['Int'];
+    chat_thread: Array<ChatThreadInput> | ChatThreadInput;
+}>;
+export type SuggestChatResponseIntentsMutation = {
+    __typename?: 'Mutation';
+    suggestChatResponseIntents?: {
+        __typename: 'BaseError';
+        message?: string | null;
+    } | {
+        __typename: 'MutationSuggestChatResponseIntentsSuccess';
+        data: Array<string>;
+    } | null;
+};
+export type SuggestChatResponseMultiMutationVariables = Exact<{
+    count: Scalars['Int'];
+    intent: Scalars['String'];
+    chat_thread: Array<ChatThreadInput> | ChatThreadInput;
+}>;
+export type SuggestChatResponseMultiMutation = {
+    __typename?: 'Mutation';
+    suggestChatResponseMulti?: {
+        __typename: 'BaseError';
+        message?: string | null;
+    } | {
+        __typename: 'MutationSuggestChatResponseMultiSuccess';
+        data: Array<string>;
+    } | null;
+};
 export declare const OptionOutputFlatFragmentDoc: import("graphql").DocumentNode;
 export declare const SearchOptionListDocument: import("graphql").DocumentNode;
 export declare const RecommendOptionListDocument: import("graphql").DocumentNode;
@@ -521,6 +631,9 @@ export declare const RecommendStringListDocument: import("graphql").DocumentNode
 export declare const CreateStringListDocument: import("graphql").DocumentNode;
 export declare const SortStringListDocument: import("graphql").DocumentNode;
 export declare const FilterStringListDocument: import("graphql").DocumentNode;
+export declare const SuggestChatResponseDocument: import("graphql").DocumentNode;
+export declare const SuggestChatResponseIntentsDocument: import("graphql").DocumentNode;
+export declare const SuggestChatResponseMultiDocument: import("graphql").DocumentNode;
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 export declare function getSdk(client: GraphQLClient, withWrapper?: SdkFunctionWrapper): {
     searchOptionList(variables: SearchOptionListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SearchOptionListMutation>;
@@ -533,5 +646,8 @@ export declare function getSdk(client: GraphQLClient, withWrapper?: SdkFunctionW
     createStringList(variables: CreateStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateStringListMutation>;
     sortStringList(variables: SortStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SortStringListMutation>;
     filterStringList(variables: FilterStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<FilterStringListMutation>;
+    suggestChatResponse(variables: SuggestChatResponseMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestChatResponseMutation>;
+    suggestChatResponseIntents(variables: SuggestChatResponseIntentsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestChatResponseIntentsMutation>;
+    suggestChatResponseMulti(variables: SuggestChatResponseMultiMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestChatResponseMultiMutation>;
 };
 export type Sdk = ReturnType<typeof getSdk>;

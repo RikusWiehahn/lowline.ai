@@ -15,10 +15,7 @@ import {
   suggestChatResponse,
   suggestChatResponseIntents,
   suggestChatResponseMulti,
-  suggestEmailResponse,
-  suggestEmailResponseIntents,
-  suggestEmailResponseMulti,
-} from "./functions/chat_email";
+} from "./functions/chat";
 import { getSdk, Sdk, SdkFunctionWrapper } from "./schema";
 //
 //   ####  #####  ######   ##   ##### ######     ####  #      # ###### #    # #####
@@ -138,9 +135,6 @@ export const _ai = {
   suggestChatResponse,
   suggestChatResponseIntents,
   suggestChatResponseMulti,
-  suggestEmailResponse,
-  suggestEmailResponseIntents,
-  suggestEmailResponseMulti,
 };
 
 export default _ai;

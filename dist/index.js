@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports._ai = exports.api = void 0;
 const graphql_request_1 = require("graphql-request");
 const search_recommend_1 = require("./functions/search_recommend");
+const chat_1 = require("./functions/chat");
 const schema_1 = require("./schema");
 const createClient = (url, isDev) => {
     const newClient = new graphql_request_1.GraphQLClient(`${url}/graphql`, {
@@ -82,5 +83,8 @@ exports._ai = {
     createStringList: search_recommend_1.createStringList,
     sortStringList: search_recommend_1.sortStringList,
     filterStringList: search_recommend_1.filterStringList,
+    suggestChatResponse: chat_1.suggestChatResponse,
+    suggestChatResponseIntents: chat_1.suggestChatResponseIntents,
+    suggestChatResponseMulti: chat_1.suggestChatResponseMulti,
 };
 exports.default = exports._ai;

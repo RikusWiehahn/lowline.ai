@@ -650,31 +650,6 @@ export type SuggestChatResponseMultiMutationVariables = Exact<{
 
 export type SuggestChatResponseMultiMutation = { __typename?: 'Mutation', suggestChatResponseMulti?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestChatResponseMultiSuccess', data: Array<string> } | null };
 
-export type SuggestEmailResponseMutationVariables = Exact<{
-  intent: Scalars['String'];
-  email_thread: Array<ChatThreadInput> | ChatThreadInput;
-}>;
-
-
-export type SuggestEmailResponseMutation = { __typename?: 'Mutation', suggestEmailResponse?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestEmailResponseSuccess', data: string } | null };
-
-export type SuggestEmailResponseIntentsMutationVariables = Exact<{
-  count: Scalars['Int'];
-  email_thread: Array<ChatThreadInput> | ChatThreadInput;
-}>;
-
-
-export type SuggestEmailResponseIntentsMutation = { __typename?: 'Mutation', suggestEmailResponseIntents?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestEmailResponseIntentsSuccess', data: Array<string> } | null };
-
-export type SuggestEmailResponseMultiMutationVariables = Exact<{
-  count: Scalars['Int'];
-  intent: Scalars['String'];
-  email_thread: Array<ChatThreadInput> | ChatThreadInput;
-}>;
-
-
-export type SuggestEmailResponseMultiMutation = { __typename?: 'Mutation', suggestEmailResponseMulti?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestEmailResponseMultiSuccess', data: Array<string> } | null };
-
 export const OptionOutputFlatFragmentDoc = gql`
     fragment OptionOutputFlat on OptionOutput {
   id
@@ -864,49 +839,6 @@ export const SuggestChatResponseMultiDocument = gql`
   }
 }
     `;
-export const SuggestEmailResponseDocument = gql`
-    mutation suggestEmailResponse($intent: String!, $email_thread: [ChatThreadInput!]!) {
-  suggestEmailResponse(intent: $intent, email_thread: $email_thread) {
-    __typename
-    ... on BaseError {
-      message
-    }
-    ... on MutationSuggestEmailResponseSuccess {
-      data
-    }
-  }
-}
-    `;
-export const SuggestEmailResponseIntentsDocument = gql`
-    mutation suggestEmailResponseIntents($count: Int!, $email_thread: [ChatThreadInput!]!) {
-  suggestEmailResponseIntents(count: $count, email_thread: $email_thread) {
-    __typename
-    ... on BaseError {
-      message
-    }
-    ... on MutationSuggestEmailResponseIntentsSuccess {
-      data
-    }
-  }
-}
-    `;
-export const SuggestEmailResponseMultiDocument = gql`
-    mutation suggestEmailResponseMulti($count: Int!, $intent: String!, $email_thread: [ChatThreadInput!]!) {
-  suggestEmailResponseMulti(
-    count: $count
-    intent: $intent
-    email_thread: $email_thread
-  ) {
-    __typename
-    ... on BaseError {
-      message
-    }
-    ... on MutationSuggestEmailResponseMultiSuccess {
-      data
-    }
-  }
-}
-    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -953,15 +885,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     suggestChatResponseMulti(variables: SuggestChatResponseMultiMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestChatResponseMultiMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SuggestChatResponseMultiMutation>(SuggestChatResponseMultiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestChatResponseMulti', 'mutation');
-    },
-    suggestEmailResponse(variables: SuggestEmailResponseMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestEmailResponseMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SuggestEmailResponseMutation>(SuggestEmailResponseDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestEmailResponse', 'mutation');
-    },
-    suggestEmailResponseIntents(variables: SuggestEmailResponseIntentsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestEmailResponseIntentsMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SuggestEmailResponseIntentsMutation>(SuggestEmailResponseIntentsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestEmailResponseIntents', 'mutation');
-    },
-    suggestEmailResponseMulti(variables: SuggestEmailResponseMultiMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestEmailResponseMultiMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SuggestEmailResponseMultiMutation>(SuggestEmailResponseMultiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestEmailResponseMulti', 'mutation');
     }
   };
 }

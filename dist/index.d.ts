@@ -79,5 +79,27 @@ export declare const _ai: {
         data: string[];
         error: string;
     }>;
+    suggestChatResponse: (options: import("./schema").Exact<{
+        intent: string;
+        chat_thread: import("./schema").ChatThreadInput | import("./schema").ChatThreadInput[];
+    }>) => Promise<{
+        data: string | null;
+        error: string;
+    }>;
+    suggestChatResponseIntents: (options: import("./schema").Exact<{
+        count: number;
+        chat_thread: import("./schema").ChatThreadInput | import("./schema").ChatThreadInput[];
+    }>) => Promise<{
+        data: string[];
+        error: string;
+    }>;
+    suggestChatResponseMulti: (options: import("./schema").Exact<{
+        count: number;
+        intent: string;
+        chat_thread: import("./schema").ChatThreadInput | import("./schema").ChatThreadInput[];
+    }>) => Promise<{
+        data: string[];
+        error: string;
+    }>;
 };
 export default _ai;

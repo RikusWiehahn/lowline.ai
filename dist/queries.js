@@ -215,3 +215,62 @@ const filterStringList = (0, graphql_request_1.gql) `
     }
   }
 `;
+const suggestChatResponse = (0, graphql_request_1.gql) `
+  mutation suggestChatResponse(
+    $intent: String!
+    $chat_thread: [ChatThreadInput!]!
+  ) {
+    suggestChatResponse(
+      intent: $intent
+      chat_thread: $chat_thread
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestChatResponseSuccess {
+        data 
+      }
+    }
+  }
+`;
+const suggestChatResponseIntents = (0, graphql_request_1.gql) `
+  mutation suggestChatResponseIntents(
+    $count: Int!
+    $chat_thread: [ChatThreadInput!]!
+  ) {
+    suggestChatResponseIntents(
+      count: $count
+      chat_thread: $chat_thread
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestChatResponseIntentsSuccess {
+        data 
+      }
+    }
+  }
+`;
+const suggestChatResponseMulti = (0, graphql_request_1.gql) `
+  mutation suggestChatResponseMulti(
+    $count: Int!
+    $intent: String!
+    $chat_thread: [ChatThreadInput!]!
+  ) {
+    suggestChatResponseMulti(
+      count: $count
+      intent: $intent
+      chat_thread: $chat_thread
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestChatResponseMultiSuccess {
+        data 
+      }
+    }
+  }
+`;

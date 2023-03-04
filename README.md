@@ -93,6 +93,19 @@ if (res.error) {
 
 ---
 
+## 🏷️ Pricing
+
+The free version has a small delay, for faster completions, go to https://www.lowline.ai, sign up for a paid account and create an API Key.
+
+- Unlimited free use with a slightly delayed response.
+- This delay is currently 5 seconds
+- For no delay, create a paid plan at USD $0.01 per request.
+- Pricing and delay length may change if needed to make the project financially sustainable.
+
+Stay tuned!
+
+---
+
 # 📒 Full list of functions
 
 - \_ai.searchOptionList
@@ -433,15 +446,86 @@ if (res.error) {
 
 ### `chat_chain`
 
-- suggestChatResponse
-- suggestChatResponseIntents
-- suggestChatResponseMulti
+### \_ai.suggestChatResponse
 
-### `email_chain`
+```js
+const res = await _ai.suggestChatResponse({
+  intent: "Give a compliment",
+  chat_thread: [
+    {
+      name: "User",
+      role: "user",
+      content: "I'm feeling down",
+    },
+    {
+      name: "Bot",
+      role: "bot",
+      content: "I'm sorry to hear that",
+    },
+    {
+      name: "User",
+      role: "user",
+      content: "Can you give me a compliment?",
+    },
+  ],
+});
+if (res.error) {
+  console.log(error);
+} else {
+  console.log(res.result); // -> "You have a great sense of humor and a kind heart."
+}
+```
 
-- suggestEmailResponse
-- suggestEmailResponseIntents
-- suggestEmailResponseMultiple
+### \_ai.suggestChatResponseIntents
+
+```js
+const res = await _ai.suggestChatResponseIntents({
+  count: 0,
+  chat_thread: [
+    {
+      name: "User",
+      role: "user",
+      content: "I'm feeling down",
+    },
+    {
+      name: "Bot",
+      role: "bot",
+      content: "I'm sorry to hear that",
+    },
+  ],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // -->  'Offer support','Ask about the reason for feeling down','Ask about potential solutions',
+}
+```
+
+### \_ai.suggestChatResponseMulti
+
+```js
+const res = await _ai.suggestChatResponseMulti({
+  count: 0,
+  intent: "Give a compliment",
+  chat_thread: [
+    {
+      name: "User",
+      role: "user",
+      content: "I'm feeling down",
+    },
+    {
+      name: "Bot",
+      role: "bot",
+      content: "I'm sorry to hear that",
+    },
+  ],
+});
+if (res.error) {
+  console.log(error);
+} else {
+  console.log(res.result); // --> 'You are an amazing person!',' You have a great sense of humor!',' You are very talented!',
+}
+```
 
 ## 📘 Text processing
 
@@ -681,14 +765,3 @@ Open-ended, city, state, country, etc.
 - convertCSVToYAML
 
 ---
-
-## 🏷️ Pricing
-
-The free version has a small delay, for faster completions, go to https://www.lowline.ai, sign up for a paid account and create an API Key.
-
-- Unlimited free use with a small delay.
-- This delay is currently 5 seconds
-- For no delay, create a paid plan at USD $0.01 per request.
-- Pricing and delay length may change if needed to make the project financially sustainable.
-
-Stay tuned!

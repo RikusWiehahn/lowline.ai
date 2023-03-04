@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSdk = exports.FilterStringListDocument = exports.SortStringListDocument = exports.CreateStringListDocument = exports.RecommendStringListDocument = exports.SearchStringListDocument = exports.FilterOptionListDocument = exports.SortOptionListDocument = exports.CreateOptionListDocument = exports.RecommendOptionListDocument = exports.SearchOptionListDocument = exports.OptionOutputFlatFragmentDoc = void 0;
+exports.getSdk = exports.SuggestChatResponseMultiDocument = exports.SuggestChatResponseIntentsDocument = exports.SuggestChatResponseDocument = exports.FilterStringListDocument = exports.SortStringListDocument = exports.CreateStringListDocument = exports.RecommendStringListDocument = exports.SearchStringListDocument = exports.FilterOptionListDocument = exports.SortOptionListDocument = exports.CreateOptionListDocument = exports.RecommendOptionListDocument = exports.SearchOptionListDocument = exports.OptionOutputFlatFragmentDoc = void 0;
 const graphql_tag_1 = __importDefault(require("graphql-tag"));
 exports.OptionOutputFlatFragmentDoc = (0, graphql_tag_1.default) `
     fragment OptionOutputFlat on OptionOutput {
@@ -151,6 +151,49 @@ exports.FilterStringListDocument = (0, graphql_tag_1.default) `
   }
 }
     `;
+exports.SuggestChatResponseDocument = (0, graphql_tag_1.default) `
+    mutation suggestChatResponse($intent: String!, $chat_thread: [ChatThreadInput!]!) {
+  suggestChatResponse(intent: $intent, chat_thread: $chat_thread) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestChatResponseSuccess {
+      data
+    }
+  }
+}
+    `;
+exports.SuggestChatResponseIntentsDocument = (0, graphql_tag_1.default) `
+    mutation suggestChatResponseIntents($count: Int!, $chat_thread: [ChatThreadInput!]!) {
+  suggestChatResponseIntents(count: $count, chat_thread: $chat_thread) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestChatResponseIntentsSuccess {
+      data
+    }
+  }
+}
+    `;
+exports.SuggestChatResponseMultiDocument = (0, graphql_tag_1.default) `
+    mutation suggestChatResponseMulti($count: Int!, $intent: String!, $chat_thread: [ChatThreadInput!]!) {
+  suggestChatResponseMulti(
+    count: $count
+    intent: $intent
+    chat_thread: $chat_thread
+  ) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestChatResponseMultiSuccess {
+      data
+    }
+  }
+}
+    `;
 const defaultWrapper = (action, _operationName, _operationType) => action();
 function getSdk(client, withWrapper = defaultWrapper) {
     return {
@@ -183,6 +226,15 @@ function getSdk(client, withWrapper = defaultWrapper) {
         },
         filterStringList(variables, requestHeaders) {
             return withWrapper((wrappedRequestHeaders) => client.request(exports.FilterStringListDocument, variables, Object.assign(Object.assign({}, requestHeaders), wrappedRequestHeaders)), 'filterStringList', 'mutation');
+        },
+        suggestChatResponse(variables, requestHeaders) {
+            return withWrapper((wrappedRequestHeaders) => client.request(exports.SuggestChatResponseDocument, variables, Object.assign(Object.assign({}, requestHeaders), wrappedRequestHeaders)), 'suggestChatResponse', 'mutation');
+        },
+        suggestChatResponseIntents(variables, requestHeaders) {
+            return withWrapper((wrappedRequestHeaders) => client.request(exports.SuggestChatResponseIntentsDocument, variables, Object.assign(Object.assign({}, requestHeaders), wrappedRequestHeaders)), 'suggestChatResponseIntents', 'mutation');
+        },
+        suggestChatResponseMulti(variables, requestHeaders) {
+            return withWrapper((wrappedRequestHeaders) => client.request(exports.SuggestChatResponseMultiDocument, variables, Object.assign(Object.assign({}, requestHeaders), wrappedRequestHeaders)), 'suggestChatResponseMulti', 'mutation');
         }
     };
 }
