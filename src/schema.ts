@@ -31,6 +31,12 @@ export type BaseError = Error & {
   message?: Maybe<Scalars['String']>;
 };
 
+export type ChatThreadInput = {
+  content: Scalars['String'];
+  name: Scalars['String'];
+  role: Scalars['String'];
+};
+
 export type DailyUsageRecord = {
   __typename?: 'DailyUsageRecord';
   api_key_id?: Maybe<Scalars['ID']>;
@@ -65,6 +71,12 @@ export type Mutation = {
   sortStringList?: Maybe<MutationSortStringListResult>;
   submitEnquiry?: Maybe<MutationSubmitEnquiryResult>;
   submitFeedback?: Maybe<MutationSubmitFeedbackResult>;
+  suggestChatResponse?: Maybe<MutationSuggestChatResponseResult>;
+  suggestChatResponseIntents?: Maybe<MutationSuggestChatResponseIntentsResult>;
+  suggestChatResponseMulti?: Maybe<MutationSuggestChatResponseMultiResult>;
+  suggestEmailResponse?: Maybe<MutationSuggestEmailResponseResult>;
+  suggestEmailResponseIntents?: Maybe<MutationSuggestEmailResponseIntentsResult>;
+  suggestEmailResponseMulti?: Maybe<MutationSuggestEmailResponseMultiResult>;
   updateUser?: Maybe<MutationUpdateUserResult>;
 };
 
@@ -192,6 +204,44 @@ export type MutationSubmitFeedbackArgs = {
   page: Scalars['String'];
   text: Scalars['String'];
   token: Scalars['String'];
+};
+
+
+export type MutationSuggestChatResponseArgs = {
+  chat_thread: Array<ChatThreadInput>;
+  intent: Scalars['String'];
+};
+
+
+export type MutationSuggestChatResponseIntentsArgs = {
+  chat_thread: Array<ChatThreadInput>;
+  count: Scalars['Int'];
+};
+
+
+export type MutationSuggestChatResponseMultiArgs = {
+  chat_thread: Array<ChatThreadInput>;
+  count: Scalars['Int'];
+  intent: Scalars['String'];
+};
+
+
+export type MutationSuggestEmailResponseArgs = {
+  email_thread: Array<ChatThreadInput>;
+  intent: Scalars['String'];
+};
+
+
+export type MutationSuggestEmailResponseIntentsArgs = {
+  count: Scalars['Int'];
+  email_thread: Array<ChatThreadInput>;
+};
+
+
+export type MutationSuggestEmailResponseMultiArgs = {
+  count: Scalars['Int'];
+  email_thread: Array<ChatThreadInput>;
+  intent: Scalars['String'];
 };
 
 
@@ -333,6 +383,48 @@ export type MutationSubmitFeedbackResult = BaseError | MutationSubmitFeedbackSuc
 
 export type MutationSubmitFeedbackSuccess = {
   __typename?: 'MutationSubmitFeedbackSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationSuggestChatResponseIntentsResult = BaseError | MutationSuggestChatResponseIntentsSuccess;
+
+export type MutationSuggestChatResponseIntentsSuccess = {
+  __typename?: 'MutationSuggestChatResponseIntentsSuccess';
+  data: Array<Scalars['String']>;
+};
+
+export type MutationSuggestChatResponseMultiResult = BaseError | MutationSuggestChatResponseMultiSuccess;
+
+export type MutationSuggestChatResponseMultiSuccess = {
+  __typename?: 'MutationSuggestChatResponseMultiSuccess';
+  data: Array<Scalars['String']>;
+};
+
+export type MutationSuggestChatResponseResult = BaseError | MutationSuggestChatResponseSuccess;
+
+export type MutationSuggestChatResponseSuccess = {
+  __typename?: 'MutationSuggestChatResponseSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationSuggestEmailResponseIntentsResult = BaseError | MutationSuggestEmailResponseIntentsSuccess;
+
+export type MutationSuggestEmailResponseIntentsSuccess = {
+  __typename?: 'MutationSuggestEmailResponseIntentsSuccess';
+  data: Array<Scalars['String']>;
+};
+
+export type MutationSuggestEmailResponseMultiResult = BaseError | MutationSuggestEmailResponseMultiSuccess;
+
+export type MutationSuggestEmailResponseMultiSuccess = {
+  __typename?: 'MutationSuggestEmailResponseMultiSuccess';
+  data: Array<Scalars['String']>;
+};
+
+export type MutationSuggestEmailResponseResult = BaseError | MutationSuggestEmailResponseSuccess;
+
+export type MutationSuggestEmailResponseSuccess = {
+  __typename?: 'MutationSuggestEmailResponseSuccess';
   data: Scalars['String'];
 };
 
@@ -533,6 +625,56 @@ export type FilterStringListMutationVariables = Exact<{
 
 export type FilterStringListMutation = { __typename?: 'Mutation', filterStringList?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationFilterStringListSuccess', data: Array<string> } | null };
 
+export type SuggestChatResponseMutationVariables = Exact<{
+  intent: Scalars['String'];
+  chat_thread: Array<ChatThreadInput> | ChatThreadInput;
+}>;
+
+
+export type SuggestChatResponseMutation = { __typename?: 'Mutation', suggestChatResponse?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestChatResponseSuccess', data: string } | null };
+
+export type SuggestChatResponseIntentsMutationVariables = Exact<{
+  count: Scalars['Int'];
+  chat_thread: Array<ChatThreadInput> | ChatThreadInput;
+}>;
+
+
+export type SuggestChatResponseIntentsMutation = { __typename?: 'Mutation', suggestChatResponseIntents?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestChatResponseIntentsSuccess', data: Array<string> } | null };
+
+export type SuggestChatResponseMultiMutationVariables = Exact<{
+  count: Scalars['Int'];
+  intent: Scalars['String'];
+  chat_thread: Array<ChatThreadInput> | ChatThreadInput;
+}>;
+
+
+export type SuggestChatResponseMultiMutation = { __typename?: 'Mutation', suggestChatResponseMulti?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestChatResponseMultiSuccess', data: Array<string> } | null };
+
+export type SuggestEmailResponseMutationVariables = Exact<{
+  intent: Scalars['String'];
+  email_thread: Array<ChatThreadInput> | ChatThreadInput;
+}>;
+
+
+export type SuggestEmailResponseMutation = { __typename?: 'Mutation', suggestEmailResponse?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestEmailResponseSuccess', data: string } | null };
+
+export type SuggestEmailResponseIntentsMutationVariables = Exact<{
+  count: Scalars['Int'];
+  email_thread: Array<ChatThreadInput> | ChatThreadInput;
+}>;
+
+
+export type SuggestEmailResponseIntentsMutation = { __typename?: 'Mutation', suggestEmailResponseIntents?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestEmailResponseIntentsSuccess', data: Array<string> } | null };
+
+export type SuggestEmailResponseMultiMutationVariables = Exact<{
+  count: Scalars['Int'];
+  intent: Scalars['String'];
+  email_thread: Array<ChatThreadInput> | ChatThreadInput;
+}>;
+
+
+export type SuggestEmailResponseMultiMutation = { __typename?: 'Mutation', suggestEmailResponseMulti?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestEmailResponseMultiSuccess', data: Array<string> } | null };
+
 export const OptionOutputFlatFragmentDoc = gql`
     fragment OptionOutputFlat on OptionOutput {
   id
@@ -679,6 +821,92 @@ export const FilterStringListDocument = gql`
   }
 }
     `;
+export const SuggestChatResponseDocument = gql`
+    mutation suggestChatResponse($intent: String!, $chat_thread: [ChatThreadInput!]!) {
+  suggestChatResponse(intent: $intent, chat_thread: $chat_thread) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestChatResponseSuccess {
+      data
+    }
+  }
+}
+    `;
+export const SuggestChatResponseIntentsDocument = gql`
+    mutation suggestChatResponseIntents($count: Int!, $chat_thread: [ChatThreadInput!]!) {
+  suggestChatResponseIntents(count: $count, chat_thread: $chat_thread) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestChatResponseIntentsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const SuggestChatResponseMultiDocument = gql`
+    mutation suggestChatResponseMulti($count: Int!, $intent: String!, $chat_thread: [ChatThreadInput!]!) {
+  suggestChatResponseMulti(
+    count: $count
+    intent: $intent
+    chat_thread: $chat_thread
+  ) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestChatResponseMultiSuccess {
+      data
+    }
+  }
+}
+    `;
+export const SuggestEmailResponseDocument = gql`
+    mutation suggestEmailResponse($intent: String!, $email_thread: [ChatThreadInput!]!) {
+  suggestEmailResponse(intent: $intent, email_thread: $email_thread) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestEmailResponseSuccess {
+      data
+    }
+  }
+}
+    `;
+export const SuggestEmailResponseIntentsDocument = gql`
+    mutation suggestEmailResponseIntents($count: Int!, $email_thread: [ChatThreadInput!]!) {
+  suggestEmailResponseIntents(count: $count, email_thread: $email_thread) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestEmailResponseIntentsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const SuggestEmailResponseMultiDocument = gql`
+    mutation suggestEmailResponseMulti($count: Int!, $intent: String!, $email_thread: [ChatThreadInput!]!) {
+  suggestEmailResponseMulti(
+    count: $count
+    intent: $intent
+    email_thread: $email_thread
+  ) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestEmailResponseMultiSuccess {
+      data
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -716,6 +944,24 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     filterStringList(variables: FilterStringListMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<FilterStringListMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<FilterStringListMutation>(FilterStringListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'filterStringList', 'mutation');
+    },
+    suggestChatResponse(variables: SuggestChatResponseMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestChatResponseMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SuggestChatResponseMutation>(SuggestChatResponseDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestChatResponse', 'mutation');
+    },
+    suggestChatResponseIntents(variables: SuggestChatResponseIntentsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestChatResponseIntentsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SuggestChatResponseIntentsMutation>(SuggestChatResponseIntentsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestChatResponseIntents', 'mutation');
+    },
+    suggestChatResponseMulti(variables: SuggestChatResponseMultiMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestChatResponseMultiMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SuggestChatResponseMultiMutation>(SuggestChatResponseMultiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestChatResponseMulti', 'mutation');
+    },
+    suggestEmailResponse(variables: SuggestEmailResponseMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestEmailResponseMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SuggestEmailResponseMutation>(SuggestEmailResponseDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestEmailResponse', 'mutation');
+    },
+    suggestEmailResponseIntents(variables: SuggestEmailResponseIntentsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestEmailResponseIntentsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SuggestEmailResponseIntentsMutation>(SuggestEmailResponseIntentsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestEmailResponseIntents', 'mutation');
+    },
+    suggestEmailResponseMulti(variables: SuggestEmailResponseMultiMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestEmailResponseMultiMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SuggestEmailResponseMultiMutation>(SuggestEmailResponseMultiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestEmailResponseMulti', 'mutation');
     }
   };
 }

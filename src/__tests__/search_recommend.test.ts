@@ -4,7 +4,7 @@ jest.setTimeout(30000);
 
 _ai.init({
   mode: "development", // or "production"
-  apiKey: "sk-1ef06007689f8c5183cbedf05f3d3a89a236f544a10a1f6e0fdcd24842ecc965",
+  apiKey: "sk-5ebd751079c74d44008eeaf46d6d06b90c0a9744641b8e773b24182e291d8db6",
 });
 
 //
@@ -19,7 +19,7 @@ describe("searchOptionList", () => {
   test("should return the data and no error message on success", async () => {
     const result = await _ai.searchOptionList({
       count: 1,
-      search_term: "Best place to go for a nature walk and hear the ocean",
+      search_term: "Best place to go for a walk and see the ocean",
       options: [
         { id: "967ea024-b996-11ed-afa1-0242ac120002", text: "The beach" },
         {
@@ -27,12 +27,12 @@ describe("searchOptionList", () => {
           text: "The local mall",
         },
         {
-          id: "c4b2d762-b996-11ed-afa1-0242ac120002",
-          text: "A botanical garden",
-        },
-        {
           id: "d5956108-b996-11ed-afa1-0242ac120002",
           text: "On a treadmill at the gym",
+        },
+        {
+          id: "c4b2d762-b996-11ed-afa1-0242ac120002",
+          text: "A botanical garden",
         },
         {
           id: "f129c558-b996-11ed-afa1-0242ac120002",
@@ -100,7 +100,7 @@ describe("recommendOptionList", () => {
         },
         {
           id: "c4b2d762-b996-11ed-afa1-0242ac120002",
-          text: "A forest reserve",
+          text: "A forest trail",
         },
         {
           id: "d5956108-b996-11ed-afa1-0242ac120002",
@@ -108,7 +108,7 @@ describe("recommendOptionList", () => {
         },
         {
           id: "f129c558-b996-11ed-afa1-0242ac120002",
-          text: "The local heritage museum",
+          text: "The national museum",
         },
       ],
     });
@@ -120,7 +120,7 @@ describe("recommendOptionList", () => {
         },
         {
           id: "f129c558-b996-11ed-afa1-0242ac120002",
-          text: "The local heritage museum",
+          text: "The national museum",
         },
       ],
       error: "",
@@ -146,7 +146,6 @@ describe("recommendOptionList", () => {
   });
 });
 
-//
 //   ####  #####  ######   ##   ##### ######     ####  #####  #####    #      #  ####  #####
 //  #    # #    # #       #  #    #   #         #    # #    #   #      #      # #        #
 //  #      #    # #####  #    #   #   #####     #    # #    #   #      #      #  ####    #
@@ -214,22 +213,23 @@ describe("createOptionList", () => {
 describe("sortOptionList", () => {
   test("should return the data and no error message on success", async () => {
     const result = await _ai.sortOptionList({
-      criteria: "Hardness",
+      criteria: "Strength",
       options: [
         {
+          id: "9730bc02-b9a8-11ed-afa1-0242ac120002",
+          text: "Cardboard",
+        },
+        {
           id: "8a715e2c-b9a8-11ed-afa1-0242ac120002",
-          text: "Granite",
+          text: "Steel",
+        },
+
+        {
+          id: "800c6e9a-b9a8-11ed-afa1-0242ac120002",
+          text: "Plastic",
         },
         {
           id: "a4b270fa-b9a8-11ed-afa1-0242ac120002",
-          text: "Polystyrene foam",
-        },
-        {
-          id: "800c6e9a-b9a8-11ed-afa1-0242ac120002",
-          text: "Diamond",
-        },
-        {
-          id: "9730bc02-b9a8-11ed-afa1-0242ac120002",
           text: "Wood",
         },
       ],
@@ -237,20 +237,20 @@ describe("sortOptionList", () => {
     expect(result).toEqual({
       data: [
         {
-          id: "800c6e9a-b9a8-11ed-afa1-0242ac120002",
-          text: "Diamond",
-        },
-        {
           id: "8a715e2c-b9a8-11ed-afa1-0242ac120002",
-          text: "Granite",
-        },
-        {
-          id: "9730bc02-b9a8-11ed-afa1-0242ac120002",
-          text: "Wood",
+          text: "Steel",
         },
         {
           id: "a4b270fa-b9a8-11ed-afa1-0242ac120002",
-          text: "Polystyrene foam",
+          text: "Wood",
+        },
+        {
+          id: "800c6e9a-b9a8-11ed-afa1-0242ac120002",
+          text: "Plastic",
+        },
+        {
+          id: "9730bc02-b9a8-11ed-afa1-0242ac120002",
+          text: "Cardboard",
         },
       ],
       error: "",
@@ -300,7 +300,7 @@ describe("sortOptionList", () => {
 describe("filterOptionList", () => {
   test("should return the data and no error message on success", async () => {
     const result = await _ai.filterOptionList({
-      criteria: "Types of rocks",
+      criteria: "Remove non-rock materials",
       options: [
         {
           id: "8a715e2c-b9a8-11ed-afa1-0242ac120002",

@@ -11,6 +11,14 @@ import {
   sortOptionList,
   sortStringList,
 } from "./functions/search_recommend";
+import {
+  suggestChatResponse,
+  suggestChatResponseIntents,
+  suggestChatResponseMulti,
+  suggestEmailResponse,
+  suggestEmailResponseIntents,
+  suggestEmailResponseMulti,
+} from "./functions/chat_email";
 import { getSdk, Sdk, SdkFunctionWrapper } from "./schema";
 //
 //   ####  #####  ######   ##   ##### ######     ####  #      # ###### #    # #####
@@ -127,6 +135,12 @@ export const _ai = {
   createStringList,
   sortStringList,
   filterStringList,
+  suggestChatResponse,
+  suggestChatResponseIntents,
+  suggestChatResponseMulti,
+  suggestEmailResponse,
+  suggestEmailResponseIntents,
+  suggestEmailResponseMulti,
 };
 
 export default _ai;

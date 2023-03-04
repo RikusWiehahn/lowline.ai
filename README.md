@@ -11,7 +11,7 @@ Lowline.ai is a javascript utility library that lets you easily sprinkle powerfu
 
 ---
 
-## 🚧 Under development, still quite unstable, use at own risk. 🚧
+## 🚧 Under development, use at own risk. 🚧
 
 ---
 
@@ -109,6 +109,100 @@ if (res.error) {
 ---
 
 ## 🔍 Search and recommend
+
+### string_list type
+
+```php
+string[];
+```
+
+### \_ai.searchStringList
+
+Search through a list of strings, based on a search term provided.
+
+```js
+const res = await _ai.searchStringList({
+  count: 1,
+  search_term: "The second test",
+  items: ["test1", "test2", "test3", "test4", "test5"],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.lg(res.result); // -> ["test2"]
+}
+```
+
+### \_ai.recommendStringList
+
+Recommend from a list of strings, based on interests provided.
+
+```js
+const res = await _ai.recommendStringList({
+  count: 2,
+  interests: ["Clothes shopping", "History"],
+  items: [
+    "The beach",
+    "The local mall",
+    "A forest reserve",
+    "The sports club",
+    "The local heritage museum",
+  ],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // --> ["The local mall", "The local heritage museum"]
+}
+```
+
+### \_ai.createStringList
+
+Create a list of strings, based on an item type and count.
+
+```js
+const res = await _ai.createStringList({
+  count: 4,
+  item_type: "largest countries by landmass in descending order",
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // --> ["Russia", "Canada", "China", "United States"],
+}
+```
+
+### \_ai.sortStringList
+
+Sort a list of strings, based on a criteria.
+
+```js
+const res = await _ai.sortStringList({
+  criteria: "Hardness",
+  items: ["Granite", "Polystyrene foam", "Wood", "Diamond"],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // -> ["Diamond", "Granite", "Wood", "Polystyrene foam"]
+}
+```
+
+### \_ai.filterStringList
+
+Filter a list of strings, based on a criteria.
+
+```js
+const res = await _ai.filterStringList({
+  criteria: "Type of rock",
+  items: ["Granite", "Polystyrene foam", "Wood", "Iron ore", "Potato"],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // --> ["Granite", "Iron ore"],
+}
+```
 
 ### option_list
 
@@ -333,127 +427,21 @@ if (res.error) {
 }
 ```
 
-### string_list type
-
-```php
-string[];
-```
-
-### \_ai.searchStringList
-
-Search through a list of strings, based on a search term provided.
-
-```js
-const res = await _ai.searchStringList({
-  count: 1,
-  search_term: "The second test",
-  items: ["test1", "test2", "test3", "test4", "test5"],
-});
-if (res.error) {
-  console.log(res.error);
-} else {
-  console.lg(res.result); // -> ["test2"]
-}
-```
-
-### \_ai.recommendStringList
-
-Recommend from a list of strings, based on interests provided.
-
-```js
-const res = await _ai.recommendStringList({
-  count: 2,
-  interests: ["Clothes shopping", "History"],
-  items: [
-    "The beach",
-    "The local mall",
-    "A forest reserve",
-    "The sports club",
-    "The local heritage museum",
-  ],
-});
-if (res.error) {
-  console.log(res.error);
-} else {
-  console.log(res.result); // --> ["The local mall", "The local heritage museum"]
-}
-```
-
-### \_ai.createStringList
-
-Create a list of strings, based on an item type and count.
-
-```js
-const res = await _ai.createStringList({
-  count: 4,
-  item_type: "largest countries by landmass in descending order",
-});
-if (res.error) {
-  console.log(res.error);
-} else {
-  console.log(res.result); // --> ["Russia", "Canada", "China", "United States"],
-}
-```
-
-### \_ai.sortStringList
-
-Sort a list of strings, based on a criteria.
-
-```js
-const res = await _ai.sortStringList({
-  criteria: "Hardness",
-  items: ["Granite", "Polystyrene foam", "Wood", "Diamond"],
-});
-if (res.error) {
-  console.log(res.error);
-} else {
-  console.log(res.result); // -> ["Diamond", "Granite", "Wood", "Polystyrene foam"]
-}
-```
-
-### \_ai.filterStringList
-
-Filter a list of strings, based on a criteria.
-
-```js
-const res = await _ai.filterStringList({
-  criteria: "Type of rock",
-  items: ["Granite", "Polystyrene foam", "Wood", "Iron ore", "Potato"],
-});
-if (res.error) {
-  console.log(res.error);
-} else {
-  console.log(res.result); // --> ["Granite", "Iron ore"],
-}
-```
-
 ## 💬 Messaging
 
 🚧 The below functions are under construction 🚧
 
-### `chat_message`
+### `chat_chain`
 
 - suggestChatResponse
 - suggestChatResponseIntents
-- suggestChatResponseMultiple
+- suggestChatResponseMulti
 
-### `chat_chain`
-
-- suggestChatChainResponse
-- suggestChatChainResponseIntents
-- suggestChatChainResponseMultiple
-
-### `email_message`
+### `email_chain`
 
 - suggestEmailResponse
 - suggestEmailResponseIntents
 - suggestEmailResponseMultiple
-
-### `email_chain`
-
-- suggestEmailChainResponse
-- suggestEmailChainResponseIntents
-- suggestEmailChainResponseMultiple
 
 ## 📘 Text processing
 

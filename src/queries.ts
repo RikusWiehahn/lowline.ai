@@ -314,3 +314,176 @@ const filterStringList = gql`
     }
   }
 `;
+
+//
+//   ####  #    #  ####   ####  ######  ####  #####     ####  #    #   ##   #####    #####  ######  ####
+//  #      #    # #    # #    # #      #        #      #    # #    #  #  #    #      #    # #      #
+//   ####  #    # #      #      #####   ####    #      #      ###### #    #   #      #    # #####   ####
+//       # #    # #  ### #  ### #           #   #      #      #    # ######   #      #####  #           #
+//  #    # #    # #    # #    # #      #    #   #      #    # #    # #    #   #      #   #  #      #    #
+//   ####   ####   ####   ####  ######  ####    #       ####  #    # #    #   #      #    # ######  ####
+
+const suggestChatResponse = gql`
+  mutation suggestChatResponse(
+    $intent: String!
+    $chat_thread: [ChatThreadInput!]!
+  ) {
+    suggestChatResponse(
+      intent: $intent
+      chat_thread: $chat_thread
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestChatResponseSuccess {
+        data 
+      }
+    }
+  }
+`;
+
+//
+//   ####  #    #  ####   ####  ######  ####  #####     ####  #    #   ##   #####    #####  ######  ####     # #    # ##### ###### #    # #####  ####
+//  #      #    # #    # #    # #      #        #      #    # #    #  #  #    #      #    # #      #         # ##   #   #   #      ##   #   #   #
+//   ####  #    # #      #      #####   ####    #      #      ###### #    #   #      #    # #####   ####     # # #  #   #   #####  # #  #   #    ####
+//       # #    # #  ### #  ### #           #   #      #      #    # ######   #      #####  #           #    # #  # #   #   #      #  # #   #        #
+//  #    # #    # #    # #    # #      #    #   #      #    # #    # #    #   #      #   #  #      #    #    # #   ##   #   #      #   ##   #   #    #
+//   ####   ####   ####   ####  ######  ####    #       ####  #    # #    #   #      #    # ######  ####     # #    #   #   ###### #    #   #    ####
+
+const suggestChatResponseIntents = gql`
+  mutation suggestChatResponseIntents(
+    $count: Int!
+    $chat_thread: [ChatThreadInput!]!
+  ) {
+    suggestChatResponseIntents(
+      count: $count
+      chat_thread: $chat_thread
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestChatResponseIntentsSuccess {
+        data 
+      }
+    }
+  }
+`;
+
+//
+//   ####  #    #  ####   ####  ######  ####  #####     ####  #    #   ##   #####    #####  ######  ####     #    # #    # #      ##### #
+//  #      #    # #    # #    # #      #        #      #    # #    #  #  #    #      #    # #      #         ##  ## #    # #        #   #
+//   ####  #    # #      #      #####   ####    #      #      ###### #    #   #      #    # #####   ####     # ## # #    # #        #   #
+//       # #    # #  ### #  ### #           #   #      #      #    # ######   #      #####  #           #    #    # #    # #        #   #
+//  #    # #    # #    # #    # #      #    #   #      #    # #    # #    #   #      #   #  #      #    #    #    # #    # #        #   #
+//   ####   ####   ####   ####  ######  ####    #       ####  #    # #    #   #      #    # ######  ####     #    #  ####  ######   #   #
+
+
+const suggestChatResponseMulti = gql`
+  mutation suggestChatResponseMulti(
+    $count: Int!
+    $intent: String!
+    $chat_thread: [ChatThreadInput!]!
+  ) {
+    suggestChatResponseMulti(
+      count: $count
+      intent: $intent
+      chat_thread: $chat_thread
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestChatResponseMultiSuccess {
+        data 
+      }
+    }
+  }
+`;
+
+
+//
+//   ####  #    #  ####   ####  ######  ####  #####    ###### #    #   ##   # #         #####  ######  ####  #####   ####  #    #  ####  ######
+//  #      #    # #    # #    # #      #        #      #      ##  ##  #  #  # #         #    # #      #      #    # #    # ##   # #      #
+//   ####  #    # #      #      #####   ####    #      #####  # ## # #    # # #         #    # #####   ####  #    # #    # # #  #  ####  #####
+//       # #    # #  ### #  ### #           #   #      #      #    # ###### # #         #####  #           # #####  #    # #  # #      # #
+//  #    # #    # #    # #    # #      #    #   #      #      #    # #    # # #         #   #  #      #    # #      #    # #   ## #    # #
+//   ####   ####   ####   ####  ######  ####    #      ###### #    # #    # # ######    #    # ######  ####  #       ####  #    #  ####  ######
+
+const suggestEmailResponse = gql`
+  mutation suggestEmailResponse(
+    $intent: String!
+    $email_thread: [ChatThreadInput!]!
+  ) {
+    suggestEmailResponse(
+      intent: $intent
+      email_thread: $email_thread
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestEmailResponseSuccess {
+        data 
+      }
+    }
+  }
+`;
+
+//
+//   ####  #    #  ####   ####  ######  ####  #####    ###### #    #   ##   # #         #####  ######  ####     # #    # ##### ###### #    # #####  ####
+//  #      #    # #    # #    # #      #        #      #      ##  ##  #  #  # #         #    # #      #         # ##   #   #   #      ##   #   #   #
+//   ####  #    # #      #      #####   ####    #      #####  # ## # #    # # #         #    # #####   ####     # # #  #   #   #####  # #  #   #    ####
+//       # #    # #  ### #  ### #           #   #      #      #    # ###### # #         #####  #           #    # #  # #   #   #      #  # #   #        #
+//  #    # #    # #    # #    # #      #    #   #      #      #    # #    # # #         #   #  #      #    #    # #   ##   #   #      #   ##   #   #    #
+//   ####   ####   ####   ####  ######  ####    #      ###### #    # #    # # ######    #    # ######  ####     # #    #   #   ###### #    #   #    ####
+
+const suggestEmailResponseIntents = gql`
+  mutation suggestEmailResponseIntents(
+    $count: Int!
+    $email_thread: [ChatThreadInput!]!
+  ) {
+    suggestEmailResponseIntents(
+      count: $count
+      email_thread: $email_thread
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestEmailResponseIntentsSuccess {
+        data 
+      }
+    }
+  }
+`;
+//
+//   ####  #    #  ####   ####  ######  ####  #####    ###### #    #   ##   # #         #####  ######  ####     #    # #    # #      ##### #
+//  #      #    # #    # #    # #      #        #      #      ##  ##  #  #  # #         #    # #      #         ##  ## #    # #        #   #
+//   ####  #    # #      #      #####   ####    #      #####  # ## # #    # # #         #    # #####   ####     # ## # #    # #        #   #
+//       # #    # #  ### #  ### #           #   #      #      #    # ###### # #         #####  #           #    #    # #    # #        #   #
+//  #    # #    # #    # #    # #      #    #   #      #      #    # #    # # #         #   #  #      #    #    #    # #    # #        #   #
+//   ####   ####   ####   ####  ######  ####    #      ###### #    # #    # # ######    #    # ######  ####     #    #  ####  ######   #   #
+
+const suggestEmailResponseMulti = gql`
+  mutation suggestEmailResponseMulti(
+    $count: Int!
+    $intent: String!
+    $email_thread: [ChatThreadInput!]!
+  ) {
+    suggestEmailResponseMulti(
+      count: $count
+      intent: $intent
+      email_thread: $email_thread
+    ) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestEmailResponseMultiSuccess {
+        data 
+      }
+    }
+  }
+`;
