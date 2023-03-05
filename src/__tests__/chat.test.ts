@@ -4,7 +4,7 @@ jest.setTimeout(30000);
 
 _ai.init({
   mode: "development", // or "production"
-  apiKey: "sk-5ebd751079c74d44008eeaf46d6d06b90c0a9744641b8e773b24182e291d8db6",
+  apiKey: "",
 });
 
 //
@@ -38,7 +38,7 @@ describe("suggestChatResponse", () => {
       ],
     });
     expect(res).toEqual({
-      data: expect.any(String),
+      result: expect.any(String),
       error: "",
     });
   });
@@ -60,7 +60,7 @@ describe("suggestChatResponse", () => {
       ],
     });
     expect(res).toEqual({
-      data: null,
+      result: null,
       error: "Intent not provided",
     });
   });
@@ -71,7 +71,7 @@ describe("suggestChatResponse", () => {
       chat_thread: [],
     });
     expect(res).toEqual({
-      data: null,
+      result: null,
       error: "Chat thread not provided",
     });
   });
@@ -103,7 +103,7 @@ describe("suggestChatResponseIntents", () => {
       ],
     });
     expect(res).toEqual({
-      data: [expect.any(String), expect.any(String), expect.any(String)],
+      result: [expect.any(String), expect.any(String), expect.any(String)],
       error: "",
     });
   });
@@ -125,7 +125,7 @@ describe("suggestChatResponseIntents", () => {
       ],
     });
     expect(res).toEqual({
-      data: [],
+      result: [],
       error: "Count not provided",
     });
   });
@@ -136,7 +136,7 @@ describe("suggestChatResponseIntents", () => {
       chat_thread: [],
     });
     expect(res).toEqual({
-      data: [],
+      result: [],
       error: "Chat thread not provided",
     });
   });
@@ -170,7 +170,7 @@ describe("suggestChatResponseIntents", () => {
         ],
       });
       expect(res).toEqual({
-        data: [expect.any(String), expect.any(String), expect.any(String)],
+        result: [expect.any(String), expect.any(String), expect.any(String)],
         error: "",
       });
     });
@@ -193,7 +193,7 @@ describe("suggestChatResponseIntents", () => {
         ],
       });
       expect(res).toEqual({
-        data: [],
+        result: [],
         error: "Count not provided",
       });
     });
@@ -205,7 +205,7 @@ describe("suggestChatResponseIntents", () => {
         chat_thread: [],
       });
       expect(res).toEqual({
-        data: [],
+        result: [],
         error: "Chat thread not provided",
       });
     });
@@ -228,7 +228,7 @@ describe("suggestChatResponseIntents", () => {
         ],
       });
       expect(res).toEqual({
-        data: [],
+        result: [],
         error: "Intent not provided",
       });
     });

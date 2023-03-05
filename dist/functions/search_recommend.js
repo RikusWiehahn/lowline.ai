@@ -16,12 +16,12 @@ const searchOptionList = (options) => __awaiter(void 0, void 0, void 0, function
     const res = yield __1.api.searchOptionList(options);
     if (((_a = res.searchOptionList) === null || _a === void 0 ? void 0 : _a.__typename) === "MutationSearchOptionListSuccess") {
         return {
-            data: res.searchOptionList.data,
+            result: res.searchOptionList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_b = res.searchOptionList) === null || _b === void 0 ? void 0 : _b.message) || "Unknown error",
     };
 });
@@ -31,12 +31,12 @@ const recommendOptionList = (options) => __awaiter(void 0, void 0, void 0, funct
     const res = yield __1.api.recommendOptionList(options);
     if (((_c = res.recommendOptionList) === null || _c === void 0 ? void 0 : _c.__typename) === "MutationRecommendOptionListSuccess") {
         return {
-            data: res.recommendOptionList.data,
+            result: res.recommendOptionList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_d = res.recommendOptionList) === null || _d === void 0 ? void 0 : _d.message) || "Unknown error",
     };
 });
@@ -46,12 +46,12 @@ const createOptionList = (options) => __awaiter(void 0, void 0, void 0, function
     const res = yield __1.api.createOptionList(options);
     if (((_e = res.createOptionList) === null || _e === void 0 ? void 0 : _e.__typename) === "MutationCreateOptionListSuccess") {
         return {
-            data: res.createOptionList.data,
+            result: res.createOptionList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_f = res.createOptionList) === null || _f === void 0 ? void 0 : _f.message) || "Unknown error",
     };
 });
@@ -61,12 +61,12 @@ const sortOptionList = (options) => __awaiter(void 0, void 0, void 0, function* 
     const res = yield __1.api.sortOptionList(options);
     if (((_g = res.sortOptionList) === null || _g === void 0 ? void 0 : _g.__typename) === "MutationSortOptionListSuccess") {
         return {
-            data: res.sortOptionList.data,
+            result: res.sortOptionList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_h = res.sortOptionList) === null || _h === void 0 ? void 0 : _h.message) || "Unknown error",
     };
 });
@@ -76,12 +76,12 @@ const filterOptionList = (options) => __awaiter(void 0, void 0, void 0, function
     const res = yield __1.api.filterOptionList(options);
     if (((_j = res.filterOptionList) === null || _j === void 0 ? void 0 : _j.__typename) === "MutationFilterOptionListSuccess") {
         return {
-            data: res.filterOptionList.data,
+            result: res.filterOptionList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_k = res.filterOptionList) === null || _k === void 0 ? void 0 : _k.message) || "Unknown error",
     };
 });
@@ -91,12 +91,12 @@ const searchStringList = (options) => __awaiter(void 0, void 0, void 0, function
     const res = yield __1.api.searchStringList(options);
     if (((_l = res.searchStringList) === null || _l === void 0 ? void 0 : _l.__typename) === "MutationSearchStringListSuccess") {
         return {
-            data: res.searchStringList.data,
+            result: res.searchStringList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_m = res.searchStringList) === null || _m === void 0 ? void 0 : _m.message) || "Unknown error",
     };
 });
@@ -106,12 +106,12 @@ const recommendStringList = (options) => __awaiter(void 0, void 0, void 0, funct
     const res = yield __1.api.recommendStringList(options);
     if (((_o = res.recommendStringList) === null || _o === void 0 ? void 0 : _o.__typename) === "MutationRecommendStringListSuccess") {
         return {
-            data: res.recommendStringList.data,
+            result: res.recommendStringList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_p = res.recommendStringList) === null || _p === void 0 ? void 0 : _p.message) || "Unknown error",
     };
 });
@@ -121,12 +121,12 @@ const createStringList = (options) => __awaiter(void 0, void 0, void 0, function
     const res = yield __1.api.createStringList(options);
     if (((_q = res.createStringList) === null || _q === void 0 ? void 0 : _q.__typename) === "MutationCreateStringListSuccess") {
         return {
-            data: res.createStringList.data,
+            result: res.createStringList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_r = res.createStringList) === null || _r === void 0 ? void 0 : _r.message) || "Unknown error",
     };
 });
@@ -136,12 +136,12 @@ const sortStringList = (options) => __awaiter(void 0, void 0, void 0, function* 
     const res = yield __1.api.sortStringList(options);
     if (((_s = res.sortStringList) === null || _s === void 0 ? void 0 : _s.__typename) === "MutationSortStringListSuccess") {
         return {
-            data: res.sortStringList.data,
+            result: res.sortStringList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_t = res.sortStringList) === null || _t === void 0 ? void 0 : _t.message) || "Unknown error",
     };
 });
@@ -151,12 +151,12 @@ const filterStringList = (options) => __awaiter(void 0, void 0, void 0, function
     const res = yield __1.api.filterStringList(options);
     if (((_u = res.filterStringList) === null || _u === void 0 ? void 0 : _u.__typename) === "MutationFilterStringListSuccess") {
         return {
-            data: res.filterStringList.data,
+            result: res.filterStringList.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_v = res.filterStringList) === null || _v === void 0 ? void 0 : _v.message) || "Unknown error",
     };
 });

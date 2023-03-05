@@ -36,17 +36,17 @@ Once the package is installed you can import using the require or import approac
 
 ```js
 // import
-import { _ai } from "lowline.ai";
+import _ai from "lowline.ai";
 
 // or require
-const lowline = require("lowline.ai");
-const _ai = lowline._ai;
+const _ai = require("lowline.ai");
+
 ```
 
 Search example
 
 ```js
-import { _ai } from "lowline.ai";
+import _ai from "lowline.ai";
 
 const list = ["test1", "test2", "test3", "test4", "test5"],
 
@@ -58,14 +58,14 @@ const res = await _ai.searchStringList({
 if (res.error) {
   console.log(error)
 } else {
-  console.log(res.data) // --> ["test2"]
+  console.log(res.result) // --> ["test2"]
 }
 ```
 
 Recommendation example
 
 ```js
-import { _ai } from "lowline.ai";
+import _ai from "lowline.ai";
 
 const purchases = ["apple", "banana"];
 const products = [
@@ -85,9 +85,9 @@ const res = await _ai.recommendStringList({
   count: 3,
 });
 if (res.error) {
-  console.lg(rec.error);
+  console.lg(res.error);
 } else {
-  console.log(rec.result); // -->  ["orange", "grape", "pasta"]
+  console.log(res.result); // -->  ["orange", "grape", "pasta"]
 }
 ```
 

@@ -16,7 +16,7 @@ import {
 export const suggestChatResponse = async (
   options: SuggestChatResponseMutationVariables
 ): Promise<{
-  data: string | null;
+  result: string | null;
   error: string;
 }> => {
   const res = await api.suggestChatResponse(options);
@@ -24,12 +24,12 @@ export const suggestChatResponse = async (
     res.suggestChatResponse?.__typename === "MutationSuggestChatResponseSuccess"
   ) {
     return {
-      data: res.suggestChatResponse.data,
+      result: res.suggestChatResponse.data,
       error: "",
     };
   }
   return {
-    data: null,
+    result: null,
     error: res.suggestChatResponse?.message || "Unknown error",
   };
 };
@@ -45,7 +45,7 @@ export const suggestChatResponse = async (
 export const suggestChatResponseIntents = async (
   options: SuggestChatResponseIntentsMutationVariables
 ): Promise<{
-  data: string[];
+  result: string[];
   error: string;
 }> => {
   const res = await api.suggestChatResponseIntents(options);
@@ -54,12 +54,12 @@ export const suggestChatResponseIntents = async (
     "MutationSuggestChatResponseIntentsSuccess"
   ) {
     return {
-      data: res.suggestChatResponseIntents.data,
+      result: res.suggestChatResponseIntents.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.suggestChatResponseIntents?.message || "Unknown error",
   };
 };
@@ -75,7 +75,7 @@ export const suggestChatResponseIntents = async (
 export const suggestChatResponseMulti = async (
   options: SuggestChatResponseMultiMutationVariables
 ): Promise<{
-  data: string[];
+  result: string[];
   error: string;
 }> => {
   const res = await api.suggestChatResponseMulti(options);
@@ -84,12 +84,12 @@ export const suggestChatResponseMulti = async (
     "MutationSuggestChatResponseMultiSuccess"
   ) {
     return {
-      data: res.suggestChatResponseMulti.data,
+      result: res.suggestChatResponseMulti.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.suggestChatResponseMulti?.message || "Unknown error",
   };
 };

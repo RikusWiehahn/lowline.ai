@@ -24,18 +24,18 @@ import {
 export const searchOptionList = async (
   options: SearchOptionListMutationVariables
 ): Promise<{
-  data: OptionOutput[];
+  result: OptionOutput[];
   error: string;
 }> => {
   const res = await api.searchOptionList(options);
   if (res.searchOptionList?.__typename === "MutationSearchOptionListSuccess") {
     return {
-      data: res.searchOptionList.data,
+      result: res.searchOptionList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.searchOptionList?.message || "Unknown error",
   };
 };
@@ -51,7 +51,7 @@ export const searchOptionList = async (
 export const recommendOptionList = async (
   options: RecommendOptionListMutationVariables
 ): Promise<{
-  data: OptionOutput[];
+  result: OptionOutput[];
   error: string;
 }> => {
   const res = await api.recommendOptionList(options);
@@ -59,12 +59,12 @@ export const recommendOptionList = async (
     res.recommendOptionList?.__typename === "MutationRecommendOptionListSuccess"
   ) {
     return {
-      data: res.recommendOptionList.data,
+      result: res.recommendOptionList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.recommendOptionList?.message || "Unknown error",
   };
 };
@@ -80,18 +80,18 @@ export const recommendOptionList = async (
 export const createOptionList = async (
   options: CreateOptionListMutationVariables
 ): Promise<{
-  data: OptionOutput[];
+  result: OptionOutput[];
   error: string;
 }> => {
   const res = await api.createOptionList(options);
   if (res.createOptionList?.__typename === "MutationCreateOptionListSuccess") {
     return {
-      data: res.createOptionList.data,
+      result: res.createOptionList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.createOptionList?.message || "Unknown error",
   };
 };
@@ -107,18 +107,18 @@ export const createOptionList = async (
 export const sortOptionList = async (
   options: SortOptionListMutationVariables
 ): Promise<{
-  data: OptionOutput[];
+  result: OptionOutput[];
   error: string;
 }> => {
   const res = await api.sortOptionList(options);
   if (res.sortOptionList?.__typename === "MutationSortOptionListSuccess") {
     return {
-      data: res.sortOptionList.data,
+      result: res.sortOptionList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.sortOptionList?.message || "Unknown error",
   };
 };
@@ -134,18 +134,18 @@ export const sortOptionList = async (
 export const filterOptionList = async (
   options: FilterOptionListMutationVariables
 ): Promise<{
-  data: OptionOutput[];
+  result: OptionOutput[];
   error: string;
 }> => {
   const res = await api.filterOptionList(options);
   if (res.filterOptionList?.__typename === "MutationFilterOptionListSuccess") {
     return {
-      data: res.filterOptionList.data,
+      result: res.filterOptionList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.filterOptionList?.message || "Unknown error",
   };
 };
@@ -161,18 +161,18 @@ export const filterOptionList = async (
 export const searchStringList = async (
   options: SearchStringListMutationVariables
 ): Promise<{
-  data: string[];
+  result: string[];
   error: string;
 }> => {
   const res = await api.searchStringList(options);
   if (res.searchStringList?.__typename === "MutationSearchStringListSuccess") {
     return {
-      data: res.searchStringList.data,
+      result: res.searchStringList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.searchStringList?.message || "Unknown error",
   };
 };
@@ -188,7 +188,7 @@ export const searchStringList = async (
 export const recommendStringList = async (
   options: RecommendStringListMutationVariables
 ): Promise<{
-  data: string[];
+  result: string[];
   error: string;
 }> => {
   const res = await api.recommendStringList(options);
@@ -196,12 +196,12 @@ export const recommendStringList = async (
     res.recommendStringList?.__typename === "MutationRecommendStringListSuccess"
   ) {
     return {
-      data: res.recommendStringList.data,
+      result: res.recommendStringList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.recommendStringList?.message || "Unknown error",
   };
 };
@@ -217,18 +217,18 @@ export const recommendStringList = async (
 export const createStringList = async (
   options: CreateStringListMutationVariables
 ): Promise<{
-  data: string[];
+  result: string[];
   error: string;
 }> => {
   const res = await api.createStringList(options);
   if (res.createStringList?.__typename === "MutationCreateStringListSuccess") {
     return {
-      data: res.createStringList.data,
+      result: res.createStringList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.createStringList?.message || "Unknown error",
   };
 };
@@ -244,18 +244,18 @@ export const createStringList = async (
 export const sortStringList = async (
   options: SortStringListMutationVariables
 ): Promise<{
-  data: string[];
+  result: string[];
   error: string;
 }> => {
   const res = await api.sortStringList(options);
   if (res.sortStringList?.__typename === "MutationSortStringListSuccess") {
     return {
-      data: res.sortStringList.data,
+      result: res.sortStringList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.sortStringList?.message || "Unknown error",
   };
 };
@@ -271,18 +271,18 @@ export const sortStringList = async (
 export const filterStringList = async (
   options: FilterStringListMutationVariables
 ): Promise<{
-  data: string[];
+  result: string[];
   error: string;
 }> => {
   const res = await api.filterStringList(options);
   if (res.filterStringList?.__typename === "MutationFilterStringListSuccess") {
     return {
-      data: res.filterStringList.data,
+      result: res.filterStringList.data,
       error: "",
     };
   }
   return {
-    data: [],
+    result: [],
     error: res.filterStringList?.message || "Unknown error",
   };
 };

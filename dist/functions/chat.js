@@ -16,12 +16,12 @@ const suggestChatResponse = (options) => __awaiter(void 0, void 0, void 0, funct
     const res = yield __1.api.suggestChatResponse(options);
     if (((_a = res.suggestChatResponse) === null || _a === void 0 ? void 0 : _a.__typename) === "MutationSuggestChatResponseSuccess") {
         return {
-            data: res.suggestChatResponse.data,
+            result: res.suggestChatResponse.data,
             error: "",
         };
     }
     return {
-        data: null,
+        result: null,
         error: ((_b = res.suggestChatResponse) === null || _b === void 0 ? void 0 : _b.message) || "Unknown error",
     };
 });
@@ -32,12 +32,12 @@ const suggestChatResponseIntents = (options) => __awaiter(void 0, void 0, void 0
     if (((_c = res.suggestChatResponseIntents) === null || _c === void 0 ? void 0 : _c.__typename) ===
         "MutationSuggestChatResponseIntentsSuccess") {
         return {
-            data: res.suggestChatResponseIntents.data,
+            result: res.suggestChatResponseIntents.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_d = res.suggestChatResponseIntents) === null || _d === void 0 ? void 0 : _d.message) || "Unknown error",
     };
 });
@@ -48,12 +48,12 @@ const suggestChatResponseMulti = (options) => __awaiter(void 0, void 0, void 0, 
     if (((_e = res.suggestChatResponseMulti) === null || _e === void 0 ? void 0 : _e.__typename) ===
         "MutationSuggestChatResponseMultiSuccess") {
         return {
-            data: res.suggestChatResponseMulti.data,
+            result: res.suggestChatResponseMulti.data,
             error: "",
         };
     }
     return {
-        data: [],
+        result: [],
         error: ((_f = res.suggestChatResponseMulti) === null || _f === void 0 ? void 0 : _f.message) || "Unknown error",
     };
 });

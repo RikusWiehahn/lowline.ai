@@ -13,6 +13,7 @@ exports._ai = exports.api = void 0;
 const graphql_request_1 = require("graphql-request");
 const search_recommend_1 = require("./functions/search_recommend");
 const chat_1 = require("./functions/chat");
+const plaintext_1 = require("./functions/plaintext");
 const schema_1 = require("./schema");
 const createClient = (url, isDev) => {
     const newClient = new graphql_request_1.GraphQLClient(`${url}/graphql`, {
@@ -86,5 +87,29 @@ exports._ai = {
     suggestChatResponse: chat_1.suggestChatResponse,
     suggestChatResponseIntents: chat_1.suggestChatResponseIntents,
     suggestChatResponseMulti: chat_1.suggestChatResponseMulti,
+    isPlaintext: plaintext_1.isPlaintext,
+    generatePlaintext: plaintext_1.generatePlaintext,
+    hasSpellingErrors: plaintext_1.hasSpellingErrors,
+    fixSpellingErrors: plaintext_1.fixSpellingErrors,
+    hasGrammarErrors: plaintext_1.hasGrammarErrors,
+    fixGrammarErrors: plaintext_1.fixGrammarErrors,
+    hasProfanity: plaintext_1.hasProfanity,
+    fixProfanity: plaintext_1.fixProfanity,
+    includesMentionOf: plaintext_1.includesMentionOf,
+    isQuestion: plaintext_1.isQuestion,
+    suggestEdits: plaintext_1.suggestEdits,
+    summarize: plaintext_1.summarize,
+    summarizeKeyPoints: plaintext_1.summarizeKeyPoints,
+    elaborate: plaintext_1.elaborate,
+    explain: plaintext_1.explain,
+    classify: plaintext_1.classify,
+    getKeywords: plaintext_1.getKeywords,
+    generateKeywords: plaintext_1.generateKeywords,
+    getTopic: plaintext_1.getTopic,
+    pluralize: plaintext_1.pluralize,
+    plaintextToMarkdown: plaintext_1.plaintextToMarkdown,
+    plaintextToHTML: plaintext_1.plaintextToHTML,
+    toSpellingUSA: plaintext_1.toSpellingUSA,
+    toSpellingUK: plaintext_1.toSpellingUK,
 };
 exports.default = exports._ai;

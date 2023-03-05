@@ -4,7 +4,7 @@ jest.setTimeout(30000);
 
 _ai.init({
   mode: "development", // or "production"
-  apiKey: "sk-5ebd751079c74d44008eeaf46d6d06b90c0a9744641b8e773b24182e291d8db6",
+  apiKey: "",
 });
 
 //
@@ -21,7 +21,7 @@ describe("isPlaintext", () => {
       text: "The theatre was filled with an enthusiastic audience for the opening night.",
     });
     expect(res).toEqual({
-      data: true,
+      result: true,
       error: "",
     });
   });
@@ -31,7 +31,7 @@ describe("isPlaintext", () => {
       text: "",
     });
     expect(result).toEqual({
-      data: null,
+      result: null,
       error: "Text not provided",
     });
   });
@@ -52,7 +52,7 @@ describe("generatePlaintext", () => {
         "Explain the rules of cricket in a way that a 5 year old can understand.",
     });
     expect(res).toEqual({
-      data: expect.any(String),
+      result: expect.any(String),
       error: "",
     });
   });
@@ -62,7 +62,7 @@ describe("generatePlaintext", () => {
       prompt: "",
     });
     expect(result).toEqual({
-      data: null,
+      result: null,
       error: "Prompt not provided",
     });
   });
@@ -82,7 +82,7 @@ describe("hasSpellingErrors", () => {
       text: "The stufent went to the libary to researsh for her esssay.",
     });
     expect(res).toEqual({
-      data: true,
+      result: true,
       error: "",
     });
   });
@@ -92,7 +92,7 @@ describe("hasSpellingErrors", () => {
       text: "The student went to the library to research for her essay.",
     });
     expect(res).toEqual({
-      data: false,
+      result: false,
       error: "",
     });
   });
@@ -102,7 +102,7 @@ describe("hasSpellingErrors", () => {
       text: "",
     });
     expect(result).toEqual({
-      data: null,
+      result: null,
       error: "Text not provided",
     });
   });
