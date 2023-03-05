@@ -217,7 +217,7 @@ if (res.error) {
 }
 ```
 
-### option_list
+### option_list type
 
 ```php
 { id: string; text: string; }[];
@@ -440,11 +440,19 @@ if (res.error) {
 }
 ```
 
+---
+
 ## 💬 Messaging
 
-🚧 The below functions are under construction 🚧
+### chat_thread type
 
-### `chat_chain`
+```php
+{
+  name: string;
+  role: string;
+  content: string;
+}[];
+```
 
 ### \_ai.suggestChatResponse
 
@@ -472,7 +480,8 @@ const res = await _ai.suggestChatResponse({
 if (res.error) {
   console.log(error);
 } else {
-  console.log(res.result); // -> "You have a great sense of humor and a kind heart."
+  console.log(res.result); 
+  // -> "You have a great sense of humor and a kind heart."
 }
 ```
 
@@ -497,7 +506,8 @@ const res = await _ai.suggestChatResponseIntents({
 if (res.error) {
   console.log(res.error);
 } else {
-  console.log(res.result); // -->  'Offer support','Ask about the reason for feeling down','Ask about potential solutions',
+  console.log(res.result); 
+  // -->  'Offer support','Ask about the reason for feeling down','Ask about potential solutions',
 }
 ```
 
@@ -523,9 +533,12 @@ const res = await _ai.suggestChatResponseMulti({
 if (res.error) {
   console.log(error);
 } else {
-  console.log(res.result); // --> 'You are an amazing person!',' You have a great sense of humor!',' You are very talented!',
+  console.log(res.result); 
+  // --> 'You are an amazing person!',' You have a great sense of humor!',' You are very talented!',
 }
 ```
+
+🚧 The below functions are under construction 🚧
 
 ## 📘 Text processing
 
@@ -536,18 +549,19 @@ if (res.error) {
 - hasGrammarMistakes
 - fixGrammar
 - hasProfanity
-- getProfanityValue
 - removeProfanity
-- getReasonableness
 - includesMentionOf
 - isQuestion
-- proofread // suggest edits to improve readability
+- suggestEdits
 - summarize
 - elaborate
 - explain
 - pluralize
+- isPlaintext
 - convertToMarkdown
 - convertToHTML
+- toSpellingUS
+- toSpellingUK
 
 ### `emoji`
 
