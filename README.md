@@ -554,10 +554,15 @@ if (res.error) {
 - isQuestion
 - suggestEdits
 - summarize
+- summarizeWithKeyPoints
 - elaborate
 - explain
-- pluralize
+- classify
+- getKeyWords
+- getTopic
+- generateKeyWords
 - isPlaintext
+- pluralize
 - convertToMarkdown
 - convertToHTML
 - toSpellingUS

@@ -51,15 +51,34 @@ export type Error = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  classify?: Maybe<MutationClassifyResult>;
   createApiKey?: Maybe<MutationCreateApiKeyResult>;
   createCheckoutSession?: Maybe<MutationCreateCheckoutSessionResult>;
   createOptionList?: Maybe<MutationCreateOptionListResult>;
   createStringList?: Maybe<MutationCreateStringListResult>;
   createStripePortalSession?: Maybe<MutationCreateStripePortalSessionResult>;
   deleteApiKey?: Maybe<MutationDeleteApiKeyResult>;
+  elaborate?: Maybe<MutationElaborateResult>;
+  explain?: Maybe<MutationExplainResult>;
   filterOptionList?: Maybe<MutationFilterOptionListResult>;
   filterStringList?: Maybe<MutationFilterStringListResult>;
+  fixGrammarErrors?: Maybe<MutationFixGrammarErrorsResult>;
+  fixProfanity?: Maybe<MutationFixProfanityResult>;
+  fixSpellingErrors?: Maybe<MutationFixSpellingErrorsResult>;
+  generateKeywords?: Maybe<MutationGenerateKeywordsResult>;
+  generatePlaintext?: Maybe<MutationGeneratePlaintextResult>;
+  getKeywords?: Maybe<MutationGetKeywordsResult>;
+  getTopic?: Maybe<MutationGetTopicResult>;
+  hasGrammarErrors?: Maybe<MutationHasGrammarErrorsResult>;
+  hasProfanity?: Maybe<MutationHasProfanityResult>;
+  hasSpellingErrors?: Maybe<MutationHasSpellingErrorsResult>;
   helloMutation?: Maybe<Scalars['String']>;
+  includesMentionOf?: Maybe<MutationIncludesMentionOfResult>;
+  isPlaintext?: Maybe<MutationIsPlaintextResult>;
+  isQuestion?: Maybe<MutationIsQuestionResult>;
+  plaintextToHTML?: Maybe<MutationPlaintextToHtmlResult>;
+  plaintextToMarkdown?: Maybe<MutationPlaintextToMarkdownResult>;
+  pluralize?: Maybe<MutationPluralizeResult>;
   recommendOptionList?: Maybe<MutationRecommendOptionListResult>;
   recommendStringList?: Maybe<MutationRecommendStringListResult>;
   requestNewPassword?: Maybe<MutationRequestNewPasswordResult>;
@@ -74,10 +93,19 @@ export type Mutation = {
   suggestChatResponse?: Maybe<MutationSuggestChatResponseResult>;
   suggestChatResponseIntents?: Maybe<MutationSuggestChatResponseIntentsResult>;
   suggestChatResponseMulti?: Maybe<MutationSuggestChatResponseMultiResult>;
-  suggestEmailResponse?: Maybe<MutationSuggestEmailResponseResult>;
-  suggestEmailResponseIntents?: Maybe<MutationSuggestEmailResponseIntentsResult>;
-  suggestEmailResponseMulti?: Maybe<MutationSuggestEmailResponseMultiResult>;
+  suggestEdits?: Maybe<MutationSuggestEditsResult>;
+  summarize?: Maybe<MutationSummarizeResult>;
+  summarizeKeyPoints?: Maybe<MutationSummarizeKeyPointsResult>;
+  toSpellingUK?: Maybe<MutationToSpellingUkResult>;
+  toSpellingUSA?: Maybe<MutationToSpellingUsaResult>;
   updateUser?: Maybe<MutationUpdateUserResult>;
+};
+
+
+export type MutationClassifyArgs = {
+  categories: Array<OptionInput>;
+  criteria: Scalars['String'];
+  item: Scalars['String'];
 };
 
 
@@ -115,6 +143,17 @@ export type MutationDeleteApiKeyArgs = {
 };
 
 
+export type MutationElaborateArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationExplainArgs = {
+  level: Scalars['String'];
+  text: Scalars['String'];
+};
+
+
 export type MutationFilterOptionListArgs = {
   criteria: Scalars['String'];
   options: Array<OptionInput>;
@@ -127,8 +166,92 @@ export type MutationFilterStringListArgs = {
 };
 
 
+export type MutationFixGrammarErrorsArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationFixProfanityArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationFixSpellingErrorsArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationGenerateKeywordsArgs = {
+  count: Scalars['Int'];
+  topic: Scalars['String'];
+};
+
+
+export type MutationGeneratePlaintextArgs = {
+  prompt: Scalars['String'];
+};
+
+
+export type MutationGetKeywordsArgs = {
+  count: Scalars['Int'];
+  text: Scalars['String'];
+};
+
+
+export type MutationGetTopicArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationHasGrammarErrorsArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationHasProfanityArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationHasSpellingErrorsArgs = {
+  text: Scalars['String'];
+};
+
+
 export type MutationHelloMutationArgs = {
   name: Scalars['String'];
+};
+
+
+export type MutationIncludesMentionOfArgs = {
+  subject: Scalars['String'];
+  text: Scalars['String'];
+};
+
+
+export type MutationIsPlaintextArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationIsQuestionArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationPlaintextToHtmlArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationPlaintextToMarkdownArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationPluralizeArgs = {
+  count: Scalars['Int'];
+  item: Scalars['String'];
 };
 
 
@@ -226,22 +349,29 @@ export type MutationSuggestChatResponseMultiArgs = {
 };
 
 
-export type MutationSuggestEmailResponseArgs = {
-  email_thread: Array<ChatThreadInput>;
-  intent: Scalars['String'];
+export type MutationSuggestEditsArgs = {
+  text: Scalars['String'];
 };
 
 
-export type MutationSuggestEmailResponseIntentsArgs = {
-  count: Scalars['Int'];
-  email_thread: Array<ChatThreadInput>;
+export type MutationSummarizeArgs = {
+  sentence_count: Scalars['Int'];
+  text: Scalars['String'];
 };
 
 
-export type MutationSuggestEmailResponseMultiArgs = {
-  count: Scalars['Int'];
-  email_thread: Array<ChatThreadInput>;
-  intent: Scalars['String'];
+export type MutationSummarizeKeyPointsArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationToSpellingUkArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationToSpellingUsaArgs = {
+  text: Scalars['String'];
 };
 
 
@@ -251,6 +381,13 @@ export type MutationUpdateUserArgs = {
   last_name?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
   token: Scalars['String'];
+};
+
+export type MutationClassifyResult = BaseError | MutationClassifySuccess;
+
+export type MutationClassifySuccess = {
+  __typename?: 'MutationClassifySuccess';
+  data: OptionOutput;
 };
 
 export type MutationCreateApiKeyResult = BaseError | MutationCreateApiKeySuccess;
@@ -295,6 +432,20 @@ export type MutationDeleteApiKeySuccess = {
   data: User;
 };
 
+export type MutationElaborateResult = BaseError | MutationElaborateSuccess;
+
+export type MutationElaborateSuccess = {
+  __typename?: 'MutationElaborateSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationExplainResult = BaseError | MutationExplainSuccess;
+
+export type MutationExplainSuccess = {
+  __typename?: 'MutationExplainSuccess';
+  data: Scalars['String'];
+};
+
 export type MutationFilterOptionListResult = BaseError | MutationFilterOptionListSuccess;
 
 export type MutationFilterOptionListSuccess = {
@@ -307,6 +458,118 @@ export type MutationFilterStringListResult = BaseError | MutationFilterStringLis
 export type MutationFilterStringListSuccess = {
   __typename?: 'MutationFilterStringListSuccess';
   data: Array<Scalars['String']>;
+};
+
+export type MutationFixGrammarErrorsResult = BaseError | MutationFixGrammarErrorsSuccess;
+
+export type MutationFixGrammarErrorsSuccess = {
+  __typename?: 'MutationFixGrammarErrorsSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationFixProfanityResult = BaseError | MutationFixProfanitySuccess;
+
+export type MutationFixProfanitySuccess = {
+  __typename?: 'MutationFixProfanitySuccess';
+  data: Scalars['String'];
+};
+
+export type MutationFixSpellingErrorsResult = BaseError | MutationFixSpellingErrorsSuccess;
+
+export type MutationFixSpellingErrorsSuccess = {
+  __typename?: 'MutationFixSpellingErrorsSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationGenerateKeywordsResult = BaseError | MutationGenerateKeywordsSuccess;
+
+export type MutationGenerateKeywordsSuccess = {
+  __typename?: 'MutationGenerateKeywordsSuccess';
+  data: Array<Scalars['String']>;
+};
+
+export type MutationGeneratePlaintextResult = BaseError | MutationGeneratePlaintextSuccess;
+
+export type MutationGeneratePlaintextSuccess = {
+  __typename?: 'MutationGeneratePlaintextSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationGetKeywordsResult = BaseError | MutationGetKeywordsSuccess;
+
+export type MutationGetKeywordsSuccess = {
+  __typename?: 'MutationGetKeywordsSuccess';
+  data: Array<Scalars['String']>;
+};
+
+export type MutationGetTopicResult = BaseError | MutationGetTopicSuccess;
+
+export type MutationGetTopicSuccess = {
+  __typename?: 'MutationGetTopicSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationHasGrammarErrorsResult = BaseError | MutationHasGrammarErrorsSuccess;
+
+export type MutationHasGrammarErrorsSuccess = {
+  __typename?: 'MutationHasGrammarErrorsSuccess';
+  data: Scalars['Boolean'];
+};
+
+export type MutationHasProfanityResult = BaseError | MutationHasProfanitySuccess;
+
+export type MutationHasProfanitySuccess = {
+  __typename?: 'MutationHasProfanitySuccess';
+  data: Scalars['Boolean'];
+};
+
+export type MutationHasSpellingErrorsResult = BaseError | MutationHasSpellingErrorsSuccess;
+
+export type MutationHasSpellingErrorsSuccess = {
+  __typename?: 'MutationHasSpellingErrorsSuccess';
+  data: Scalars['Boolean'];
+};
+
+export type MutationIncludesMentionOfResult = BaseError | MutationIncludesMentionOfSuccess;
+
+export type MutationIncludesMentionOfSuccess = {
+  __typename?: 'MutationIncludesMentionOfSuccess';
+  data: Scalars['Boolean'];
+};
+
+export type MutationIsPlaintextResult = BaseError | MutationIsPlaintextSuccess;
+
+export type MutationIsPlaintextSuccess = {
+  __typename?: 'MutationIsPlaintextSuccess';
+  data: Scalars['Boolean'];
+};
+
+export type MutationIsQuestionResult = BaseError | MutationIsQuestionSuccess;
+
+export type MutationIsQuestionSuccess = {
+  __typename?: 'MutationIsQuestionSuccess';
+  data: Scalars['Boolean'];
+};
+
+export type MutationPlaintextToHtmlResult = BaseError | MutationPlaintextToHtmlSuccess;
+
+export type MutationPlaintextToHtmlSuccess = {
+  __typename?: 'MutationPlaintextToHTMLSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationPlaintextToMarkdownResult = BaseError | MutationPlaintextToMarkdownSuccess;
+
+export type MutationPlaintextToMarkdownSuccess = {
+  __typename?: 'MutationPlaintextToMarkdownSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationPluralizeResult = BaseError | MutationPluralizeSuccess;
+
+export type MutationPluralizeSuccess = {
+  __typename?: 'MutationPluralizeSuccess';
+  data: Scalars['String'];
 };
 
 export type MutationRecommendOptionListResult = BaseError | MutationRecommendOptionListSuccess;
@@ -407,24 +670,38 @@ export type MutationSuggestChatResponseSuccess = {
   data: Scalars['String'];
 };
 
-export type MutationSuggestEmailResponseIntentsResult = BaseError | MutationSuggestEmailResponseIntentsSuccess;
+export type MutationSuggestEditsResult = BaseError | MutationSuggestEditsSuccess;
 
-export type MutationSuggestEmailResponseIntentsSuccess = {
-  __typename?: 'MutationSuggestEmailResponseIntentsSuccess';
-  data: Array<Scalars['String']>;
+export type MutationSuggestEditsSuccess = {
+  __typename?: 'MutationSuggestEditsSuccess';
+  data: Scalars['String'];
 };
 
-export type MutationSuggestEmailResponseMultiResult = BaseError | MutationSuggestEmailResponseMultiSuccess;
+export type MutationSummarizeKeyPointsResult = BaseError | MutationSummarizeKeyPointsSuccess;
 
-export type MutationSuggestEmailResponseMultiSuccess = {
-  __typename?: 'MutationSuggestEmailResponseMultiSuccess';
-  data: Array<Scalars['String']>;
+export type MutationSummarizeKeyPointsSuccess = {
+  __typename?: 'MutationSummarizeKeyPointsSuccess';
+  data: Scalars['String'];
 };
 
-export type MutationSuggestEmailResponseResult = BaseError | MutationSuggestEmailResponseSuccess;
+export type MutationSummarizeResult = BaseError | MutationSummarizeSuccess;
 
-export type MutationSuggestEmailResponseSuccess = {
-  __typename?: 'MutationSuggestEmailResponseSuccess';
+export type MutationSummarizeSuccess = {
+  __typename?: 'MutationSummarizeSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationToSpellingUkResult = BaseError | MutationToSpellingUkSuccess;
+
+export type MutationToSpellingUkSuccess = {
+  __typename?: 'MutationToSpellingUKSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationToSpellingUsaResult = BaseError | MutationToSpellingUsaSuccess;
+
+export type MutationToSpellingUsaSuccess = {
+  __typename?: 'MutationToSpellingUSASuccess';
   data: Scalars['String'];
 };
 
@@ -650,6 +927,182 @@ export type SuggestChatResponseMultiMutationVariables = Exact<{
 
 export type SuggestChatResponseMultiMutation = { __typename?: 'Mutation', suggestChatResponseMulti?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestChatResponseMultiSuccess', data: Array<string> } | null };
 
+export type IsPlaintextMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type IsPlaintextMutation = { __typename?: 'Mutation', isPlaintext?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationIsPlaintextSuccess', data: boolean } | null };
+
+export type GeneratePlaintextMutationVariables = Exact<{
+  prompt: Scalars['String'];
+}>;
+
+
+export type GeneratePlaintextMutation = { __typename?: 'Mutation', generatePlaintext?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationGeneratePlaintextSuccess', data: string } | null };
+
+export type HasSpellingErrorsMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type HasSpellingErrorsMutation = { __typename?: 'Mutation', hasSpellingErrors?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationHasSpellingErrorsSuccess', data: boolean } | null };
+
+export type FixSpellingErrorsMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type FixSpellingErrorsMutation = { __typename?: 'Mutation', fixSpellingErrors?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationFixSpellingErrorsSuccess', data: string } | null };
+
+export type HasGrammarErrorsMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type HasGrammarErrorsMutation = { __typename?: 'Mutation', hasGrammarErrors?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationHasGrammarErrorsSuccess', data: boolean } | null };
+
+export type FixGrammarErrorsMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type FixGrammarErrorsMutation = { __typename?: 'Mutation', fixGrammarErrors?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationFixGrammarErrorsSuccess', data: string } | null };
+
+export type HasProfanityMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type HasProfanityMutation = { __typename?: 'Mutation', hasProfanity?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationHasProfanitySuccess', data: boolean } | null };
+
+export type FixProfanityMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type FixProfanityMutation = { __typename?: 'Mutation', fixProfanity?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationFixProfanitySuccess', data: string } | null };
+
+export type IncludesMentionOfMutationVariables = Exact<{
+  text: Scalars['String'];
+  subject: Scalars['String'];
+}>;
+
+
+export type IncludesMentionOfMutation = { __typename?: 'Mutation', includesMentionOf?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationIncludesMentionOfSuccess', data: boolean } | null };
+
+export type IsQuestionMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type IsQuestionMutation = { __typename?: 'Mutation', isQuestion?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationIsQuestionSuccess', data: boolean } | null };
+
+export type SuggestEditsMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type SuggestEditsMutation = { __typename?: 'Mutation', suggestEdits?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestEditsSuccess', data: string } | null };
+
+export type SummarizeMutationVariables = Exact<{
+  text: Scalars['String'];
+  sentence_count: Scalars['Int'];
+}>;
+
+
+export type SummarizeMutation = { __typename?: 'Mutation', summarize?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSummarizeSuccess', data: string } | null };
+
+export type SummarizeKeyPointsMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type SummarizeKeyPointsMutation = { __typename?: 'Mutation', summarizeKeyPoints?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSummarizeKeyPointsSuccess', data: string } | null };
+
+export type ElaborateMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type ElaborateMutation = { __typename?: 'Mutation', elaborate?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationElaborateSuccess', data: string } | null };
+
+export type ExplainMutationVariables = Exact<{
+  text: Scalars['String'];
+  level: Scalars['String'];
+}>;
+
+
+export type ExplainMutation = { __typename?: 'Mutation', explain?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationExplainSuccess', data: string } | null };
+
+export type ClassifyMutationVariables = Exact<{
+  item: Scalars['String'];
+  criteria: Scalars['String'];
+  categories: Array<OptionInput> | OptionInput;
+}>;
+
+
+export type ClassifyMutation = { __typename?: 'Mutation', classify?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationClassifySuccess', data: { __typename?: 'OptionOutput', id: string, text: string } } | null };
+
+export type GetKeywordsMutationVariables = Exact<{
+  text: Scalars['String'];
+  count: Scalars['Int'];
+}>;
+
+
+export type GetKeywordsMutation = { __typename?: 'Mutation', getKeywords?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationGetKeywordsSuccess', data: Array<string> } | null };
+
+export type GenerateKeywordsMutationVariables = Exact<{
+  topic: Scalars['String'];
+  count: Scalars['Int'];
+}>;
+
+
+export type GenerateKeywordsMutation = { __typename?: 'Mutation', generateKeywords?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationGenerateKeywordsSuccess', data: Array<string> } | null };
+
+export type GetTopicMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type GetTopicMutation = { __typename?: 'Mutation', getTopic?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationGetTopicSuccess', data: string } | null };
+
+export type PluralizeMutationVariables = Exact<{
+  item: Scalars['String'];
+  count: Scalars['Int'];
+}>;
+
+
+export type PluralizeMutation = { __typename?: 'Mutation', pluralize?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationPluralizeSuccess', data: string } | null };
+
+export type PlaintextToMarkdownMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type PlaintextToMarkdownMutation = { __typename?: 'Mutation', plaintextToMarkdown?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationPlaintextToMarkdownSuccess', data: string } | null };
+
+export type PlaintextToHtmlMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type PlaintextToHtmlMutation = { __typename?: 'Mutation', plaintextToHTML?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationPlaintextToHTMLSuccess', data: string } | null };
+
+export type ToSpellingUsaMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type ToSpellingUsaMutation = { __typename?: 'Mutation', toSpellingUSA?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationToSpellingUSASuccess', data: string } | null };
+
+export type ToSpellingUkMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type ToSpellingUkMutation = { __typename?: 'Mutation', toSpellingUK?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationToSpellingUKSuccess', data: string } | null };
+
 export const OptionOutputFlatFragmentDoc = gql`
     fragment OptionOutputFlat on OptionOutput {
   id
@@ -839,6 +1292,321 @@ export const SuggestChatResponseMultiDocument = gql`
   }
 }
     `;
+export const IsPlaintextDocument = gql`
+    mutation isPlaintext($text: String!) {
+  isPlaintext(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationIsPlaintextSuccess {
+      data
+    }
+  }
+}
+    `;
+export const GeneratePlaintextDocument = gql`
+    mutation generatePlaintext($prompt: String!) {
+  generatePlaintext(prompt: $prompt) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationGeneratePlaintextSuccess {
+      data
+    }
+  }
+}
+    `;
+export const HasSpellingErrorsDocument = gql`
+    mutation hasSpellingErrors($text: String!) {
+  hasSpellingErrors(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationHasSpellingErrorsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const FixSpellingErrorsDocument = gql`
+    mutation fixSpellingErrors($text: String!) {
+  fixSpellingErrors(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationFixSpellingErrorsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const HasGrammarErrorsDocument = gql`
+    mutation hasGrammarErrors($text: String!) {
+  hasGrammarErrors(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationHasGrammarErrorsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const FixGrammarErrorsDocument = gql`
+    mutation fixGrammarErrors($text: String!) {
+  fixGrammarErrors(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationFixGrammarErrorsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const HasProfanityDocument = gql`
+    mutation hasProfanity($text: String!) {
+  hasProfanity(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationHasProfanitySuccess {
+      data
+    }
+  }
+}
+    `;
+export const FixProfanityDocument = gql`
+    mutation fixProfanity($text: String!) {
+  fixProfanity(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationFixProfanitySuccess {
+      data
+    }
+  }
+}
+    `;
+export const IncludesMentionOfDocument = gql`
+    mutation includesMentionOf($text: String!, $subject: String!) {
+  includesMentionOf(text: $text, subject: $subject) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationIncludesMentionOfSuccess {
+      data
+    }
+  }
+}
+    `;
+export const IsQuestionDocument = gql`
+    mutation isQuestion($text: String!) {
+  isQuestion(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationIsQuestionSuccess {
+      data
+    }
+  }
+}
+    `;
+export const SuggestEditsDocument = gql`
+    mutation suggestEdits($text: String!) {
+  suggestEdits(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestEditsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const SummarizeDocument = gql`
+    mutation summarize($text: String!, $sentence_count: Int!) {
+  summarize(text: $text, sentence_count: $sentence_count) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSummarizeSuccess {
+      data
+    }
+  }
+}
+    `;
+export const SummarizeKeyPointsDocument = gql`
+    mutation summarizeKeyPoints($text: String!) {
+  summarizeKeyPoints(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSummarizeKeyPointsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const ElaborateDocument = gql`
+    mutation elaborate($text: String!) {
+  elaborate(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationElaborateSuccess {
+      data
+    }
+  }
+}
+    `;
+export const ExplainDocument = gql`
+    mutation explain($text: String!, $level: String!) {
+  explain(text: $text, level: $level) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationExplainSuccess {
+      data
+    }
+  }
+}
+    `;
+export const ClassifyDocument = gql`
+    mutation classify($item: String!, $criteria: String!, $categories: [OptionInput!]!) {
+  classify(item: $item, criteria: $criteria, categories: $categories) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationClassifySuccess {
+      data {
+        id
+        text
+      }
+    }
+  }
+}
+    `;
+export const GetKeywordsDocument = gql`
+    mutation getKeywords($text: String!, $count: Int!) {
+  getKeywords(text: $text, count: $count) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationGetKeywordsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const GenerateKeywordsDocument = gql`
+    mutation generateKeywords($topic: String!, $count: Int!) {
+  generateKeywords(topic: $topic, count: $count) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationGenerateKeywordsSuccess {
+      data
+    }
+  }
+}
+    `;
+export const GetTopicDocument = gql`
+    mutation getTopic($text: String!) {
+  getTopic(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationGetTopicSuccess {
+      data
+    }
+  }
+}
+    `;
+export const PluralizeDocument = gql`
+    mutation pluralize($item: String!, $count: Int!) {
+  pluralize(item: $item, count: $count) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationPluralizeSuccess {
+      data
+    }
+  }
+}
+    `;
+export const PlaintextToMarkdownDocument = gql`
+    mutation plaintextToMarkdown($text: String!) {
+  plaintextToMarkdown(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationPlaintextToMarkdownSuccess {
+      data
+    }
+  }
+}
+    `;
+export const PlaintextToHtmlDocument = gql`
+    mutation plaintextToHTML($text: String!) {
+  plaintextToHTML(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationPlaintextToHTMLSuccess {
+      data
+    }
+  }
+}
+    `;
+export const ToSpellingUsaDocument = gql`
+    mutation toSpellingUSA($text: String!) {
+  toSpellingUSA(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationToSpellingUSASuccess {
+      data
+    }
+  }
+}
+    `;
+export const ToSpellingUkDocument = gql`
+    mutation toSpellingUK($text: String!) {
+  toSpellingUK(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationToSpellingUKSuccess {
+      data
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -885,6 +1653,78 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     suggestChatResponseMulti(variables: SuggestChatResponseMultiMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestChatResponseMultiMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SuggestChatResponseMultiMutation>(SuggestChatResponseMultiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestChatResponseMulti', 'mutation');
+    },
+    isPlaintext(variables: IsPlaintextMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<IsPlaintextMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<IsPlaintextMutation>(IsPlaintextDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'isPlaintext', 'mutation');
+    },
+    generatePlaintext(variables: GeneratePlaintextMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GeneratePlaintextMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GeneratePlaintextMutation>(GeneratePlaintextDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'generatePlaintext', 'mutation');
+    },
+    hasSpellingErrors(variables: HasSpellingErrorsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HasSpellingErrorsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<HasSpellingErrorsMutation>(HasSpellingErrorsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'hasSpellingErrors', 'mutation');
+    },
+    fixSpellingErrors(variables: FixSpellingErrorsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<FixSpellingErrorsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<FixSpellingErrorsMutation>(FixSpellingErrorsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'fixSpellingErrors', 'mutation');
+    },
+    hasGrammarErrors(variables: HasGrammarErrorsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HasGrammarErrorsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<HasGrammarErrorsMutation>(HasGrammarErrorsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'hasGrammarErrors', 'mutation');
+    },
+    fixGrammarErrors(variables: FixGrammarErrorsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<FixGrammarErrorsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<FixGrammarErrorsMutation>(FixGrammarErrorsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'fixGrammarErrors', 'mutation');
+    },
+    hasProfanity(variables: HasProfanityMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HasProfanityMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<HasProfanityMutation>(HasProfanityDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'hasProfanity', 'mutation');
+    },
+    fixProfanity(variables: FixProfanityMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<FixProfanityMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<FixProfanityMutation>(FixProfanityDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'fixProfanity', 'mutation');
+    },
+    includesMentionOf(variables: IncludesMentionOfMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<IncludesMentionOfMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<IncludesMentionOfMutation>(IncludesMentionOfDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'includesMentionOf', 'mutation');
+    },
+    isQuestion(variables: IsQuestionMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<IsQuestionMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<IsQuestionMutation>(IsQuestionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'isQuestion', 'mutation');
+    },
+    suggestEdits(variables: SuggestEditsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestEditsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SuggestEditsMutation>(SuggestEditsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestEdits', 'mutation');
+    },
+    summarize(variables: SummarizeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SummarizeMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SummarizeMutation>(SummarizeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'summarize', 'mutation');
+    },
+    summarizeKeyPoints(variables: SummarizeKeyPointsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SummarizeKeyPointsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SummarizeKeyPointsMutation>(SummarizeKeyPointsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'summarizeKeyPoints', 'mutation');
+    },
+    elaborate(variables: ElaborateMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ElaborateMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ElaborateMutation>(ElaborateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'elaborate', 'mutation');
+    },
+    explain(variables: ExplainMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ExplainMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ExplainMutation>(ExplainDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'explain', 'mutation');
+    },
+    classify(variables: ClassifyMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ClassifyMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ClassifyMutation>(ClassifyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'classify', 'mutation');
+    },
+    getKeywords(variables: GetKeywordsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetKeywordsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetKeywordsMutation>(GetKeywordsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getKeywords', 'mutation');
+    },
+    generateKeywords(variables: GenerateKeywordsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GenerateKeywordsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GenerateKeywordsMutation>(GenerateKeywordsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'generateKeywords', 'mutation');
+    },
+    getTopic(variables: GetTopicMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTopicMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetTopicMutation>(GetTopicDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTopic', 'mutation');
+    },
+    pluralize(variables: PluralizeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PluralizeMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PluralizeMutation>(PluralizeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pluralize', 'mutation');
+    },
+    plaintextToMarkdown(variables: PlaintextToMarkdownMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PlaintextToMarkdownMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PlaintextToMarkdownMutation>(PlaintextToMarkdownDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'plaintextToMarkdown', 'mutation');
+    },
+    plaintextToHTML(variables: PlaintextToHtmlMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PlaintextToHtmlMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PlaintextToHtmlMutation>(PlaintextToHtmlDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'plaintextToHTML', 'mutation');
+    },
+    toSpellingUSA(variables: ToSpellingUsaMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ToSpellingUsaMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ToSpellingUsaMutation>(ToSpellingUsaDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'toSpellingUSA', 'mutation');
+    },
+    toSpellingUK(variables: ToSpellingUkMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ToSpellingUkMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ToSpellingUkMutation>(ToSpellingUkDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'toSpellingUK', 'mutation');
     }
   };
 }
