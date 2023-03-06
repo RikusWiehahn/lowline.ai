@@ -5,13 +5,15 @@
 
 Lowline.ai is a javascript utility library that lets you easily sprinkle powerful AI magic all through your codebases.
 
-- 100+ functions powered by ChatGPT, with more added all the time.
+- 100+ (eventually) functions powered by ChatGPT, each being constantly improved with more added all the time.
 - Use it straight away by installing the NPM module.
 - For faster completions sign up for a pay-per-use plan and create an API key.
 
 ---
 
 ## 🚧 Under development, use at own risk. 🚧
+
+That being said, you are extremely welcome to use this. Any feedback, bug reports, issues, or suggestions would be hugely appreciated and will help towards improving this tool ❤️.
 
 ---
 
@@ -101,7 +103,7 @@ For full speed completions, [sign up](https://www.lowline.ai/sign-in) for a paid
 
 - Unlimited free use with a slightly delayed response.
 - This delay is currently 5 seconds
-- For no delay, create a paid plan at USD $0.01 per request.
+- For no delay, create a paid plan at USD $0.001 per request. 
 - Pricing and delay length may change if needed to make the project financially sustainable.
 
 ---
