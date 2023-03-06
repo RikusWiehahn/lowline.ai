@@ -3,7 +3,7 @@
 [🔗 Website](https://www.lowline.ai)
 [🔗 Documentation](https://www.lowline.ai/docs/getting-started)
 
-Lowline.ai is a javascript utility library that lets you easily sprinkle powerful AI magic all through your codebases.
+Lowline.ai is a javascript utility library that lets you easily sprinkle powerful AI magic all through your code.
 
 - 100+ (eventually) functions powered by ChatGPT, each being constantly improved with more added all the time.
 - Use it straight away by installing the NPM module.
@@ -22,8 +22,13 @@ That being said, you are extremely welcome to use this. Any feedback, bug report
 - [Getting started](#-getting-started)
 - [Pricing](#-pricing)
 - [Search and recommend](#-search-and-recommend)
-- [Messaging](#-messaging)
 - [Text processing](#-text-processing)
+- [Messaging](#-messaging)
+- Geography (coming soon)
+- Numbers (coming soon)
+- Colors (coming soon)
+- Addresses and contact info (coming soon)
+- Data formats (coming soon)
 
 ---
 
@@ -43,6 +48,18 @@ import _ai from "lowline.ai";
 
 // or require
 const _ai = require("lowline.ai");
+```
+
+For faster completions [sign up](https://www.lowline.ai/sign-in) for a paid account and create an API Key:
+
+```js
+import _ai from "lowline.ai";
+
+_ai.init({
+  apiKey: "REPLACE_THIS_WITH_YOUR_API_KEY",
+});
+
+// ... continue as normal
 ```
 
 Search example
@@ -103,7 +120,7 @@ For full speed completions, [sign up](https://www.lowline.ai/sign-in) for a paid
 
 - Unlimited free use with a slightly delayed response.
 - This delay is currently **5 seconds**
-- For no delay, create a paid plan at **USD $0.001 per request.**
+- To remove this delay, create a paid plan at **USD $0.001 per request.**
 - Pricing and delay length may change if needed to make the project financially sustainable.
 
 ---
@@ -256,7 +273,11 @@ const res = await _ai.searchOptionList({
 if (res.error) {
   console.log(res.error);
 } else {
-  console.log(res.result); // --> The beach
+  console.log(res.result);
+  // {
+  // id: "967ea024-b996-11ed-afa1-0242ac120002",
+  // text: "The beach"
+  // },
 }
 ```
 
@@ -439,106 +460,6 @@ if (res.error) {
 ```
 
 ---
-
-## 💬 Messaging
-
-- [suggestChatResponse}(#suggestchatresponse)
-- [suggestChatResponseIntents](#suggestchatresponseintents)
-- [suggestChatResponseMulti](#suggestchatresponsemulti)
-
-### chat_thread type
-
-```php
-{
-  name: string;
-  role: string;
-  content: string;
-}[];
-```
-
-### suggestChatResponse
-
-```js
-const res = await _ai.suggestChatResponse({
-  intent: "Give a compliment",
-  chat_thread: [
-    {
-      name: "User",
-      role: "user",
-      content: "I'm feeling down",
-    },
-    {
-      name: "Bot",
-      role: "bot",
-      content: "I'm sorry to hear that",
-    },
-    {
-      name: "User",
-      role: "user",
-      content: "Can you give me a compliment?",
-    },
-  ],
-});
-if (res.error) {
-  console.log(error);
-} else {
-  console.log(res.result);
-  // -> "You have a great sense of humor and a kind heart."
-}
-```
-
-### suggestChatResponseIntents
-
-```js
-const res = await _ai.suggestChatResponseIntents({
-  count: 0,
-  chat_thread: [
-    {
-      name: "User",
-      role: "user",
-      content: "I'm feeling down",
-    },
-    {
-      name: "Bot",
-      role: "bot",
-      content: "I'm sorry to hear that",
-    },
-  ],
-});
-if (res.error) {
-  console.log(res.error);
-} else {
-  console.log(res.result);
-  // -->  'Offer support','Ask about the reason for feeling down','Ask about potential solutions',
-}
-```
-
-### suggestChatResponseMulti
-
-```js
-const res = await _ai.suggestChatResponseMulti({
-  count: 0,
-  intent: "Give a compliment",
-  chat_thread: [
-    {
-      name: "User",
-      role: "user",
-      content: "I'm feeling down",
-    },
-    {
-      name: "Bot",
-      role: "bot",
-      content: "I'm sorry to hear that",
-    },
-  ],
-});
-if (res.error) {
-  console.log(error);
-} else {
-  console.log(res.result);
-  // --> 'You are an amazing person!',' You have a great sense of humor!',' You are very talented!',
-}
-```
 
 ## 📘 Text processing
 
@@ -1021,6 +942,115 @@ if (res.error) {
 - convertMarkdownToHTML
 - convertMarkdownToPlainText
 
+---
+
+## Simple Logic
+
+- yesOrNo
+- 
+
+---
+
+## 💬 Messaging
+
+- [suggestChatResponse](#suggestchatresponse)
+- [suggestChatResponseIntents](#suggestchatresponseintents)
+- [suggestChatResponseMulti](#suggestchatresponsemulti)
+
+### chat_thread type
+
+```php
+{
+  name: string;
+  role: string;
+  content: string;
+}[];
+```
+
+### suggestChatResponse
+
+```js
+const res = await _ai.suggestChatResponse({
+  intent: "Give a compliment",
+  chat_thread: [
+    {
+      name: "User",
+      role: "user",
+      content: "I'm feeling down",
+    },
+    {
+      name: "Bot",
+      role: "bot",
+      content: "I'm sorry to hear that",
+    },
+    {
+      name: "User",
+      role: "user",
+      content: "Can you give me a compliment?",
+    },
+  ],
+});
+if (res.error) {
+  console.log(error);
+} else {
+  console.log(res.result);
+  // -> "You have a great sense of humor and a kind heart."
+}
+```
+
+### suggestChatResponseIntents
+
+```js
+const res = await _ai.suggestChatResponseIntents({
+  count: 0,
+  chat_thread: [
+    {
+      name: "User",
+      role: "user",
+      content: "I'm feeling down",
+    },
+    {
+      name: "Bot",
+      role: "bot",
+      content: "I'm sorry to hear that",
+    },
+  ],
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result);
+  // -->  'Offer support','Ask about the reason for feeling down','Ask about potential solutions',
+}
+```
+
+### suggestChatResponseMulti
+
+```js
+const res = await _ai.suggestChatResponseMulti({
+  count: 0,
+  intent: "Give a compliment",
+  chat_thread: [
+    {
+      name: "User",
+      role: "user",
+      content: "I'm feeling down",
+    },
+    {
+      name: "Bot",
+      role: "bot",
+      content: "I'm sorry to hear that",
+    },
+  ],
+});
+if (res.error) {
+  console.log(error);
+} else {
+  console.log(res.result);
+  // --> 'You are an amazing person!',' You have a great sense of humor!',' You are very talented!',
+}
+```
+
 ## 🌍 Geography
 
 ### `coordinates`
@@ -1070,16 +1100,16 @@ Open-ended, city, state, country, etc.
 - getTimezoneAbbreviation
 - getTimezoneUTCOffset
 
-### `language`
+## 📣 Language
 
 - detectLanguage
 - getLanguageCode
 - getLanguageName
 - translate
 
-## 🧮 Number representation
 
-### `color`
+
+### 🎨 Colors
 
 - isColor
 - getColorName
@@ -1097,14 +1127,7 @@ Open-ended, city, state, country, etc.
 - invertColor
 - getContrastingColor
 
-### `url`
-
-- isURL
-- getURLProtocol
-- getURLDomain
-- getURLSubdomain
-- getURLPathname
-- getURLQueryParams
+## 🧮 Numbers
 
 ### `decimal`
 
