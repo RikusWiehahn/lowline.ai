@@ -23,12 +23,17 @@ That being said, you are extremely welcome to use this. Any feedback, bug report
 - [Pricing](#-pricing)
 - [Search and recommend](#-search-and-recommend)
 - [Text processing](#-text-processing)
+- Emojis (coming soon)
+- Simple logic (coming soon)
 - [Messaging](#-messaging)
+- Sentiment & formality (coming soon)
 - Geography (coming soon)
 - Numbers (coming soon)
 - Colors (coming soon)
 - Addresses and contact info (coming soon)
 - Data formats (coming soon)
+- HTML (coming soon)
+- Markdown (coming soon)
 
 ---
 
@@ -50,7 +55,7 @@ import _ai from "lowline.ai";
 const _ai = require("lowline.ai");
 ```
 
-For faster completions [sign up](https://www.lowline.ai/sign-in) for a paid account and create an API Key:
+If using an API Key for faster completions:
 
 ```js
 import _ai from "lowline.ai";
@@ -906,18 +911,12 @@ if (res.error) {
 
 🚧 The below functions are under construction 🚧
 
-### `emoji`
+## 😘 Emojis
 
 - detectEmoji
 - suggestEmoji
 
-### `formality`
-
-- detectFormality
-- detectFormalityValue
-- editFormality
-
-### `sentiment`
+## 🤌 Sentiment & formality
 
 - detectMainSentiment
 - getSentimentHappiness
@@ -928,14 +927,20 @@ if (res.error) {
 - getSentimentSurprise
 - changeSentiment
 
-### `html`
+### `formality`
+
+- detectFormality
+- detectFormalityValue
+- editFormality
+
+## 🧰 HTML
 
 - hasHTML
 - removeHTML
 - convertHTMLToMarkdown
 - convertHTMLToPlainText
 
-### `markdown`
+## 📠 Markdown
 
 - hasMarkdown
 - removeMarkdown
@@ -944,12 +949,10 @@ if (res.error) {
 
 ---
 
-## Simple Logic
+## 💡 Simple Logic
 
 - yesOrNo
-- 
-
----
+- ***
 
 ## 💬 Messaging
 
@@ -1106,8 +1109,6 @@ Open-ended, city, state, country, etc.
 - getLanguageCode
 - getLanguageName
 - translate
-
-
 
 ### 🎨 Colors
 
