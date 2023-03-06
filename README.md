@@ -17,10 +17,11 @@ Lowline.ai is a javascript utility library that lets you easily sprinkle powerfu
 
 ## 📖 Table of Contents
 
-- [Getting started](#-🚀-getting-started)
-- [Full list of functions](#-📒-full-list-of-functions)
-- [Search and recommend](#🔍-search-and-recommend)
-- [Pricing](#-🏷️-pricing)
+- [Getting started](#getting-started)
+- [Pricing](#pricing)
+- [Search and recommend](#search-and-recommend)
+- [Messaging](#messaging)
+- [Text processing](#text-processing)
 
 ---
 
@@ -94,7 +95,7 @@ if (res.error) {
 
 ## 🏷️ Pricing
 
-### lowline.ai is Free to use with a small response delay,
+### lowline.ai is FREE to use with a small response delay,
 
 For full speed completions, [sign up](https://www.lowline.ai/sign-in) for a paid account and create an API Key.
 
@@ -105,46 +106,18 @@ For full speed completions, [sign up](https://www.lowline.ai/sign-in) for a paid
 
 ---
 
-# 📒 Full list of functions
-
-- searchOptionList
-- recommendOptionList
-- createOptionList
-- sortOptionList
-- filterOptionList
-- searchStringList
-- recommendStringList
-- createStringList
-- sortStringList
-- filterStringList
-- isPlaintext
-- generatePlaintext
-- hasSpellingErrors
-- fixSpellingErrors
-- hasGrammarErrors
-- fixGrammarErrors
-- hasProfanity
-- fixProfanity
-- includesMentionOf
-- isQuestion
-- suggestEdits
-- summarize
-- summarizeKeyPoints
-- elaborate
-- explain
-- classify
-- getKeywords
-- generateKeywords
-- getTopic
-- pluralize
-- plaintextToMarkdown
-- plaintextToHTML
-- toSpellingUSA
-- toSpellingUK
-
----
-
 ## 🔍 Search and recommend
+
+- [searchStringList](#searchstringlist)
+- [recommendStringList](#recommendstringlist)
+- [createStringList](#createstringlist)
+- [sortStringList](#sortstringlist)
+- [filterStringList](#filterstringlist)
+- [searchOptionList](#searchoptionlist)
+- [recommendOptionList](#recommendoptionlist)
+- [createOptionList](#createoptionlist)
+- [sortOptionList](#sortoptionlist)
+- [filterOptionList](#filteroptionlist)
 
 ### string_list type
 
@@ -152,7 +125,7 @@ For full speed completions, [sign up](https://www.lowline.ai/sign-in) for a paid
 string[];
 ```
 
-### \_ai.searchStringList
+### searchStringList
 
 Search through a list of strings, based on a search term provided.
 
@@ -169,7 +142,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.recommendStringList
+### recommendStringList
 
 Recommend from a list of strings, based on interests provided.
 
@@ -192,7 +165,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.createStringList
+### createStringList
 
 Create a list of strings, based on an item type and count.
 
@@ -208,7 +181,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.sortStringList
+### sortStringList
 
 Sort a list of strings, based on a criteria.
 
@@ -224,7 +197,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.filterStringList
+### filterStringList
 
 Filter a list of strings, based on a criteria.
 
@@ -247,7 +220,7 @@ if (res.error) {
 
 ```
 
-### \_ai.searchOptionList
+### searchOptionList
 
 Search in a list of options, based on a search term.
 
@@ -285,7 +258,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.recommendOptionList
+### recommendOptionList
 
 Recommend one or more options from a list of options, based on a list of interests.
 
@@ -339,7 +312,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.createOptionList
+### createOptionList
 
 Create a list of options, based on a option type that describes the kind of options to create.
 
@@ -369,7 +342,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.sortOptionList
+### sortOptionList
 
 Sort a list of options, based on a criteria.
 
@@ -420,7 +393,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.filterOptionList
+### filterOptionList
 
 Filter a list of options, based on a criteria.
 
@@ -467,6 +440,10 @@ if (res.error) {
 
 ## 💬 Messaging
 
+- [suggestChatResponse}(#suggestchatresponse)
+- [suggestChatResponseIntents](#suggestchatresponseintents)
+- [suggestChatResponseMulti](#suggestchatresponsemulti)
+
 ### chat_thread type
 
 ```php
@@ -477,7 +454,7 @@ if (res.error) {
 }[];
 ```
 
-### \_ai.suggestChatResponse
+### suggestChatResponse
 
 ```js
 const res = await _ai.suggestChatResponse({
@@ -508,7 +485,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.suggestChatResponseIntents
+### suggestChatResponseIntents
 
 ```js
 const res = await _ai.suggestChatResponseIntents({
@@ -534,7 +511,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.suggestChatResponseMulti
+### suggestChatResponseMulti
 
 ```js
 const res = await _ai.suggestChatResponseMulti({
@@ -563,7 +540,32 @@ if (res.error) {
 
 ## 📘 Text processing
 
-### \_ai.generatePlaintext
+- [generatePlaintext](#generateplaintext)
+- [isPlaintext](#isplaintext)
+- [hasSpellingErrors](#hasspellingerrors)
+- [fixSpellingErrors](#fixspellingerrors)
+- [hasGrammarErrors](#hasgrammarerrors)
+- [fixGrammarErrors](#fixgrammarerrors)
+- [hasProfanity](#hasprofanity)
+- [fixProfanity](#fixprofanity)
+- [includesMentionOf](#includesmentionof)
+- [isQuestion](#isquestion)
+- [suggestEdits](#suggestedits)
+- [summarize](#summarize)
+- [summarizeKeyPoints](#summarizekeypoints)
+- [elaborate](#elaborate)
+- [explain](#explain)
+- [classify](#classify)
+- [getKeywords](#getkeywords)
+- [generateKeywords](#generatekeywords)
+- [getTopics](#gettopics)
+- [pluralize](#pluralize)
+- [plaintextToMarkdown](#plaintexttomarkdown)
+- [plaintextToHTML](#plaintexttohtml)
+- [toSpellingUSA](#tospellingusa)
+- [toSpellingUK](#tospellinguk)
+
+### generatePlaintext
 
 Just a wrapper around a normal prompt, may remove later.
 
@@ -581,7 +583,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.isPlaintext
+### isPlaintext
 
 Detects if the text is in plain text format.
 
@@ -596,7 +598,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.hasSpellingErrors
+### hasSpellingErrors
 
 Detects if the text has spelling errors.
 
@@ -611,7 +613,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.fixSpellingErrors
+### fixSpellingErrors
 
 Fixes any spelling errors found in the text.
 
@@ -627,7 +629,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.hasGrammarErrors
+### hasGrammarErrors
 
 Detects if the text has grammar errors.
 
@@ -642,7 +644,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.fixGrammarErrors
+### fixGrammarErrors
 
 Fixes any grammar errors found in the text.
 
@@ -658,7 +660,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.hasProfanity
+### hasProfanity
 
 Detects if the text has profanity.
 
@@ -673,7 +675,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.fixProfanity
+### fixProfanity
 
 Obscures any profanity found in the text using asterisks.
 
@@ -689,7 +691,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.includesMentionOf
+### includesMentionOf
 
 Detects if the text includes a mention of a subject.
 
@@ -705,7 +707,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.isQuestion
+### isQuestion
 
 Detects if the text is a question.
 
@@ -720,7 +722,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.suggestEdits
+### suggestEdits
 
 Suggests edits to the text.
 
@@ -736,7 +738,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.summarize
+### summarize
 
 Summarizes the text.
 
@@ -753,7 +755,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.summarizeKeyPoints
+### summarizeKeyPoints
 
 Summarizes the text and highlights key points.
 
@@ -770,7 +772,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.elaborate
+### elaborate
 
 Elaborates on the text.
 
@@ -787,7 +789,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.explain
+### explain
 
 Explains the text at a given level of understanding.
 
@@ -804,7 +806,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.classify
+### classify
 
 Classifies an item into one of a number of categories based on a criteria.
 
@@ -838,7 +840,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.getKeywords
+### getKeywords
 
 Extracts keywords based on the text provided.
 
@@ -855,7 +857,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.generateKeywords
+### generateKeywords
 
 Generates keywords based on the topic provided.
 
@@ -872,7 +874,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.getTopic
+### getTopic
 
 Extracts the topic of the text provided.
 
@@ -887,7 +889,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.pluralize
+### pluralize
 
 Figure out the correct plural form of a word.
 
@@ -903,7 +905,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.plaintextToMarkdown
+### plaintextToMarkdown
 
 Converts plaintext to markdown.
 
@@ -927,7 +929,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.plaintextToHTML
+### plaintextToHTML
 
 Converts plaintext to HTML.
 
@@ -947,7 +949,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.toSpellingUSA
+### toSpellingUSA
 
 Converts British English to American English.
 
@@ -963,7 +965,7 @@ if (res.error) {
 }
 ```
 
-### \_ai.toSpellingUK
+### toSpellingUK
 
 Converts American English to British English.
 
