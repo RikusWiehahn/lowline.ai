@@ -364,8 +364,8 @@ exports.SummarizeKeyPointsDocument = (0, graphql_tag_1.default) `
 }
     `;
 exports.ElaborateDocument = (0, graphql_tag_1.default) `
-    mutation elaborate($text: String!) {
-  elaborate(text: $text) {
+    mutation elaborate($text: String!, $sentence_count: Int!) {
+  elaborate(text: $text, sentence_count: $sentence_count) {
     __typename
     ... on BaseError {
       message

@@ -183,6 +183,7 @@ export declare const _ai: {
     }>;
     elaborate: (options: import("./schema").Exact<{
         text: string;
+        sentence_count: number;
     }>) => Promise<{
         result: string | null;
         error: string;
@@ -190,7 +191,9 @@ export declare const _ai: {
     explain: (options: import("./schema").Exact<{
         text: string;
         level: string;
-    }>) => Promise<{
+    }> & {
+        level: import("./functions/plaintext").ExplanationLevel;
+    }) => Promise<{
         result: string | null;
         error: string;
     }>;

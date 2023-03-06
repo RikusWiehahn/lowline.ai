@@ -128,6 +128,7 @@ export type MutationDeleteApiKeyArgs = {
     token?: InputMaybe<Scalars['String']>;
 };
 export type MutationElaborateArgs = {
+    sentence_count: Scalars['Int'];
     text: Scalars['String'];
 };
 export type MutationExplainArgs = {
@@ -986,6 +987,7 @@ export type SummarizeKeyPointsMutation = {
 };
 export type ElaborateMutationVariables = Exact<{
     text: Scalars['String'];
+    sentence_count: Scalars['Int'];
 }>;
 export type ElaborateMutation = {
     __typename?: 'Mutation';

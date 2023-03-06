@@ -55,7 +55,17 @@ export declare const elaborate: (options: ElaborateMutationVariables) => Promise
     result: string | null;
     error: string;
 }>;
-export declare const explain: (options: ExplainMutationVariables) => Promise<{
+export declare const ExplanationLevels: {
+    readonly beginner: "beginner";
+    readonly novice: "novice";
+    readonly intermediate: "intermediate";
+    readonly advanced: "advanced";
+    readonly expert: "expert";
+};
+export type ExplanationLevel = typeof ExplanationLevels[keyof typeof ExplanationLevels];
+export declare const explain: (options: ExplainMutationVariables & {
+    level: ExplanationLevel;
+}) => Promise<{
     result: string | null;
     error: string;
 }>;

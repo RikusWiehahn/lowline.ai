@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toSpellingUK = exports.toSpellingUSA = exports.plaintextToHTML = exports.plaintextToMarkdown = exports.pluralize = exports.getTopic = exports.generateKeywords = exports.getKeywords = exports.classify = exports.explain = exports.elaborate = exports.summarizeKeyPoints = exports.summarize = exports.suggestEdits = exports.isQuestion = exports.includesMentionOf = exports.fixProfanity = exports.hasProfanity = exports.fixGrammarErrors = exports.hasGrammarErrors = exports.fixSpellingErrors = exports.hasSpellingErrors = exports.generatePlaintext = exports.isPlaintext = void 0;
+exports.toSpellingUK = exports.toSpellingUSA = exports.plaintextToHTML = exports.plaintextToMarkdown = exports.pluralize = exports.getTopic = exports.generateKeywords = exports.getKeywords = exports.classify = exports.explain = exports.ExplanationLevels = exports.elaborate = exports.summarizeKeyPoints = exports.summarize = exports.suggestEdits = exports.isQuestion = exports.includesMentionOf = exports.fixProfanity = exports.hasProfanity = exports.fixGrammarErrors = exports.hasGrammarErrors = exports.fixSpellingErrors = exports.hasSpellingErrors = exports.generatePlaintext = exports.isPlaintext = void 0;
 const __1 = require("..");
 const isPlaintext = (options) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
@@ -221,6 +221,13 @@ const elaborate = (options) => __awaiter(void 0, void 0, void 0, function* () {
     };
 });
 exports.elaborate = elaborate;
+exports.ExplanationLevels = {
+    beginner: "beginner",
+    novice: "novice",
+    intermediate: "intermediate",
+    advanced: "advanced",
+    expert: "expert",
+};
 const explain = (options) => __awaiter(void 0, void 0, void 0, function* () {
     var _4, _5;
     const res = yield __1.api.explain(options);

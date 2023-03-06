@@ -329,7 +329,7 @@ const fixProfanity = (0, graphql_request_1.gql) `
   }
 `;
 const includesMentionOf = (0, graphql_request_1.gql) `
-  mutation includesMentionOf($text: String! $subject: String!) {
+  mutation includesMentionOf($text: String!, $subject: String!) {
     includesMentionOf(text: $text, subject: $subject) {
       __typename
       ... on BaseError {
@@ -368,13 +368,8 @@ const suggestEdits = (0, graphql_request_1.gql) `
   }
 `;
 const summarize = (0, graphql_request_1.gql) `
-  mutation summarize(
-    $text: String! 
-    $sentence_count: Int!) {
-    summarize(
-      text: $text, 
-      sentence_count: $sentence_count
-      ) {
+  mutation summarize($text: String!, $sentence_count: Int!) {
+    summarize(text: $text, sentence_count: $sentence_count) {
       __typename
       ... on BaseError {
         message
@@ -399,8 +394,8 @@ const summarizeKeyPoints = (0, graphql_request_1.gql) `
   }
 `;
 const elaborate = (0, graphql_request_1.gql) `
-  mutation elaborate($text: String!) {
-    elaborate(text: $text) {
+  mutation elaborate($text: String!, $sentence_count: Int!) {
+    elaborate(text: $text, sentence_count: $sentence_count) {
       __typename
       ... on BaseError {
         message
@@ -412,7 +407,7 @@ const elaborate = (0, graphql_request_1.gql) `
   }
 `;
 const explain = (0, graphql_request_1.gql) `
-  mutation explain($text: String! $level: String!) {
+  mutation explain($text: String!, $level: String!) {
     explain(text: $text, level: $level) {
       __typename
       ... on BaseError {
@@ -445,7 +440,7 @@ const classify = (0, graphql_request_1.gql) `
   }
 `;
 const getKeywords = (0, graphql_request_1.gql) `
-  mutation getKeywords($text: String! $count: Int!) {
+  mutation getKeywords($text: String!, $count: Int!) {
     getKeywords(text: $text, count: $count) {
       __typename
       ... on BaseError {
@@ -458,7 +453,7 @@ const getKeywords = (0, graphql_request_1.gql) `
   }
 `;
 const generateKeywords = (0, graphql_request_1.gql) `
-  mutation generateKeywords($topic: String! $count: Int!) {
+  mutation generateKeywords($topic: String!, $count: Int!) {
     generateKeywords(topic: $topic, count: $count) {
       __typename
       ... on BaseError {
@@ -484,7 +479,7 @@ const getTopic = (0, graphql_request_1.gql) `
   }
 `;
 const pluralize = (0, graphql_request_1.gql) `
-  mutation pluralize($item: String! $count: Int!) {
+  mutation pluralize($item: String!, $count: Int!) {
     pluralize(item: $item, count: $count) {
       __typename
       ... on BaseError {
