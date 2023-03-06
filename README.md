@@ -102,8 +102,8 @@ if (res.error) {
 For full speed completions, [sign up](https://www.lowline.ai/sign-in) for a paid account and create an API Key.
 
 - Unlimited free use with a slightly delayed response.
-- This delay is currently 5 seconds
-- For no delay, create a paid plan at USD $0.001 per request. 
+- This delay is currently **5 seconds**
+- For no delay, create a paid plan at **USD $0.001 per request.**
 - Pricing and delay length may change if needed to make the project financially sustainable.
 
 ---
