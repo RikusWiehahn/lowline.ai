@@ -40,7 +40,6 @@ import _ai from "lowline.ai";
 
 // or require
 const _ai = require("lowline.ai");
-
 ```
 
 Search example
@@ -95,14 +94,14 @@ if (res.error) {
 
 ## 🏷️ Pricing
 
-The free version has a small delay, for faster completions, go to https://www.lowline.ai, sign up for a paid account and create an API Key.
+### lowline.ai is Free to use with a small response delay, 
+
+For full speed completions, [sign up](https://www.lowline.ai/sign-in) for a paid account and create an API Key.
 
 - Unlimited free use with a slightly delayed response.
 - This delay is currently 5 seconds
 - For no delay, create a paid plan at USD $0.01 per request.
 - Pricing and delay length may change if needed to make the project financially sustainable.
-
-Stay tuned!
 
 ---
 
@@ -480,7 +479,7 @@ const res = await _ai.suggestChatResponse({
 if (res.error) {
   console.log(error);
 } else {
-  console.log(res.result); 
+  console.log(res.result);
   // -> "You have a great sense of humor and a kind heart."
 }
 ```
@@ -506,7 +505,7 @@ const res = await _ai.suggestChatResponseIntents({
 if (res.error) {
   console.log(res.error);
 } else {
-  console.log(res.result); 
+  console.log(res.result);
   // -->  'Offer support','Ask about the reason for feeling down','Ask about potential solutions',
 }
 ```
@@ -533,7 +532,7 @@ const res = await _ai.suggestChatResponseMulti({
 if (res.error) {
   console.log(error);
 } else {
-  console.log(res.result); 
+  console.log(res.result);
   // --> 'You are an amazing person!',' You have a great sense of humor!',' You are very talented!',
 }
 ```

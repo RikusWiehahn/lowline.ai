@@ -144,6 +144,7 @@ export type MutationDeleteApiKeyArgs = {
 
 
 export type MutationElaborateArgs = {
+  sentence_count: Scalars['Int'];
   text: Scalars['String'];
 };
 
@@ -1022,6 +1023,7 @@ export type SummarizeKeyPointsMutation = { __typename?: 'Mutation', summarizeKey
 
 export type ElaborateMutationVariables = Exact<{
   text: Scalars['String'];
+  sentence_count: Scalars['Int'];
 }>;
 
 
@@ -1462,8 +1464,8 @@ export const SummarizeKeyPointsDocument = gql`
 }
     `;
 export const ElaborateDocument = gql`
-    mutation elaborate($text: String!) {
-  elaborate(text: $text) {
+    mutation elaborate($text: String!, $sentence_count: Int!) {
+  elaborate(text: $text, sentence_count: $sentence_count) {
     __typename
     ... on BaseError {
       message

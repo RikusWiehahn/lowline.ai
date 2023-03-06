@@ -423,8 +423,20 @@ export const elaborate = async (
 //  #       #  #  #      #      #    # # #   ##
 //  ###### #    # #      ###### #    # # #    #
 
+export const ExplanationLevels = {
+  beginner: "beginner",
+  novice: "novice",
+  intermediate: "intermediate",
+  advanced: "advanced",
+  expert: "expert",
+} as const;
+export type ExplanationLevel =
+  typeof ExplanationLevels[keyof typeof ExplanationLevels];
+
 export const explain = async (
-  options: ExplainMutationVariables
+  options: ExplainMutationVariables & {
+    level: ExplanationLevel;
+  }
 ): Promise<{
   result: string | null;
   error: string;
