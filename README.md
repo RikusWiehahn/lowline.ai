@@ -17,11 +17,11 @@ Lowline.ai is a javascript utility library that lets you easily sprinkle powerfu
 
 ## 📖 Table of Contents
 
-- [Getting started](#getting-started)
-- [Pricing](#pricing)
-- [Search and recommend](#search-and-recommend)
-- [Messaging](#messaging)
-- [Text processing](#text-processing)
+- [Getting started](#-getting-started)
+- [Pricing](#-pricing)
+- [Search and recommend](#-search-and-recommend)
+- [Messaging](#-messaging)
+- [Text processing](#-text-processing)
 
 ---
 
