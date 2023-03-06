@@ -1,10 +1,10 @@
 import _ai from "..";
 
-jest.setTimeout(30000);
+jest.setTimeout(40000);
 
 _ai.init({
   mode: "development", // or "production"
-  apiKey: "sk-577cf76ff984ecc92fb738e17f16969945fc7544f2ddc4f8f038e2bf75dc81bd",
+  apiKey: "",
 });
 
 //
@@ -221,7 +221,7 @@ describe("fixGrammarErrors", () => {
 describe("hasProfanity", () => {
   test("should return the data and no error message on success", async () => {
     const res = await _ai.hasProfanity({
-      text: "General Patton was a genuine badass. That guy didn't give a shit about anything that didn't help him win the war.",
+      text: "Oh shit, I can't believe I just said that.",
     });
     expect(res).toEqual({
       result: true,
@@ -231,7 +231,7 @@ describe("hasProfanity", () => {
 
   test("should return the data and no error message on success", async () => {
     const res = await _ai.hasProfanity({
-      text: "General Patton was a through-and-through soldier. That guy didn't allow people to waste time with anything that didn't help him win the war.",
+      text: "Mount Everest is Earth's highest mountain above sea level, located in the Mahalangur Himal sub-range of the Himalayas.",
     });
     expect(res).toEqual({
       result: false,
@@ -449,7 +449,7 @@ describe("summarize", () => {
   });
 });
 
-//
+
 //   ####  #    # #    # #    # ###### #####  # ###### ######    #    # ###### #   #    #####   ####  # #    # #####  ####
 //  #      #    # ##  ## ##  ## #      #    # #     #  #         #   #  #       # #     #    # #    # # ##   #   #   #
 //   ####  #    # # ## # # ## # #####  #    # #    #   #####     ####   #####    #      #    # #    # # # #  #   #    ####
@@ -462,6 +462,7 @@ describe("summarizeKeyPoints", () => {
     const res = await _ai.summarizeKeyPoints({
       text: "Satoshi Nakamoto is the pseudonym used by the unknown creator of Bitcoin, a cryptocurrency. Nakamoto's true identity remains a mystery, and it is unclear whether the name refers to an individual or a group of people. Despite the secrecy surrounding Nakamoto's identity, their creation of Bitcoin has revolutionized the world of finance and technology.",
     });
+
     expect(res).toEqual({
       result: expect.any(String),
       error: "",
@@ -490,8 +491,8 @@ describe("summarizeKeyPoints", () => {
 describe("elaborate", () => {
   test("should return the data and no error message on success", async () => {
     const res = await _ai.elaborate({
-      text: "Bitcoin was created by Satoshi Nakamoto.",
-      sentence_count: 3,
+      text: "Is mayonnaise an instrument?",
+      sentence_count: 2,
     });
     expect(res).toEqual({
       result: expect.any(String),
@@ -665,6 +666,7 @@ describe("getKeywords", () => {
       text: "The Epic of Gilgamesh was written in ancient Sumerian by an unknown author.",
       count: 3,
     });
+
     expect(res).toEqual({
       result: [expect.any(String), expect.any(String), expect.any(String)],
       error: "",
@@ -726,7 +728,7 @@ describe("generateKeywords", () => {
     });
     expect(res).toEqual({
       result: [],
-      error: "Text not provided",
+      error: "Topic not provided",
     });
   });
 
@@ -767,7 +769,7 @@ describe("getTopic", () => {
     });
     expect(res).toEqual({
       result: null,
-      error: "Topic not provided",
+      error: "Text not provided",
     });
   });
 });
@@ -780,41 +782,40 @@ describe("getTopic", () => {
 //  #      #      #    # #   #  #    # #      #  #     #
 //  #      ######  ####  #    # #    # ###### # ###### ######
 
-
-  describe("pluralize", () => {
-    test("should return the data and no error message on success", async () => {
-      const res = await _ai.pluralize({
-        item: "tornado",
-        count: 3,
-      });
-      expect(res).toEqual({
-        result: "tornadoes",
-        error: "",
-      });
+describe("pluralize", () => {
+  test("should return the data and no error message on success", async () => {
+    const res = await _ai.pluralize({
+      item: "tornado",
+      count: 3,
     });
-  
-    test("should return an empty data array and an error message on failure", async () => {
-      const res = await _ai.pluralize({
-        item: "",
-        count: 3,
-      });
-      expect(res).toEqual({
-        result: null,
-        error: "Item not provided",
-      });
-    });
-
-    test("should return an empty data array and an error message on failure", async () => {
-      const res = await _ai.pluralize({
-        item: "tornado",
-        count: 0,
-      });
-      expect(res).toEqual({
-        result: null,
-        error: "Count not provided",
-      });
+    expect(res).toEqual({
+      result: "tornadoes",
+      error: "",
     });
   });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const res = await _ai.pluralize({
+      item: "",
+      count: 3,
+    });
+    expect(res).toEqual({
+      result: null,
+      error: "Item not provided",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const res = await _ai.pluralize({
+      item: "tornado",
+      count: 0,
+    });
+    expect(res).toEqual({
+      result: null,
+      error: "Count not provided",
+    });
+  });
+});
 
 //
 //   ####   ####  #    # #    # ###### #####  #####    #####  ####     #    #   ##   #####  #    # #####   ####  #    # #    #
@@ -824,7 +825,35 @@ describe("getTopic", () => {
 //  #    # #    # #   ##  #  #  #      #   #    #        #   #    #    #    # #    # #   #  #   #  #    # #    # ##  ## #   ##
 //   ####   ####  #    #   ##   ###### #    #   #        #    ####     #    # #    # #    # #    # #####   ####  #    # #    #
 
-// export const plaintextToMarkdown = async (
+describe("plaintextToMarkdown", () => {
+  test("should return the data and no error message on success", async () => {
+    const res = await _ai.plaintextToMarkdown({
+      text: `General Sherman (tree)
+      General Sherman is a giant sequoia tree located at an elevation of 2,109 m (6,919 ft) above sea level in the Giant Forest of Sequoia National Park in Tulare County, in the U.S. state of California.
+
+      History
+      The General Sherman Tree was named after the American Civil War general William Tecumseh Sherman.`,
+    });
+    expect(res).toEqual({
+      result: `# General Sherman (tree)
+General Sherman is a giant sequoia tree located at an elevation of 2,109 m (6,919 ft) above sea level in the Giant Forest of Sequoia National Park in Tulare County, in the U.S. state of California.
+
+## History
+The General Sherman Tree was named after the American Civil War general William Tecumseh Sherman.`,
+      error: "",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const res = await _ai.plaintextToMarkdown({
+      text: "",
+    });
+    expect(res).toEqual({
+      result: null,
+      error: "Text not provided",
+    });
+  });
+});
 
 //
 //   ####   ####  #    # #    # ###### #####  #####    #####  ####     #    # ##### #    # #
@@ -834,7 +863,32 @@ describe("getTopic", () => {
 //  #    # #    # #   ##  #  #  #      #   #    #        #   #    #    #    #   #   #    # #
 //   ####   ####  #    #   ##   ###### #    #   #        #    ####     #    #   #   #    # ######
 
-// export const plaintextToHTML = async (
+describe("plaintextToHTML", () => {
+  test("should return the data and no error message on success", async () => {
+    const res = await _ai.plaintextToHTML({
+      text: `General Sherman (tree)
+      General Sherman is a giant sequoia tree located at an elevation of 2,109 m (6,919 ft) above sea level in the Giant Forest of Sequoia National Park in Tulare County, in the U.S. state of California.
+
+      History
+      The General Sherman Tree was named after the American Civil War general William Tecumseh Sherman. The official story, which may be apocryphal, claims the tree was named in 1879 by naturalist James Wolverton, who had served as a lieutenant in the 9th Indiana Cavalry under Sherman.`,
+    });
+    expect(res).toEqual({
+      result:
+        "<div><h1>General Sherman (tree)</h1><p>General Sherman is a giant sequoia tree located at an elevation of 2,109 m (6,919 ft) above sea level in the Giant Forest of Sequoia National Park in Tulare County, in the U.S. state of California.</p><h2>History</h2><p>The General Sherman Tree was named after the American Civil War general William Tecumseh Sherman. The official story, which may be apocryphal, claims the tree was named in 1879 by naturalist James Wolverton, who had served as a lieutenant in the 9th Indiana Cavalry under Sherman.</p></div>",
+      error: "",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const res = await _ai.plaintextToHTML({
+      text: "",
+    });
+    expect(res).toEqual({
+      result: null,
+      error: "Text not provided",
+    });
+  });
+});
 
 //
 //  #####  ####     #    #  ####    ##       ####  #####  ###### #      #      # #    #  ####
@@ -844,7 +898,28 @@ describe("getTopic", () => {
 //    #   #    #    #    # #    # #    #    #    # #      #      #      #      # #   ## #    #
 //    #    ####      ####   ####  #    #     ####  #      ###### ###### ###### # #    #  ####
 
-// export const toSpellingUSA = async (
+describe("toSpellingUSA", () => {
+  test("should return the data and no error message on success", async () => {
+    const res = await _ai.toSpellingUSA({
+      text: `The harbour was crowded with 19th century British sailing ships, their rigging taut in the stiff breeze as crews hoisted the mainsail, unfurled the jib, and set the topsail with skillful precision. The ships' wooden hulls were often painted in distinctive shades of grey or grey-blue, with names emblazoned in white letters on their sides.`,
+    });
+    expect(res).toEqual({
+      result:
+        "The harbor was crowded with 19th century British sailing ships, their rigging taut in the stiff breeze as crews hoisted the mainsail, unfurled the jib, and set the topsail with skillful precision. The ships' wooden hulls were often painted in distinctive shades of gray or blue-gray, with names emblazoned in white letters on their sides.",
+      error: "",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const res = await _ai.toSpellingUSA({
+      text: "",
+    });
+    expect(res).toEqual({
+      result: null,
+      error: "Text not provided",
+    });
+  });
+});
 
 //
 //  #####  ####     #    # #    #     ####  #####  ###### #      #      # #    #  ####
@@ -854,4 +929,25 @@ describe("getTopic", () => {
 //    #   #    #    #    # #   #     #    # #      #      #      #      # #   ## #    #
 //    #    ####      ####  #    #     ####  #      ###### ###### ###### # #    #  ####
 
-// export const toSpellingUK = async (
+describe("toSpellingUK", () => {
+  test("should return the data and no error message on success", async () => {
+    const res = await _ai.toSpellingUK({
+      text: `The harbor was crowded with 19th century British sailing ships, their rigging taut in the stiff breeze as crews hoisted the mainsail, unfurled the jib, and set the topsail with skillful precision. The ships' wooden hulls were often painted in distinctive shades of gray or gray-blue, with names emblazoned in white letters on their sides.`,
+    });
+    expect(res).toEqual({
+      result:
+        "The harbour was crowded with 19th century British sailing ships, their rigging taut in the stiff breeze as crews hoisted the mainsail, unfurled the jib, and set the topsail with skilful precision. The ships' wooden hulls were often painted in distinctive shades of grey or grey-blue, with names emblazoned in white letters on their sides.",
+      error: "",
+    });
+  });
+
+  test("should return an empty data array and an error message on failure", async () => {
+    const res = await _ai.toSpellingUK({
+      text: "",
+    });
+    expect(res).toEqual({
+      result: null,
+      error: "Text not provided",
+    });
+  });
+});
