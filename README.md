@@ -2,6 +2,7 @@
 
 [🔗 Website](https://www.lowline.ai)
 [🔗 Documentation](https://www.lowline.ai/docs/getting-started)
+[🔗 NPM Package](https://www.npmjs.com/package/lowline.ai)
 
 Lowline.ai is a javascript utility library that lets you easily sprinkle powerful AI magic all through your code.
 
