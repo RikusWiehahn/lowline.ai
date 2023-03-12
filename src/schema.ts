@@ -69,11 +69,13 @@ export type Mutation = {
   generatePlaintext?: Maybe<MutationGeneratePlaintextResult>;
   getKeywords?: Maybe<MutationGetKeywordsResult>;
   getTopic?: Maybe<MutationGetTopicResult>;
+  hasEmojis?: Maybe<MutationHasEmojisResult>;
   hasGrammarErrors?: Maybe<MutationHasGrammarErrorsResult>;
   hasProfanity?: Maybe<MutationHasProfanityResult>;
   hasSpellingErrors?: Maybe<MutationHasSpellingErrorsResult>;
   helloMutation?: Maybe<Scalars['String']>;
   includesMentionOf?: Maybe<MutationIncludesMentionOfResult>;
+  isEmoji?: Maybe<MutationIsEmojiResult>;
   isPlaintext?: Maybe<MutationIsPlaintextResult>;
   isQuestion?: Maybe<MutationIsQuestionResult>;
   plaintextToHTML?: Maybe<MutationPlaintextToHtmlResult>;
@@ -81,6 +83,7 @@ export type Mutation = {
   pluralize?: Maybe<MutationPluralizeResult>;
   recommendOptionList?: Maybe<MutationRecommendOptionListResult>;
   recommendStringList?: Maybe<MutationRecommendStringListResult>;
+  removeEmojis?: Maybe<MutationRemoveEmojisResult>;
   requestNewPassword?: Maybe<MutationRequestNewPasswordResult>;
   searchOptionList?: Maybe<MutationSearchOptionListResult>;
   searchStringList?: Maybe<MutationSearchStringListResult>;
@@ -94,6 +97,7 @@ export type Mutation = {
   suggestChatResponseIntents?: Maybe<MutationSuggestChatResponseIntentsResult>;
   suggestChatResponseMulti?: Maybe<MutationSuggestChatResponseMultiResult>;
   suggestEdits?: Maybe<MutationSuggestEditsResult>;
+  suggestEmoji?: Maybe<MutationSuggestEmojiResult>;
   summarize?: Maybe<MutationSummarizeResult>;
   summarizeKeyPoints?: Maybe<MutationSummarizeKeyPointsResult>;
   toSpellingUK?: Maybe<MutationToSpellingUkResult>;
@@ -204,6 +208,11 @@ export type MutationGetTopicArgs = {
 };
 
 
+export type MutationHasEmojisArgs = {
+  text: Scalars['String'];
+};
+
+
 export type MutationHasGrammarErrorsArgs = {
   text: Scalars['String'];
 };
@@ -226,6 +235,11 @@ export type MutationHelloMutationArgs = {
 
 export type MutationIncludesMentionOfArgs = {
   subject: Scalars['String'];
+  text: Scalars['String'];
+};
+
+
+export type MutationIsEmojiArgs = {
   text: Scalars['String'];
 };
 
@@ -267,6 +281,11 @@ export type MutationRecommendStringListArgs = {
   count?: InputMaybe<Scalars['Int']>;
   interests: Array<Scalars['String']>;
   items: Array<Scalars['String']>;
+};
+
+
+export type MutationRemoveEmojisArgs = {
+  text: Scalars['String'];
 };
 
 
@@ -351,6 +370,11 @@ export type MutationSuggestChatResponseMultiArgs = {
 
 
 export type MutationSuggestEditsArgs = {
+  text: Scalars['String'];
+};
+
+
+export type MutationSuggestEmojiArgs = {
   text: Scalars['String'];
 };
 
@@ -510,6 +534,13 @@ export type MutationGetTopicSuccess = {
   data: Scalars['String'];
 };
 
+export type MutationHasEmojisResult = BaseError | MutationHasEmojisSuccess;
+
+export type MutationHasEmojisSuccess = {
+  __typename?: 'MutationHasEmojisSuccess';
+  data: Scalars['Boolean'];
+};
+
 export type MutationHasGrammarErrorsResult = BaseError | MutationHasGrammarErrorsSuccess;
 
 export type MutationHasGrammarErrorsSuccess = {
@@ -535,6 +566,13 @@ export type MutationIncludesMentionOfResult = BaseError | MutationIncludesMentio
 
 export type MutationIncludesMentionOfSuccess = {
   __typename?: 'MutationIncludesMentionOfSuccess';
+  data: Scalars['Boolean'];
+};
+
+export type MutationIsEmojiResult = BaseError | MutationIsEmojiSuccess;
+
+export type MutationIsEmojiSuccess = {
+  __typename?: 'MutationIsEmojiSuccess';
   data: Scalars['Boolean'];
 };
 
@@ -585,6 +623,13 @@ export type MutationRecommendStringListResult = BaseError | MutationRecommendStr
 export type MutationRecommendStringListSuccess = {
   __typename?: 'MutationRecommendStringListSuccess';
   data: Array<Scalars['String']>;
+};
+
+export type MutationRemoveEmojisResult = BaseError | MutationRemoveEmojisSuccess;
+
+export type MutationRemoveEmojisSuccess = {
+  __typename?: 'MutationRemoveEmojisSuccess';
+  data: Scalars['String'];
 };
 
 export type MutationRequestNewPasswordResult = BaseError | MutationRequestNewPasswordSuccess;
@@ -675,6 +720,13 @@ export type MutationSuggestEditsResult = BaseError | MutationSuggestEditsSuccess
 
 export type MutationSuggestEditsSuccess = {
   __typename?: 'MutationSuggestEditsSuccess';
+  data: Scalars['String'];
+};
+
+export type MutationSuggestEmojiResult = BaseError | MutationSuggestEmojiSuccess;
+
+export type MutationSuggestEmojiSuccess = {
+  __typename?: 'MutationSuggestEmojiSuccess';
   data: Scalars['String'];
 };
 
@@ -1104,6 +1156,34 @@ export type ToSpellingUkMutationVariables = Exact<{
 
 
 export type ToSpellingUkMutation = { __typename?: 'Mutation', toSpellingUK?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationToSpellingUKSuccess', data: string } | null };
+
+export type SuggestEmojiMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type SuggestEmojiMutation = { __typename?: 'Mutation', suggestEmoji?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationSuggestEmojiSuccess', data: string } | null };
+
+export type IsEmojiMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type IsEmojiMutation = { __typename?: 'Mutation', isEmoji?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationIsEmojiSuccess', data: boolean } | null };
+
+export type HasEmojisMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type HasEmojisMutation = { __typename?: 'Mutation', hasEmojis?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationHasEmojisSuccess', data: boolean } | null };
+
+export type RemoveEmojisMutationVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type RemoveEmojisMutation = { __typename?: 'Mutation', removeEmojis?: { __typename: 'BaseError', message?: string | null } | { __typename: 'MutationRemoveEmojisSuccess', data: string } | null };
 
 export const OptionOutputFlatFragmentDoc = gql`
     fragment OptionOutputFlat on OptionOutput {
@@ -1609,6 +1689,58 @@ export const ToSpellingUkDocument = gql`
   }
 }
     `;
+export const SuggestEmojiDocument = gql`
+    mutation suggestEmoji($text: String!) {
+  suggestEmoji(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestEmojiSuccess {
+      data
+    }
+  }
+}
+    `;
+export const IsEmojiDocument = gql`
+    mutation isEmoji($text: String!) {
+  isEmoji(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationIsEmojiSuccess {
+      data
+    }
+  }
+}
+    `;
+export const HasEmojisDocument = gql`
+    mutation hasEmojis($text: String!) {
+  hasEmojis(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationHasEmojisSuccess {
+      data
+    }
+  }
+}
+    `;
+export const RemoveEmojisDocument = gql`
+    mutation removeEmojis($text: String!) {
+  removeEmojis(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationRemoveEmojisSuccess {
+      data
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -1727,6 +1859,18 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     toSpellingUK(variables: ToSpellingUkMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ToSpellingUkMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<ToSpellingUkMutation>(ToSpellingUkDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'toSpellingUK', 'mutation');
+    },
+    suggestEmoji(variables: SuggestEmojiMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SuggestEmojiMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SuggestEmojiMutation>(SuggestEmojiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'suggestEmoji', 'mutation');
+    },
+    isEmoji(variables: IsEmojiMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<IsEmojiMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<IsEmojiMutation>(IsEmojiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'isEmoji', 'mutation');
+    },
+    hasEmojis(variables: HasEmojisMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HasEmojisMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<HasEmojisMutation>(HasEmojisDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'hasEmojis', 'mutation');
+    },
+    removeEmojis(variables: RemoveEmojisMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RemoveEmojisMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RemoveEmojisMutation>(RemoveEmojisDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'removeEmojis', 'mutation');
     }
   };
 }

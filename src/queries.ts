@@ -883,3 +883,91 @@ const toSpellingUK = gql`
     }
   }
 `;
+
+//
+//   ####  #    #  ####   ####  ######  ####  #####    ###### #    #  ####       # #
+//  #      #    # #    # #    # #      #        #      #      ##  ## #    #      # #
+//   ####  #    # #      #      #####   ####    #      #####  # ## # #    #      # #
+//       # #    # #  ### #  ### #           #   #      #      #    # #    #      # #
+//  #    # #    # #    # #    # #      #    #   #      #      #    # #    # #    # #
+//   ####   ####   ####   ####  ######  ####    #      ###### #    #  ####   ####  #
+
+const suggestEmoji = gql`
+  mutation suggestEmoji($text: String!) {
+    suggestEmoji(text: $text) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestEmojiSuccess {
+        data
+      }
+    }
+  }
+`;
+
+//
+//  #  ####     ###### #    #  ####       # #
+//  # #         #      ##  ## #    #      # #
+//  #  ####     #####  # ## # #    #      # #
+//  #      #    #      #    # #    #      # #
+//  # #    #    #      #    # #    # #    # #
+//  #  ####     ###### #    #  ####   ####  #
+
+const isEmoji = gql`
+  mutation isEmoji($text: String!) {
+    isEmoji(text: $text) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationIsEmojiSuccess {
+        data
+      }
+    }
+  }
+`;
+
+//
+//  #    #   ##    ####     ###### #    #  ####       # #  ####
+//  #    #  #  #  #         #      ##  ## #    #      # # #
+//  ###### #    #  ####     #####  # ## # #    #      # #  ####
+//  #    # ######      #    #      #    # #    #      # #      #
+//  #    # #    # #    #    #      #    # #    # #    # # #    #
+//  #    # #    #  ####     ###### #    #  ####   ####  #  ####
+
+const hasEmojis = gql`
+  mutation hasEmojis($text: String!) {
+    hasEmojis(text: $text) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationHasEmojisSuccess {
+        data
+      }
+    }
+  }
+`;
+
+//
+//  #####  ###### #    #  ####  #    # ######    ###### #    #  ####       # #  ####
+//  #    # #      ##  ## #    # #    # #         #      ##  ## #    #      # # #
+//  #    # #####  # ## # #    # #    # #####     #####  # ## # #    #      # #  ####
+//  #####  #      #    # #    # #    # #         #      #    # #    #      # #      #
+//  #   #  #      #    # #    #  #  #  #         #      #    # #    # #    # # #    #
+//  #    # ###### #    #  ####    ##   ######    ###### #    #  ####   ####  #  ####
+
+const removeEmojis = gql`
+  mutation removeEmojis($text: String!) {
+    removeEmojis(text: $text) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationRemoveEmojisSuccess {
+        data
+      }
+    }
+  }
+`;

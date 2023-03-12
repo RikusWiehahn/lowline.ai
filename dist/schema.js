@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSdk = exports.ToSpellingUkDocument = exports.ToSpellingUsaDocument = exports.PlaintextToHtmlDocument = exports.PlaintextToMarkdownDocument = exports.PluralizeDocument = exports.GetTopicDocument = exports.GenerateKeywordsDocument = exports.GetKeywordsDocument = exports.ClassifyDocument = exports.ExplainDocument = exports.ElaborateDocument = exports.SummarizeKeyPointsDocument = exports.SummarizeDocument = exports.SuggestEditsDocument = exports.IsQuestionDocument = exports.IncludesMentionOfDocument = exports.FixProfanityDocument = exports.HasProfanityDocument = exports.FixGrammarErrorsDocument = exports.HasGrammarErrorsDocument = exports.FixSpellingErrorsDocument = exports.HasSpellingErrorsDocument = exports.GeneratePlaintextDocument = exports.IsPlaintextDocument = exports.SuggestChatResponseMultiDocument = exports.SuggestChatResponseIntentsDocument = exports.SuggestChatResponseDocument = exports.FilterStringListDocument = exports.SortStringListDocument = exports.CreateStringListDocument = exports.RecommendStringListDocument = exports.SearchStringListDocument = exports.FilterOptionListDocument = exports.SortOptionListDocument = exports.CreateOptionListDocument = exports.RecommendOptionListDocument = exports.SearchOptionListDocument = exports.OptionOutputFlatFragmentDoc = void 0;
+exports.getSdk = exports.RemoveEmojisDocument = exports.HasEmojisDocument = exports.IsEmojiDocument = exports.SuggestEmojiDocument = exports.ToSpellingUkDocument = exports.ToSpellingUsaDocument = exports.PlaintextToHtmlDocument = exports.PlaintextToMarkdownDocument = exports.PluralizeDocument = exports.GetTopicDocument = exports.GenerateKeywordsDocument = exports.GetKeywordsDocument = exports.ClassifyDocument = exports.ExplainDocument = exports.ElaborateDocument = exports.SummarizeKeyPointsDocument = exports.SummarizeDocument = exports.SuggestEditsDocument = exports.IsQuestionDocument = exports.IncludesMentionOfDocument = exports.FixProfanityDocument = exports.HasProfanityDocument = exports.FixGrammarErrorsDocument = exports.HasGrammarErrorsDocument = exports.FixSpellingErrorsDocument = exports.HasSpellingErrorsDocument = exports.GeneratePlaintextDocument = exports.IsPlaintextDocument = exports.SuggestChatResponseMultiDocument = exports.SuggestChatResponseIntentsDocument = exports.SuggestChatResponseDocument = exports.FilterStringListDocument = exports.SortStringListDocument = exports.CreateStringListDocument = exports.RecommendStringListDocument = exports.SearchStringListDocument = exports.FilterOptionListDocument = exports.SortOptionListDocument = exports.CreateOptionListDocument = exports.RecommendOptionListDocument = exports.SearchOptionListDocument = exports.OptionOutputFlatFragmentDoc = void 0;
 const graphql_tag_1 = __importDefault(require("graphql-tag"));
 exports.OptionOutputFlatFragmentDoc = (0, graphql_tag_1.default) `
     fragment OptionOutputFlat on OptionOutput {
@@ -509,6 +509,58 @@ exports.ToSpellingUkDocument = (0, graphql_tag_1.default) `
   }
 }
     `;
+exports.SuggestEmojiDocument = (0, graphql_tag_1.default) `
+    mutation suggestEmoji($text: String!) {
+  suggestEmoji(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationSuggestEmojiSuccess {
+      data
+    }
+  }
+}
+    `;
+exports.IsEmojiDocument = (0, graphql_tag_1.default) `
+    mutation isEmoji($text: String!) {
+  isEmoji(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationIsEmojiSuccess {
+      data
+    }
+  }
+}
+    `;
+exports.HasEmojisDocument = (0, graphql_tag_1.default) `
+    mutation hasEmojis($text: String!) {
+  hasEmojis(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationHasEmojisSuccess {
+      data
+    }
+  }
+}
+    `;
+exports.RemoveEmojisDocument = (0, graphql_tag_1.default) `
+    mutation removeEmojis($text: String!) {
+  removeEmojis(text: $text) {
+    __typename
+    ... on BaseError {
+      message
+    }
+    ... on MutationRemoveEmojisSuccess {
+      data
+    }
+  }
+}
+    `;
 const defaultWrapper = (action, _operationName, _operationType) => action();
 function getSdk(client, withWrapper = defaultWrapper) {
     return {
@@ -622,6 +674,18 @@ function getSdk(client, withWrapper = defaultWrapper) {
         },
         toSpellingUK(variables, requestHeaders) {
             return withWrapper((wrappedRequestHeaders) => client.request(exports.ToSpellingUkDocument, variables, Object.assign(Object.assign({}, requestHeaders), wrappedRequestHeaders)), 'toSpellingUK', 'mutation');
+        },
+        suggestEmoji(variables, requestHeaders) {
+            return withWrapper((wrappedRequestHeaders) => client.request(exports.SuggestEmojiDocument, variables, Object.assign(Object.assign({}, requestHeaders), wrappedRequestHeaders)), 'suggestEmoji', 'mutation');
+        },
+        isEmoji(variables, requestHeaders) {
+            return withWrapper((wrappedRequestHeaders) => client.request(exports.IsEmojiDocument, variables, Object.assign(Object.assign({}, requestHeaders), wrappedRequestHeaders)), 'isEmoji', 'mutation');
+        },
+        hasEmojis(variables, requestHeaders) {
+            return withWrapper((wrappedRequestHeaders) => client.request(exports.HasEmojisDocument, variables, Object.assign(Object.assign({}, requestHeaders), wrappedRequestHeaders)), 'hasEmojis', 'mutation');
+        },
+        removeEmojis(variables, requestHeaders) {
+            return withWrapper((wrappedRequestHeaders) => client.request(exports.RemoveEmojisDocument, variables, Object.assign(Object.assign({}, requestHeaders), wrappedRequestHeaders)), 'removeEmojis', 'mutation');
         }
     };
 }

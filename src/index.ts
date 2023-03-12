@@ -42,6 +42,12 @@ import {
   toSpellingUSA,
   toSpellingUK,
 } from "./functions/plaintext";
+import {
+  isEmoji,
+  hasEmojis,
+  suggestEmoji,
+  removeEmojis,
+} from "./functions/emojis";
 import { getSdk, Sdk, SdkFunctionWrapper } from "./schema";
 //
 //   ####  #####  ######   ##   ##### ######     ####  #      # ###### #    # #####
@@ -185,6 +191,10 @@ export const _ai = {
   plaintextToHTML,
   toSpellingUSA,
   toSpellingUK,
+  isEmoji,
+  hasEmojis,
+  suggestEmoji,
+  removeEmojis,
 };
 
 export default _ai;

@@ -24,7 +24,7 @@ That being said, you are extremely welcome to use this. Any feedback, bug report
 - [Pricing](#-pricing)
 - [Search and recommend](#-search-and-recommend)
 - [Text processing](#-text-processing)
-- Emojis (coming soon)
+- [Emojis](#-emojis)
 - Simple logic (coming soon)
 - [Messaging](#-messaging)
 - Sentiment & formality (coming soon)
@@ -910,12 +910,78 @@ if (res.error) {
 }
 ```
 
-🚧 The below functions are under construction 🚧
-
 ## 😘 Emojis
 
-- detectEmoji
-- suggestEmoji
+## suggestEmoji
+
+Suggests the most appropriate emoji for a given text.
+
+```js
+const res = await _ai.suggestEmoji({
+  text: "Let's go to the beach",
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // 🏖️
+}
+```
+
+## isEmoji
+
+Checks if a given text is an emoji.
+
+```js
+const res = await _ai.isEmoji({
+  text: "Let's go to the beach",
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // -> false
+}
+
+const res2 = await _ai.isEmoji({
+  text: "🏖️",
+});
+if (res2.error) {
+  console.log(res2.error);
+} else {
+  console.log(res2.result); // -> true
+}
+```
+
+## hasEmojis
+
+Checks if a given text has emojis.
+
+```js
+const res = await _ai.hasEmojis({
+  text: "A wizard is never late, nor is he early. He arrives precisely when he means to. 🧙‍♂️",
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // -> true
+}
+```
+
+## removeEmojis
+
+Removes emojis from a given text.
+
+```js
+const res = await _ai.removeEmojis({
+  text: "History became legend 📖. Legend became myth 📜.",
+});
+if (res.error) {
+  console.log(res.error);
+} else {
+  console.log(res.result); // History became legend. Legend became myth.
+}
+```
+
+🚧 The below functions are under construction 🚧
 
 ## 🤌 Sentiment & formality
 

@@ -543,3 +543,55 @@ const toSpellingUK = (0, graphql_request_1.gql) `
     }
   }
 `;
+const suggestEmoji = (0, graphql_request_1.gql) `
+  mutation suggestEmoji($text: String!) {
+    suggestEmoji(text: $text) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationSuggestEmojiSuccess {
+        data
+      }
+    }
+  }
+`;
+const isEmoji = (0, graphql_request_1.gql) `
+  mutation isEmoji($text: String!) {
+    isEmoji(text: $text) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationIsEmojiSuccess {
+        data
+      }
+    }
+  }
+`;
+const hasEmojis = (0, graphql_request_1.gql) `
+  mutation hasEmojis($text: String!) {
+    hasEmojis(text: $text) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationHasEmojisSuccess {
+        data
+      }
+    }
+  }
+`;
+const removeEmojis = (0, graphql_request_1.gql) `
+  mutation removeEmojis($text: String!) {
+    removeEmojis(text: $text) {
+      __typename
+      ... on BaseError {
+        message
+      }
+      ... on MutationRemoveEmojisSuccess {
+        data
+      }
+    }
+  }
+`;

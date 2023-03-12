@@ -256,5 +256,29 @@ export declare const _ai: {
         result: string | null;
         error: string;
     }>;
+    isEmoji: (options: import("./schema").Exact<{
+        text: string;
+    }>) => Promise<{
+        result: boolean | null;
+        error: string;
+    }>;
+    hasEmojis: (options: import("./schema").Exact<{
+        text: string;
+    }>) => Promise<{
+        result: boolean | null;
+        error: string;
+    }>;
+    suggestEmoji: (options: import("./schema").Exact<{
+        text: string;
+    }>) => Promise<{
+        result: string | null;
+        error: string;
+    }>;
+    removeEmojis: (options: import("./schema").Exact<{
+        text: string;
+    }>) => Promise<{
+        result: string | null;
+        error: string;
+    }>;
 };
 export default _ai;
