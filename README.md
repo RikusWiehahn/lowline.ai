@@ -3,18 +3,17 @@
 [🔗 Website](https://www.lowline.ai)
 [🔗 Documentation](https://www.lowline.ai/docs/getting-started)
 [🔗 NPM Package](https://www.npmjs.com/package/lowline.ai)
+[🔗 Git repo](https://github.com/RikusWiehahn/lowline.ai)
 
-Lowline.ai is a javascript utility library that lets you easily sprinkle powerful AI magic all through your code.
+Lowline.ai is a javascript utility library that makes it easy to sprinkle powerful AI magic throughout your code.
 
 - 100+ (eventually) functions powered by ChatGPT, each being constantly improved with more added all the time.
-- Use it straight away by installing the NPM module.
+- Use straight away by installing the NPM module.
 - For faster completions sign up for a pay-per-use plan and create an API key.
 
 ---
 
-## 🚧 Under development, use at own risk. 🚧
-
-That being said, you are extremely welcome to use this. Any feedback, bug reports, issues, or suggestions would be hugely appreciated and will help towards improving this tool ❤️.
+This tool is under development. Any feedback, bug reports, issues, or suggestions would be hugely appreciated and will help towards improving this tool ❤️.
 
 ---
 
@@ -911,6 +910,11 @@ if (res.error) {
 ```
 
 ## 😘 Emojis
+
+- [suggestEmoji](#suggestemoji)
+- [isEmoji](#isemoji)
+- [hasEmojis](#hasemojis)
+- [removeEmojis](#removeemojis)
 
 ## suggestEmoji
 
