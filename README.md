@@ -72,18 +72,33 @@ Search example
 ```js
 import _ai from "lowline.ai";
 
-const list = ["test1", "test2", "test3", "test4", "test5"],
+const list = ["test1", "test2", "test3", "test4", "test5"];
 
+// inside async function
 const res = await _ai.searchStringList({
   count: 1,
   search_term: "second test",
   search_items: list,
 });
 if (res.error) {
-  console.log(error)
+  console.log(error);
 } else {
-  console.log(res.result) // --> ["test2"]
+  console.log(res.result); // --> ["test2"]
 }
+
+// callback method
+_ai..searchStringList({
+  count: 1,
+  search_term: "second test",
+  search_items: list,
+}).then((res) => {
+  if (res.error) {
+    console.log(error);
+  } else {
+    console.log(res.result); // --> ["test2"]
+  }
+});
+
 ```
 
 Recommendation example
