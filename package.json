@@ -1,6 +1,6 @@
 {
   "name": "lowline.ai",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "An AI powered utility library",
   "main": "dist/index.js",
   "scripts": {
