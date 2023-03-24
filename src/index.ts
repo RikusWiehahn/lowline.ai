@@ -1,5 +1,42 @@
 import { GraphQLClient } from "graphql-request";
 import {
+  suggestChatResponse,
+  suggestChatResponseIntents,
+  suggestChatResponseMulti,
+} from "./functions/chat";
+import {
+  hasEmojis,
+  isEmoji,
+  removeEmojis,
+  suggestEmoji,
+} from "./functions/emojis";
+import {
+  classify,
+  elaborate,
+  explain,
+  fixGrammarErrors,
+  fixProfanity,
+  fixSpellingErrors,
+  generateKeywords,
+  generatePlaintext,
+  getKeywords,
+  getTopic,
+  hasGrammarErrors,
+  hasProfanity,
+  hasSpellingErrors,
+  includesMentionOf,
+  isPlaintext,
+  isQuestion,
+  plaintextToHTML,
+  plaintextToMarkdown,
+  pluralize,
+  suggestEdits,
+  summarize,
+  summarizeKeyPoints,
+  toSpellingUK,
+  toSpellingUSA,
+} from "./functions/plaintext";
+import {
   createOptionList,
   createStringList,
   filterOptionList,
@@ -11,43 +48,6 @@ import {
   sortOptionList,
   sortStringList,
 } from "./functions/search_recommend";
-import {
-  suggestChatResponse,
-  suggestChatResponseIntents,
-  suggestChatResponseMulti,
-} from "./functions/chat";
-import {
-  isPlaintext,
-  generatePlaintext,
-  hasSpellingErrors,
-  fixSpellingErrors,
-  hasGrammarErrors,
-  fixGrammarErrors,
-  hasProfanity,
-  fixProfanity,
-  includesMentionOf,
-  isQuestion,
-  suggestEdits,
-  summarize,
-  summarizeKeyPoints,
-  elaborate,
-  explain,
-  classify,
-  getKeywords,
-  generateKeywords,
-  getTopic,
-  pluralize,
-  plaintextToMarkdown,
-  plaintextToHTML,
-  toSpellingUSA,
-  toSpellingUK,
-} from "./functions/plaintext";
-import {
-  isEmoji,
-  hasEmojis,
-  suggestEmoji,
-  removeEmojis,
-} from "./functions/emojis";
 import { getSdk, Sdk, SdkFunctionWrapper } from "./schema";
 //
 //   ####  #####  ######   ##   ##### ######     ####  #      # ###### #    # #####

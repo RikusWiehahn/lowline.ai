@@ -11,10 +11,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._ai = exports.api = void 0;
 const graphql_request_1 = require("graphql-request");
-const search_recommend_1 = require("./functions/search_recommend");
 const chat_1 = require("./functions/chat");
-const plaintext_1 = require("./functions/plaintext");
 const emojis_1 = require("./functions/emojis");
+const plaintext_1 = require("./functions/plaintext");
+const search_recommend_1 = require("./functions/search_recommend");
 const schema_1 = require("./schema");
 const createClient = (url, isDev) => {
     const newClient = new graphql_request_1.GraphQLClient(`${url}/graphql`, {
